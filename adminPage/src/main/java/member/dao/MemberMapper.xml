@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberSQL">
+		
+	<select id="getMemberList" parameterType="java.util.Map" resultType="member">
+	
+		select * from (select rownum rn, tt.*from 
+		(select * from simrimember order by signlogtime desc)tt 
+		)where rn<![CDATA[ >= ]]>#{startNum}
+		 and rn <![CDATA[ <= ]]>#{endNum}
+	
+		<!-- select * from simrimember order by signlogtime desc -->
+	</select>
+
+	<select id="getTotalA" resultType="int">
+		select count(*) from simrimember		
+	</select>
+
+	<select id="getSimriMember" parameterType="String" resultType="member">
+		select * from simrimember where email=#{email}
+	</select>
+
+	<update id="setPoint" parameterType="java.util.Map">
+		update simrimember set point=point+#{point} where email=#{email}
+	</update>
+	
+	<select id="getMemberWarningList" parameterType="java.util.Map" resultType="member">
+		select * from (select rownum rn, tt.*from 
+		(select * from simrimember where memsingo >= 1 order by signlogtime desc)tt 
+		)where rn<![CDATA[ >= ]]>#{startNum}
+		 and rn <![CDATA[ <= ]]>#{endNum}
+	
+		<!-- select * from simrimember where memsingo >= 1 order by signlogtime desc -->
+	</select>
+	
+	<select id="getWarningTotalA" resultType="int">
+		select count(*) from simrimember where memsingo >= 1
+	</select>
+	
+	
+	
+	<select id="getMemberStopList" resultType="member">
+		select * from simrimember where condition = '정지' order by signlogtime desc
+	</select>
+	
+	<update id="stopInsert" parameterType="java.util.Map">
+		update simrimember set condition='정지', singologtime=#{singologtime} where email=#{email}
+	</update>
+	
+	<delete id="memberDelete" parameterType="String">
+		delete simrimember where email = #{email}
+	</delete>
+
+	<select id="getMemberSearch" parameterType="java.util.Map" resultType="member">
+	
+	
+	select * from (select rownum rn, tt.*from 
+		(select * from simrimember where ${category} like '%'||#{searchText}||'%' order by signlogtime desc)tt 
+		)where rn<![CDATA[ >= ]]>#{startNum}
+		 and rn <![CDATA[ <= ]]>#{endNum}
+
+	</select>
+
+	<select id="searchTotalA" resultType="int"  parameterType="java.util.Map">
+		select count(*) from simrimember where ${category} like '%'||#{searchText}||'%'
+	</select>
+
+	<select id="getMemberWarningSearch" parameterType="java.util.Map" resultType="member">
+		select * from (select rownum rn, tt.*from 
+		(select * from simrimember where memsingo >= 1 and ${category} like '%'||#{searchText}||'%' order by signlogtime desc)tt 
+		)where rn<![CDATA[ >= ]]>#{startNum}
+		 and rn <![CDATA[ <= ]]>#{endNum}
+
+	</select>
+	
+	<select id="warningSearchTotalA" resultType="int"  parameterType="java.util.Map">
+		select count(*) from simrimember where memsingo >= 1 and ${category} like '%'||#{searchText}||'%'
+	</select>
+
+</mapper>
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

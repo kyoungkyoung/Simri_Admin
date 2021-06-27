@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="admin.bean.AdminDTO" alias="admin"/>
+		<typeAlias type="community.bean.CommunityDTO" alias="community"/>
+		<typeAlias type="chart.bean.EtcDTO" alias="etc"/>
+		<typeAlias type="member.bean.SimriMemberDTO" alias="member"/>
+	</typeAliases>
+
+</configuration>

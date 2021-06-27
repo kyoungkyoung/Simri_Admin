@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="chartSQL">
+ 
+ <!-- 
+	<select id="getHit" parameterType="String" resultType="hit">		
+	<![CDATA[ 
+		select hitlogtime, sum(hithit) as hithit from hit
+			where seq=#{seq}
+			and hitlogtime >= to_char(sysdate-6, 'YY/MM/DD')
+    			and hitlogtime <= to_char(sysdate, 'YY/MM/DD')
+			group by hitlogtime
+			order by hitlogtime asc
+	]]>
+	</select>
+	 -->
+
+	<select id="getEtc" parameterType="String" resultType="etc">
+		<![CDATA[
+		select etclogtime, sum(hithit) as hithit, sum(likelike) as likelike, sum(shareshare) as shareshare
+		from etctest
+		where seq=#{seq} 
+    		and etclogtime >= to_char(sysdate-5, 'YY/MM/DD')
+    		and etclogtime <= to_char(sysdate, 'YY/MM/DD')
+		group by etclogtime
+		order by etclogtime asc
+		]]>
+	</select>
+	
+	<select id="getData" parameterType="java.util.Map" resultType="etc">
+		<![CDATA[
+		select etclogtime, sum(hithit) as hithit, sum(likelike) as likelike, sum(shareshare) as shareshare
+		from etctest
+		where seq=#{seq} 
+    		and etclogtime >= #{startDate}
+    		and etclogtime <= #{endDate}
+		group by etclogtime
+		order by etclogtime asc
+		]]>
+	</select>
+	
+	
+	
+	
+</mapper>

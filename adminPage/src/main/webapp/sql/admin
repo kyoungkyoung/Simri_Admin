@@ -1,0 +1,7 @@
+create table admin
+(adminId VARCHAR2(20),
+      adminPwd varchar2(20),
+    adminEmail varchar2(40),
+    adminProfile varchar2(20)
+    );
+ 
