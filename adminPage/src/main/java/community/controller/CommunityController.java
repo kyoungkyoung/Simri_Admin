@@ -98,21 +98,18 @@ public class CommunityController {
 		String fileName = img.getOriginalFilename();
 		File file = new File(filePath, fileName);//파일 생성
 		
-		if(communityDTO.getImage() == null) {
-			communityDTO.setImage("null.jpg");
-			System.out.println(communityDTO.getImage());
-			System.out.println("오나안오나");
-			System.out.println(communityDTO.getImage());
-		}
-		//파일 복사
-		try {
-			FileCopyUtils.copy(img.getInputStream(), new FileOutputStream(file));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		if (fileName.equals("")) {
+	         communityDTO.setImage("null.jpg");
+	      } else {
+	         // 파일 복사
+	         try {
+	            FileCopyUtils.copy(img.getInputStream(), new FileOutputStream(file));
+	         } catch (IOException e) {
+	            e.printStackTrace();
+	         }
+	         communityDTO.setImage(fileName);
+	      }
 		
-		
-		communityDTO.setImage(fileName);
 		communityService.noticeWrite(communityDTO);
 		
 	

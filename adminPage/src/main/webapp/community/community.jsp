@@ -33,7 +33,7 @@
 				</div>
 	         <input class="form-control me-2" type="search" placeholder="제목입력" aria-label="Search" style="margin-left: 400px; margin-right: 10px; margin-bottom:13px;">
 	         
-	         <button class="btn btn-outline-danger" type="submit" style="margin-right: 10px; margin-bottom:13px;">Search</button>
+	         <button class="btn btn-outline-danger" type="button" id="comSearchBtn" style="margin-right: 10px; margin-bottom:13px;">Search</button>
         </form>
 	</div>
 </div>

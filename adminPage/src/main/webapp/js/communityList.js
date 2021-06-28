@@ -267,7 +267,9 @@ $('#noticeBtn').click(function(){
 	
 });
 
-
+$('#comSearchBtn').click(function(){
+	
+});
 
 
 
