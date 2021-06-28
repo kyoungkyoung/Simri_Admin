@@ -1,5 +1,6 @@
 package community.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,5 +52,17 @@ public class CommunityMybatis implements CommunityDAO {
 		
 		sqlSession.insert("communitySQL.noticeWrite", communityDTO);
 	}//공지사항 등록
+
+	@Override
+	public CommunityDTO getCommunityView(String seq, String image) {
+		//Map<String, Object> map = new HashMap<String, Object>();
+		
+		//map.put("seq", seq);
+		//map.put("", image);
+		
+		CommunityDTO communityDTO = sqlSession.selectOne("communitySQL.getCommunityView", Integer.parseInt(seq));
+		System.out.println(communityDTO);
+		return communityDTO;
+	}
 
 }

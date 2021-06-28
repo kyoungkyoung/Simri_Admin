@@ -53,7 +53,7 @@ $(function(){
 								value: items.seq,
 								onclick: 'checkSelectAll(this)'
 				  			})).append($('<a/>',{
-				  				href: '#',
+				  				href: '/simri/community/communityView?seq='+items.seq,
 				  				class: 'mb-1 flex-fill',
 				  				style: 'text-decoration: none; color: black;'
 					  			}).append($('<h5/>',{
@@ -123,7 +123,7 @@ $(document).ready(function(){
 									value: items.seq,
 									onclick: 'checkSelectAll(this)'
 					  			})).append($('<a/>',{
-					  				href: '#',
+					  				href: '/simri/community/communityView?seq='+items.seq+"&image="+items.image,
 					  				class: 'mb-1 flex-fill',
 					  				style: 'text-decoration: none; color: black;'
 						  			}).append($('<h5/>',{

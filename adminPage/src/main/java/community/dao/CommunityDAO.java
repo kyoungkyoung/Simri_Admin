@@ -15,4 +15,6 @@ public interface CommunityDAO {
 
 	public void noticeWrite(CommunityDTO communityDTO);
 
+	public CommunityDTO getCommunityView(String seq, String image);
+
 }

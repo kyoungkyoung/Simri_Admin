@@ -71,8 +71,6 @@ public class CommunityController {
 		//페이징 처리
 		CommunityPaging communityPaging = communityService.communityPaging(map);
 		
-		System.out.println(communityPaging.getPageSize());
-		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("comCategory", comCategory);
 		mav.addObject("pg", pg);
@@ -116,6 +114,24 @@ public class CommunityController {
 
 	}//공지사항 등록
 
+	
+	@RequestMapping(value = "/communityView", method = RequestMethod.GET)
+	public String communityView(@RequestParam String seq,
+								@RequestParam String image, Model model) {
+		System.out.println(seq);
+		CommunityDTO communityDTO = communityService.getCommunityView(seq, image);
+		System.out.println("Controller = " + communityDTO);
+		
+		model.addAttribute("communityDTO", communityDTO);
+		model.addAttribute("seq", Integer.parseInt(seq));
+		model.addAttribute("image", image);
+		model.addAttribute("display", "/community/communityView.jsp");
+		return "/section/login"; 
+	}// postModify()
+	
+	
+	
+	
 	
 }
 

@@ -13,6 +13,7 @@
 
 <input type="hidden" id="pg" value="${pg}">
 <input type="hidden" id="comCategory1" value="${comCategory1}">
+<input type="hidden" id="image" value="${image}">
 
 <div class="card shadow mb-3 mt-3">
 	<div class="form-check ml-3 mt-2 pt-2">

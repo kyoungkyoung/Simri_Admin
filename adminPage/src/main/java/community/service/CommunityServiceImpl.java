@@ -56,4 +56,11 @@ public class CommunityServiceImpl implements CommunityService {
 		communityDAO.noticeWrite(communityDTO);
 	} //공지사항 등록
 
+	@Override
+	public CommunityDTO getCommunityView(String seq, String image) {
+		CommunityDTO communityDTO = communityDAO.getCommunityView(seq, image);
+		
+		return communityDTO;
+	}
+
 }

@@ -20,8 +20,12 @@
 	</select>
 	
 	<insert id="noticeWrite" parameterType="community">
-		insert into community values('[공지사항]', seq.nextval,'admin@gmail.com', #{subject}, #{content}, sysdate, #{image}, 0,0,0,0,'admin','admin',0)
+		insert into community values('[공지사항]', seq.nextval+20,'admin@gmail.com', #{subject}, #{content}, sysdate, #{image}, 0,0,0,0,'admin','admin',0,'dlrj')
 	</insert>
+	
+	<select id="getCommunityView" parameterType="int" resultType="community">
+		select * from community where seq=#{seq}
+	</select>
 </mapper>
 
 
