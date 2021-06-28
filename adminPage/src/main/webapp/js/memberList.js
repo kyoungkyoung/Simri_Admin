@@ -10,13 +10,11 @@ $(function(){
 	}
 	
 	var buttonId = $('.active').attr('id');
-	//alert("들어오나123"+buttonId);
 	
 	if(buttonId == 'general-tab'){
 		$('#general-tab').trigger('click')
 	}else if(buttonId == 'warning-tab'){
 		$('#warning-tab').trigger('click');
-		alert("페이징 확인");
 	}
 });
 
@@ -24,8 +22,6 @@ $('#general-tab').click(function(){
 	$('#general-tab').addClass('active');
 	$('#warning-tab').removeClass('active');
 	$('#searchText').val('');
-	alert($('#pg').val());
-	//$('#pg').val(pg);
 	$.ajax({
 		type:'post',
 		url:'/simri/member/getMemberList',
@@ -102,7 +98,6 @@ $('#general-tab').click(function(){
 
 
 $('#warning-tab').click(function(){
-	//alert("trigger 확인");
 	$('#warning-tab').addClass('active');
 	$('#general-tab').removeClass('active');
 	$('#searchText').val('');

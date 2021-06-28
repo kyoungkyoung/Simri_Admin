@@ -92,11 +92,18 @@ public class CommunityController {
 	@ResponseBody
 	public void noticeWrite(@ModelAttribute CommunityDTO communityDTO,
 			@RequestParam MultipartFile img) {
-		System.out.println(communityDTO);
-		String filePath = "C:\\git_home\\gitAdmin\\adminPage\\src\\main\\webapp\\storage";
+		//System.out.println(communityDTO.getImage());
+		
+		String filePath = "D:\\Spring\\FinalProject\\git_Project\\gitAdmin\\adminPage\\src\\main\\webapp\\storage";
 		String fileName = img.getOriginalFilename();
 		File file = new File(filePath, fileName);//파일 생성
 		
+		if(communityDTO.getImage() == null) {
+			communityDTO.setImage("null.jpg");
+			System.out.println(communityDTO.getImage());
+			System.out.println("오나안오나");
+			System.out.println(communityDTO.getImage());
+		}
 		//파일 복사
 		try {
 			FileCopyUtils.copy(img.getInputStream(), new FileOutputStream(file));
