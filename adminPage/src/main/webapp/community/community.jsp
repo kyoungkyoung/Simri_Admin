@@ -28,6 +28,7 @@
 		               <option value="유머 게시판">유머 게시판</option>
 		               <option value="연애 게시판">연애 게시판</option>
 		               <option value="고민&상담 게시판">고민&상담 게시판</option>
+		               <option value="[공지사항]">[공지사항]</option>
 					</select>
 				</div>
 	         <input class="form-control me-2" type="search" placeholder="제목입력" aria-label="Search" style="margin-left: 400px; margin-right: 10px; margin-bottom:13px;">

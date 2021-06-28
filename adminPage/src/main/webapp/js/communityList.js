@@ -20,6 +20,9 @@ $(function(){
 		$("#comCategory").val("연애 게시판").attr("selected", "selected");
 	}else if($('#comCategory1').val()==='고민상담게시판'){
 		$("#comCategory").val("고민&상담 게시판").attr("selected", "selected");
+		
+	}else if($('#comCategory1').val()==='공지사항'){
+		$("#comCategory").val("[공지사항]").attr("selected", "selected");
 	}
 	
 	alert($('#comCategory1').val());
@@ -268,6 +271,8 @@ function communityPaging(pg, num){
 		 comCategory1="연애게시판";
 	 }else if( num == 8) {
 		 comCategory1="고민상담게시판";
+	 }else if( num == 9) {
+		 comCategory1="공지사항";
 	 }
 	
 	alert(comCategory1 +"1234");

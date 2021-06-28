@@ -36,6 +36,8 @@ public class CommunityPaging {
 			 num = 7;
 		 }else if(comCategory.equals("고민&상담 게시판")) {
 			 num = 8;
+		 }else if(comCategory.equals("[공지사항]")) {
+			 num = 9;
 		 }
 		   
 		   
