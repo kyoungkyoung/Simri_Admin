@@ -43,4 +43,13 @@ public class CommunityMybatis implements CommunityDAO {
 		return totalA;
 	}
 
+	@Override
+	public void noticeWrite(CommunityDTO communityDTO) {
+		if(communityDTO.getImage() == null) {
+			communityDTO.setImage("null.jpg");
+		}
+		
+		sqlSession.insert("communitySQL.noticeWrite", communityDTO);
+	}//공지사항 등록
+
 }

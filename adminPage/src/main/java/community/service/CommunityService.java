@@ -14,4 +14,6 @@ public interface CommunityService {
 
 	public CommunityPaging communityPaging(Map<String, String> map);
 
+	public void noticeWrite(CommunityDTO communityDTO);
+
 }
