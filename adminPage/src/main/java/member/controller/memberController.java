@@ -35,14 +35,6 @@ public class memberController {
 		return "/section/login";
 	}// memberList()
 	
-	/*
-	 * @RequestMapping(value = "/getMemberWarningList", method = RequestMethod.GET)
-	 * public String getMemberWarningList(@RequestParam(required=false,
-	 * defaultValue="1") String pg, Model model) { model.addAttribute("pg", pg);
-	 * model.addAttribute("display", "/member/memberList.jsp");
-	 * 
-	 * return "/section/login"; }// memberList()
-	 */	
 	@RequestMapping(value = "/getMemberStopList", method = RequestMethod.GET)
 	public String getMemberStopList(@RequestParam(required=false, defaultValue="1") String pg, Model model) { 
 		model.addAttribute("pg", pg);
@@ -118,9 +110,6 @@ public class memberController {
 		return "/section/login";
 	}
 	
-	
-	
-	
 	@RequestMapping(value = "/getMemberStopList", method=RequestMethod.POST)
 	@ResponseBody
 	public ModelAndView getMemberStopList() {
@@ -138,6 +127,8 @@ public class memberController {
 	public void stopInsert(@RequestParam String num, @RequestParam String email,
 						   @RequestParam String stopReason, @RequestParam String period) {
 		
+		System.out.println("num = "+num+" email = "+email+" stopReason = "+stopReason+" periond = "+period);
+		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("num",num);
 		map.put("email",email);
@@ -146,7 +137,6 @@ public class memberController {
 		
 		memberService.stopInsert(map);
 	}
-	
 	
 	@RequestMapping(value="/memberDelete", method=RequestMethod.POST)
 	@ResponseBody
@@ -171,7 +161,6 @@ public class memberController {
 		}
 		
 		List<SimriMemberDTO> list = memberService.getMemberSearch(category, searchText, pg);
-		//System.out.println(list);
 		
 		//페이징 처리
 		Map<String, String> map = new HashMap<String, String>();
@@ -209,14 +198,12 @@ public class memberController {
 		}
 		
 		List<SimriMemberDTO> list = memberService.getMemberWarningSearch(category, searchText, pg);
-		//System.out.println(list);
 		
 		//페이징 처리
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("category", category);
 		map.put("searchText", searchText);
 		map.put("pg", pg);
-		
 		
 		MemberPaging memberPaging = memberService.memberWarningSearchPaging(map);
 		

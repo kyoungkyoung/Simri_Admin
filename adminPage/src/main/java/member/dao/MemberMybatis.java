@@ -1,8 +1,11 @@
 package member.dao;
 
 import java.awt.font.TransformAttribute;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -21,10 +24,44 @@ public class MemberMybatis implements MemberDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	private SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd");
+	private SimpleDateFormat sdf2 = new SimpleDateFormat("yy/MM/dd");
+	
+	
 	@Override
 	public List<SimriMemberDTO> getMemberList(Map<String, Integer> map) {
 		List<SimriMemberDTO> list = sqlSession.selectList("memberSQL.getMemberList", map);
-		return list;
+		System.out.println(list);
+		for(SimriMemberDTO dto : list) {
+			if(dto.getStopPeriod()!=0) {
+				try {
+					Calendar cal = Calendar.getInstance();
+					String date = sdf.format(cal.getTime());
+					
+					
+					Date date1 = sdf.parse(dto.getSingologtime());
+					Date today = sdf.parse(date);
+					
+					System.out.println("DB = "+date1);
+					System.out.println("today = "+today);
+					
+					cal.setTime(date1);
+					cal.add(Calendar.DATE, dto.getStopPeriod());
+					
+					if(cal.getTime().after(today)) {
+						System.out.println("정지 안풀림");
+					}else {
+						System.out.println("정지 풀림");
+						sqlSession.update("memberSQL.updateStop", dto);
+					}
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+			}//if dto.getStopPeriod()!=0
+		}//for list
+		
+		List<SimriMemberDTO> list2 = sqlSession.selectList("memberSQL.getMemberList", map);
+		return list2;
 	}
 	
 	@Override
@@ -100,7 +137,7 @@ public class MemberMybatis implements MemberDAO {
 			Map<String, String> newMap = new HashMap<String, String>();
 			newMap.put("singologtime", sysdate);
 			newMap.put("stopReason", map.get("stopReason"));
-			newMap.put("period", (String) map.get("period"));
+			newMap.put("stopPeriod", (String) map.get("period"));
 			newMap.put("email", arrayEmail[i]);
 			sqlSession.update("memberSQL.stopInsert", newMap);
 		}
