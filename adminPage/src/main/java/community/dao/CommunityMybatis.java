@@ -36,7 +36,7 @@ public class CommunityMybatis implements CommunityDAO {
 			sqlSession.delete("communitySQL.communityDelete", Integer.parseInt(arraySeq[i]));
 		}
 	}
-
+	
 	@Override
 	public int getTotalA(Map<String, String> map) {
 		int totalA = sqlSession.selectOne("communitySQL.getTotalA", map);
