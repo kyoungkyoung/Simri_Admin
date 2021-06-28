@@ -51,4 +51,9 @@ public class CommunityServiceImpl implements CommunityService {
 		return communityPaging;
 	}
 
+	@Override
+	public void noticeWrite(CommunityDTO communityDTO) {
+		communityDAO.noticeWrite(communityDTO);
+	} //공지사항 등록
+
 }

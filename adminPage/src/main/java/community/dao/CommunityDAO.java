@@ -13,4 +13,6 @@ public interface CommunityDAO {
 
 	public int getTotalA(Map<String, String> map);
 
+	public void noticeWrite(CommunityDTO communityDTO);
+
 }

@@ -25,9 +25,6 @@ $(function(){
 		$("#comCategory").val("[공지사항]").attr("selected", "selected");
 	}
 	
-	alert($('#comCategory1').val());
-	alert($('#comCategory').val());
-	
 	$.ajax({
 		type:'post',
 		url: '/simri/community/getCommunity',
@@ -37,7 +34,6 @@ $(function(){
 		},
 		dataType: 'json',
 		success: function(data){
-			//alert(JSON.stringify(data));
 			$('#communityListTable').empty();
 			
 			$.each(data.list, function(index, items){
@@ -98,9 +94,6 @@ $(function(){
 $(document).ready(function(){
 
 	$('#comCategory').change(function() {
-		alert("789"+$('#comCategory').val());
-		//$('#comCategory').val();
-		
 		
 		$.ajax({
 			type:'post',
@@ -111,7 +104,6 @@ $(document).ready(function(){
 			},
 			dataType: 'json',
 			success: function(data){
-				alert(JSON.stringify(data));
 				$('#communityListTable').empty();
 				
 				$.each(data.list, function(index, items){
@@ -188,15 +180,11 @@ function checkSelectAll(checkbox)  {
 	  const selectall 
 	    = document.querySelector('input[id="all"]');
 	  
-//	  const select = document.querySelector('input[name="check"]');
 	  
 	  if(checkbox.checked === false)  {
 	    selectall.checked = false;
 	  }
 	  
-//	  else if(select.checked === true ){
-//		   selectall.checked = true;
-//	  }
 	}
 
 $('#comDeleteBtn').click(function(){
@@ -211,13 +199,11 @@ $('#comDeleteBtn').click(function(){
 			count++;
 			
 		}else if(check1[i].checked == true){
-			console.log(check1[i].value);
 			
 			var dataSeq = new Object();
 
 			dataSeq.seq = check1[i].value;
 			listSeq.push(dataSeq);
-			console.log(listSeq);
 			
 			
 			yn++;
@@ -226,7 +212,6 @@ $('#comDeleteBtn').click(function(){
 	}//for
 	
 	var jsonSeq = JSON.stringify(listSeq);
-	console.log(jsonSeq);
 	
 	if(count != 0 && yn == 0){
 		alert('삭제할 글을 선택해주세요.');
@@ -249,11 +234,48 @@ $('#comDeleteBtn').click(function(){
 	
 });
 
+//공지사항 등록Btn
+
+$('#noticeBtn').click(function(){
+	if($('#subject').val() == '[공지사항]') {
+		alert("제목 입력");
+		
+	}else if($('#content').val() == '') {
+		alert("내용 입력");
+		
+	}else{
+		
+		//2. AJax 통신
+		var formData = new FormData($('#communityWriteForm')[0]); //form 안에 있는 모든 것을 넘겨라
+		$.ajax({
+			type: 'post',
+			url: '/simri/community/noticeWrite',
+			enctype: 'multipart/form-data',
+			processData: false,
+			contentType: false,
+			data: formData,
+			success: function(data){
+				alert("공지사항 등록 완료되었습니다.");
+				location.href = '/simri/community/community?pg=1&comCategory1=공지사항';
+			},
+			error: function(err){
+				console.log(err);
+			}
+		});
+		
+	}
+	
+});
+
+
+
+
+
+
 //페이징
 function communityPaging(pg, num){
 	//var searchText = document.getElementById('searchText').value;
 	var comCategory1;
-	alert("1231");
 	
 	if(num == 1) {
 		comCategory1="전체게시글팔레트"
@@ -275,7 +297,6 @@ function communityPaging(pg, num){
 		 comCategory1="공지사항";
 	 }
 	
-	alert(comCategory1 +"1234");
 	
 	
 	//if(searchText==''){
