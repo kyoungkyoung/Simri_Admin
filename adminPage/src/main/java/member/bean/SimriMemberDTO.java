@@ -15,5 +15,8 @@ public class SimriMemberDTO {
 	private String condition;
 	private int changenick;
 	private String signlogtime;
+	private String singologtime;
+	private int stopPeriod;
+	private String stopReason;
 	
 }

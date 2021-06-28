@@ -46,7 +46,7 @@
 	</select>
 	
 	<update id="stopInsert" parameterType="java.util.Map">
-		update simrimember set condition='정지', singologtime=#{singologtime} where email=#{email}
+		update simrimember set condition='정지', singologtime=#{singologtime}, stopreason=#{stopReason}, stopperiod=#{stopPeriod} where email=#{email}
 	</update>
 	
 	<delete id="memberDelete" parameterType="String">
@@ -78,6 +78,10 @@
 	<select id="warningSearchTotalA" resultType="int"  parameterType="java.util.Map">
 		select count(*) from simrimember where memsingo >= 1 and ${category} like '%'||#{searchText}||'%'
 	</select>
+
+	<update id="updateStop" parameterType="member">
+		update simrimember set stopperiod=0, condition='일반' where email=#{email}
+	</update>
 
 </mapper>
 
