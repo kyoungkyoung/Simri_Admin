@@ -32,7 +32,7 @@
 		               <option value="[공지사항]">[공지사항]</option>
 					</select>
 				</div>
-	         <input class="form-control me-2" type="search" placeholder="닉네임입력" id="comSearchText" aria-label="Search" style="margin-left: 400px; margin-right: 10px; margin-bottom:13px;">
+	         <input class="form-control me-2" type="search" placeholder="닉네임입력" value="${comSearchText }" id="comSearchText" aria-label="Search" style="margin-left: 400px; margin-right: 10px; margin-bottom:13px;">
 	         
 	         <button class="btn btn-outline-danger" type="button" id="comSearchBtn" style="margin-right: 10px; margin-bottom:13px;">Search</button>
         </form>
