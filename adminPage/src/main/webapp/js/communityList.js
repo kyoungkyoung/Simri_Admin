@@ -95,6 +95,8 @@ $(document).ready(function(){
 
 	$('#comCategory').change(function() {
 		
+		$('#comSearchText').val('');
+		
 		$.ajax({
 			type:'post',
 			url: '/simri/community/getCommunity',
@@ -267,7 +269,8 @@ $('#noticeBtn').click(function(){
 	
 });
 
-$('#comSearchBtn').click(function(){
+$('#comSearchBtn').click(function(event){
+	alert("되라되라, "+$('#comSearchText').val());
 	
 	$.ajax({
 		type: 'post',
@@ -332,7 +335,7 @@ $('#comSearchBtn').click(function(){
 			console.log(err);
 		}
 	});
-	
+	$('#pg').val('1');
 });
 
 
@@ -379,18 +382,13 @@ function communityPaging(pg, num){
 }
 
 function communitySearchPaging(pg){
+	alert("오니");
 	var comSearchText = document.getElementById('comSearchText').value;
-	if(comSearchText!=''){ 
+	alert(comSearchText);
 	$('#pg').val(pg);
-	location.href = '/simri/community/community?pg='+pg+'&comCategory1='+comCategory1;
-	
-	
-//}
-//else{
-	//$('#pg').val(pg);
-	//$('#searchBtn').trigger('click', 'search');
-//}
-}
+	$('#comSearchText').val(comSearchText);
+	$('#comSearchBtn').trigger('click');
+
 }
 
 
