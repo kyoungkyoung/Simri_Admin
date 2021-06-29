@@ -1,13 +1,33 @@
 $('#viewModify').click(function(){
-	$.ajax({
-		type: 'post',
-		url: '/simri/community/viewModify',
-		data: $('#viewModifyForm').serialize(),
-		success: function(data){
-			alert('수정되었습니다');
-		},
-		error: function(err){
-			console.log(err);
-		}
-	});
+	
+	if($('#subject').val() == '[공지사항]') {
+		alert("제목 입력");
+		
+	}else if($('#content').val() == '') {
+		alert("내용 입력");
+	}else{
+		//2. AJax 통신
+		var formData = new FormData($('#viewModifyForm')[0]); //form 안에 있는 모든 것을 넘겨라
+		$.ajax({
+			type: 'post',
+			url: '/simri/community/viewModify',
+			enctype: 'multipart/form-data',
+			processData: false,
+			contentType: false,
+			data: formData,
+			success: function(data){
+				alert("공지사항 수정등록 완료되었습니다.");
+				location.href = '/simri/community/community?pg=1&comCategory1=공지사항';
+			},
+			error: function(err){
+				console.log(err);
+			}
+		});
+	}
+	
 });
+
+$('#resetBtn').click(function(){
+	location.reload();
+});
+

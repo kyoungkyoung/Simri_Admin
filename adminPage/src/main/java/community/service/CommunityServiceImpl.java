@@ -95,6 +95,11 @@ public class CommunityServiceImpl implements CommunityService {
 		return communitySearchPaging;
 	}
 
+	@Override
+	public void viewModify(CommunityDTO communityDTO) {
+		communityDAO.viewModify(communityDTO);
+		} //공지사항 수정등록
+
 
 
 }

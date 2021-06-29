@@ -23,4 +23,6 @@ public interface CommunityService {
 
 	public CommunitySearchPaging getcommunitySearchPaging(String comSearchText, String pg);
 
+	public void viewModify(CommunityDTO communityDTO);
+
 }

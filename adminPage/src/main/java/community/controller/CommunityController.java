@@ -93,7 +93,7 @@ public class CommunityController {
 			@RequestParam MultipartFile img) {
 		//System.out.println(communityDTO.getImage());
 		
-		String filePath = "D:\\Spring\\FinalProject\\git_Project\\gitAdmin\\adminPage\\src\\main\\webapp\\storage";
+		String filePath = "C:\\git_home\\gitAdmin\\adminPage\\src\\main\\webapp\\storage";
 		String fileName = img.getOriginalFilename();
 		File file = new File(filePath, fileName);//파일 생성
 		
@@ -126,8 +126,7 @@ public class CommunityController {
 		model.addAttribute("seq", Integer.parseInt(seq));
 		model.addAttribute("display", "/community/communityView.jsp");
 		return "/section/login"; 
-	}// postModify()
-	
+	}// postModify() 
 	
 	@RequestMapping(value = "/comSearch", method = RequestMethod.POST)
 	@ResponseBody
@@ -144,9 +143,35 @@ public class CommunityController {
 		mav.setViewName("jsonView");
 		
 		return mav;
-	}
+	}//커뮤니ㅋ티 검색
 	
+	@RequestMapping(value="viewModify", method=RequestMethod.POST)
+	@ResponseBody
+	public void viewModify(@ModelAttribute CommunityDTO communityDTO,
+			@RequestParam MultipartFile img) {
+		//System.out.println(communityDTO.getImage());
+		
+		String filePath = "C:\\git_home\\gitAdmin\\adminPage\\src\\main\\webapp\\storage";
+		String fileName = img.getOriginalFilename();
+		File file = new File(filePath, fileName);//파일 생성
+		
+		if (fileName.equals("")) {
+	         communityDTO.setImage("null.jpg");
+	      } else {
+	         // 파일 복사
+	         try {
+	            FileCopyUtils.copy(img.getInputStream(), new FileOutputStream(file));
+	         } catch (IOException e) {
+	            e.printStackTrace();
+	         }
+	         communityDTO.setImage(fileName);
+	      }
+		
+		communityService.viewModify(communityDTO);
+		
 	
+
+	}//공지사항 수정등록
 	
 }
 

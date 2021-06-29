@@ -21,4 +21,6 @@ public interface CommunityDAO {
 
 	public int getSearchTotalA(String comSearchText);
 
+	public void viewModify(CommunityDTO communityDTO);
+
 }

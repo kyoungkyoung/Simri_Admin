@@ -39,6 +39,10 @@
 		select count(*) from community where nickname like '%'||#{comSearchText}||'%'
 	</select>
 	
+	<update id="viewModify" parameterType="community">
+		update community set subject = #{subject}, content = #{content}, comlogtime = sysdate, image = #{image}, testurl =#{testURL}  where seq=#{seq}
+	</update>
+	
 </mapper>
 
 
