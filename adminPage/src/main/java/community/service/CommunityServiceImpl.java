@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import community.bean.CommunityDTO;
 import community.bean.CommunityPaging;
+import community.bean.CommunitySearchPaging;
 import community.dao.CommunityDAO;
 
 @Service
@@ -17,6 +18,8 @@ public class CommunityServiceImpl implements CommunityService {
 	private CommunityDAO communityDAO;
 	@Autowired
 	private CommunityPaging communityPaging;
+	@Autowired
+	private CommunitySearchPaging communitySearchPaging;
 	
 	
 	@Override
@@ -62,5 +65,36 @@ public class CommunityServiceImpl implements CommunityService {
 		
 		return communityDTO;
 	}
+
+	@Override
+	public List<CommunityDTO> getComSearch(String comSearchText, String pg) {
+		//페이징 처리 ; 1페이지당
+		int endNum = Integer.parseInt("pg")*5;
+		int startNum = endNum-4;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+		map.put("comSearchText", comSearchText);
+		map.put("pg", Integer.parseInt(pg));
+		
+		
+		return communityDAO.getComSearch(map);
+	}
+
+	@Override
+	public CommunitySearchPaging getcommunitySearchPaging(String comSearchText, String pg) {
+		int totalA = communityDAO.getSearchTotalA(comSearchText);
+		
+		communitySearchPaging.setCurrentPage(Integer.parseInt(pg));
+		communitySearchPaging.setPageBlock(3);
+		communitySearchPaging.setPageSize(5);
+		communitySearchPaging.setTotalA(totalA);
+		communitySearchPaging.makePagingHTML();
+		
+		return communitySearchPaging;
+	}
+
+
 
 }

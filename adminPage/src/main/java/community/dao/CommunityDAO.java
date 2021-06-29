@@ -17,4 +17,8 @@ public interface CommunityDAO {
 
 	public CommunityDTO getCommunityView(String seq, String image);
 
+	public List<CommunityDTO> getComSearch(Map<String, Object> map);
+
+	public int getSearchTotalA(String comSearchText);
+
 }

@@ -26,6 +26,19 @@
 	<select id="getCommunityView" parameterType="int" resultType="community">
 		select * from community where seq=#{seq}
 	</select>
+	
+	<select id="getComSearch" parameterType="java.util.Map" resultType="community">
+	select * from (select rownum rn, tt.*from 
+		(select * from community where nickname like '%'||#{comSearchText}||'%' order by comlogtime desc, seq desc)tt 
+		)where rn<![CDATA[ >= ]]>#{startNum}
+		 and rn <![CDATA[ <= ]]>#{endNum}
+		 
+	</select>
+	
+	<select id="getSearchTotalA" parameterType="String" resultType="int">
+		select count(*) from community where nickname like '%'||#{comSearchText}||'%'
+	</select>
+	
 </mapper>
 
 

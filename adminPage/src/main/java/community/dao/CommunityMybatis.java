@@ -65,4 +65,15 @@ public class CommunityMybatis implements CommunityDAO {
 		return communityDTO;
 	}
 
+	@Override
+	public List<CommunityDTO> getComSearch(Map<String, Object> map) {
+		return sqlSession.selectList("communitySQL.getComSearch", map);
+	}
+
+	@Override
+	public int getSearchTotalA(String comSearchText) {
+		int totalA = sqlSession.selectOne("communitySQL.getSearchTotalA", comSearchText);
+		return totalA;
+	}
+
 }

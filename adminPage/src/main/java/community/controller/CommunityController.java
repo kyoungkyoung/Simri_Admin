@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import community.bean.CommunityDTO;
 import community.bean.CommunityPaging;
+import community.bean.CommunitySearchPaging;
 import community.service.CommunityService;
 
 @Controller
@@ -130,6 +131,22 @@ public class CommunityController {
 	}// postModify()
 	
 	
+	@RequestMapping(value = "/comSearch", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView comSearch(@RequestParam String comSearchText,
+								  @RequestParam String pg) {
+		
+		List<CommunityDTO> list = communityService.getComSearch(comSearchText, pg);
+		
+		CommunitySearchPaging commnunitySearchPaging = communityService.getcommunitySearchPaging(comSearchText, pg);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", list);
+		mav.addObject("commnunitySearchPaging", commnunitySearchPaging);
+		mav.setViewName("jsonView");
+		
+		return mav;
+	}
 	
 	
 	

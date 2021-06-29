@@ -123,7 +123,7 @@ $(document).ready(function(){
 									value: items.seq,
 									onclick: 'checkSelectAll(this)'
 					  			})).append($('<a/>',{
-					  				href: '/simri/community/communityView?seq='+items.seq+"&image="+items.image,
+					  				href: '/simri/community/communityView?seq='+items.seq,
 					  				class: 'mb-1 flex-fill',
 					  				style: 'text-decoration: none; color: black;'
 						  			}).append($('<h5/>',{
@@ -269,6 +269,70 @@ $('#noticeBtn').click(function(){
 
 $('#comSearchBtn').click(function(){
 	
+	$.ajax({
+		type: 'post',
+		url: '/simri/community/getComSearch',
+		data:{  'comSearchText': $('#comSearchText').val(),
+				'pg': $('#pg').val()
+		},
+		dataType: "json",
+		success: function(data){
+			alert(JSON.stringify(data));
+			$('#communityListTable').empty();
+			
+			$.each(data.list, function(index, items){
+				
+				$('<li/>',{
+					class : 'list-group-item mb-3'
+				}).append($('<div/>',{
+					  class: 'list-group-item list-group-item-action'
+						  
+				  		}).append($('<div/>',{
+				  			class: 'd-flex w-100'
+				  				
+				  			}).append($('<input/>',{
+				  				class: 'form-check-in mr-3 mt-2', 
+				  				type: 'checkbox',
+				  				name: 'check',
+								value: items.seq,
+								onclick: 'checkSelectAll(this)'
+				  			})).append($('<a/>',{
+				  				href: '/simri/community/communityView?seq='+items.seq,
+				  				class: 'mb-1 flex-fill',
+				  				style: 'text-decoration: none; color: black;'
+					  			}).append($('<h5/>',{
+					  				text: '['+items.seq+'] '+items.subject,
+					  				style: 'color: black;',
+					  				id: 'comSeq'
+				  			}))).append($('<small/>',{
+				  				class: 'text-muted',
+				  				text: items.comLogtime
+				  				
+				  		}))).append($('<small/>',{
+				  			class: 'text-muted ml-4',
+				  			text: '['+items.nickname+']'
+				  			
+				  		})).append($('<div/>',{
+				  			class: 'd-flex w-100 justify-content-end'
+				  			}).append($('<button/>',{
+				  				type: 'button', 
+				  				class: 'btn btn-outline-secondary float-right mr-1 chartBtn'+items.seq,
+				  				text: '통계'
+				  			})))).appendTo('#communityListTable');	
+				
+				$('.chartBtn'+items.seq).click(function(){
+					location.href="/simri/chart/postGraphDetail?seq="+items.seq;
+				});
+				
+			});//each
+			$('#communityPagingDiv').html(data.communitySearchPaging.pagingHTML);
+			
+		},
+		error: function(err){
+			console.log(err);
+		}
+	});
+	
 });
 
 
@@ -313,6 +377,23 @@ function communityPaging(pg, num){
 	//}
 	 
 }
+
+function communitySearchPaging(pg){
+	var comSearchText = document.getElementById('comSearchText').value;
+	if(comSearchText!=''){ 
+	$('#pg').val(pg);
+	location.href = '/simri/community/community?pg='+pg+'&comCategory1='+comCategory1;
+	
+	
+//}
+//else{
+	//$('#pg').val(pg);
+	//$('#searchBtn').trigger('click', 'search');
+//}
+}
+}
+
+
 
 
 
