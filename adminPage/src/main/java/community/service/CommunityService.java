@@ -17,7 +17,7 @@ public interface CommunityService {
 
 	public void noticeWrite(CommunityDTO communityDTO);
 
-	public CommunityDTO getCommunityView(String seq, String image);
+	public CommunityDTO getCommunityView(String seq);
 
 	public List<CommunityDTO> getComSearch(String comSearchText, String pg);
 

@@ -271,7 +271,7 @@ $('#comSearchBtn').click(function(){
 	
 	$.ajax({
 		type: 'post',
-		url: '/simri/community/getComSearch',
+		url: '/simri/community/comSearch',
 		data:{  'comSearchText': $('#comSearchText').val(),
 				'pg': $('#pg').val()
 		},
@@ -326,7 +326,7 @@ $('#comSearchBtn').click(function(){
 				
 			});//each
 			$('#communityPagingDiv').html(data.communitySearchPaging.pagingHTML);
-			
+											   
 		},
 		error: function(err){
 			console.log(err);

@@ -15,7 +15,7 @@ public interface CommunityDAO {
 
 	public void noticeWrite(CommunityDTO communityDTO);
 
-	public CommunityDTO getCommunityView(String seq, String image);
+	public CommunityDTO getCommunityView(String seq);
 
 	public List<CommunityDTO> getComSearch(Map<String, Object> map);
 

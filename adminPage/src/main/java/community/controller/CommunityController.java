@@ -117,15 +117,13 @@ public class CommunityController {
 
 	
 	@RequestMapping(value = "/communityView", method = RequestMethod.GET)
-	public String communityView(@RequestParam String seq,
-								@RequestParam String image, Model model) {
+	public String communityView(@RequestParam String seq, Model model) {
 		System.out.println(seq);
-		CommunityDTO communityDTO = communityService.getCommunityView(seq, image);
+		CommunityDTO communityDTO = communityService.getCommunityView(seq);
 		System.out.println("Controller = " + communityDTO);
 		
 		model.addAttribute("communityDTO", communityDTO);
 		model.addAttribute("seq", Integer.parseInt(seq));
-		model.addAttribute("image", image);
 		model.addAttribute("display", "/community/communityView.jsp");
 		return "/section/login"; 
 	}// postModify()
@@ -138,11 +136,11 @@ public class CommunityController {
 		
 		List<CommunityDTO> list = communityService.getComSearch(comSearchText, pg);
 		
-		CommunitySearchPaging commnunitySearchPaging = communityService.getcommunitySearchPaging(comSearchText, pg);
+		CommunitySearchPaging communitySearchPaging = communityService.getcommunitySearchPaging(comSearchText, pg);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", list);
-		mav.addObject("commnunitySearchPaging", commnunitySearchPaging);
+		mav.addObject("communitySearchPaging", communitySearchPaging);
 		mav.setViewName("jsonView");
 		
 		return mav;

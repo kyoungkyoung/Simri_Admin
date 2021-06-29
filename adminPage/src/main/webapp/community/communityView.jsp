@@ -36,8 +36,6 @@
             style="padding-left: 20px; padding-right: 20px">
             <label for="board_file">첨부 이미지</label>
             <input type="file" id="board_file" name="board_file" class="form-control" accept="image/*"/>
-            <div class="ml-3">${communityDTO.image}</div>
-            <input type="hidden" id="image" value="${communityDTO.image }">
          </div>
          
          <div class="form-group mb-3"

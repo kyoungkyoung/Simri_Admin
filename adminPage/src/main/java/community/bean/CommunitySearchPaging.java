@@ -32,7 +32,7 @@ public class CommunitySearchPaging {
 	         if(i==currentPage) {
 	            pagingHTML.append("<li class='page-item active' aria-current='page'><a class='page-link' onclick='communitySearchPaging("+i+")'>"+i+"</a></li> ");
 	         }else {
-	            pagingHTML.append("<li class='page-item' ><a class='page-link' onclick='communityPaging("+i+")'>"+i+"</a></li>");
+	            pagingHTML.append("<li class='page-item' ><a class='page-link' onclick='communitySearchPaging("+i+")'>"+i+"</a></li>");
 	         }//else
 	      }//for
 	   

@@ -60,8 +60,8 @@ public class CommunityServiceImpl implements CommunityService {
 	} //공지사항 등록
 
 	@Override
-	public CommunityDTO getCommunityView(String seq, String image) {
-		CommunityDTO communityDTO = communityDAO.getCommunityView(seq, image);
+	public CommunityDTO getCommunityView(String seq) {
+		CommunityDTO communityDTO = communityDAO.getCommunityView(seq);
 		
 		return communityDTO;
 	}
@@ -69,7 +69,7 @@ public class CommunityServiceImpl implements CommunityService {
 	@Override
 	public List<CommunityDTO> getComSearch(String comSearchText, String pg) {
 		//페이징 처리 ; 1페이지당
-		int endNum = Integer.parseInt("pg")*5;
+		int endNum = Integer.parseInt(pg)*5;
 		int startNum = endNum-4;
 		
 		Map<String, Object> map = new HashMap<String, Object>();

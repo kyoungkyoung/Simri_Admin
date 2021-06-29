@@ -54,12 +54,7 @@ public class CommunityMybatis implements CommunityDAO {
 	}//공지사항 등록
 
 	@Override
-	public CommunityDTO getCommunityView(String seq, String image) {
-		//Map<String, Object> map = new HashMap<String, Object>();
-		
-		//map.put("seq", seq);
-		//map.put("", image);
-		
+	public CommunityDTO getCommunityView(String seq) {
 		CommunityDTO communityDTO = sqlSession.selectOne("communitySQL.getCommunityView", Integer.parseInt(seq));
 		System.out.println(communityDTO);
 		return communityDTO;
