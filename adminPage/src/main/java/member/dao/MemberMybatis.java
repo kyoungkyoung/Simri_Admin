@@ -38,12 +38,11 @@ public class MemberMybatis implements MemberDAO {
 					Calendar cal = Calendar.getInstance();
 					String date = sdf.format(cal.getTime());
 					
-					
 					Date date1 = sdf.parse(dto.getSingologtime());
 					Date today = sdf.parse(date);
 					
-					System.out.println("DB = "+date1);
-					System.out.println("today = "+today);
+//					System.out.println("DB = "+date1);
+//					System.out.println("today = "+today);
 					
 					cal.setTime(date1);
 					cal.add(Calendar.DATE, dto.getStopPeriod());
@@ -73,7 +72,7 @@ public class MemberMybatis implements MemberDAO {
 	@Override
 	public SimriMemberDTO getSimriMember(String email) {
 		SimriMemberDTO simriMemberDTO = sqlSession.selectOne("memberSQL.getSimriMember", email);
-		System.out.println("simriMemberDTO="+simriMemberDTO);
+//		System.out.println("simriMemberDTO="+simriMemberDTO);
 		return simriMemberDTO;
 	}
 
@@ -101,6 +100,30 @@ public class MemberMybatis implements MemberDAO {
 	@Override
 	public List<SimriMemberDTO> getMemberStopList() {
 		List<SimriMemberDTO> list = sqlSession.selectList("memberSQL.getMemberStopList");
+		
+		for(SimriMemberDTO dto : list) {
+			if(dto.getStopPeriod()!=0) {
+				try {
+					Calendar cal = Calendar.getInstance();
+					String date = sdf.format(cal.getTime());
+
+					Date date1 = sdf.parse(dto.getSingologtime());
+					Date today = sdf.parse(date);
+					
+					cal.setTime(date1);
+					cal.add(Calendar.DATE, dto.getStopPeriod());
+					
+					if(cal.getTime().after(today)) {
+						System.out.println("정지 안풀림");
+					}else {
+						System.out.println("정지 풀림");
+						sqlSession.update("memberSQL.updateStop", dto);
+					}
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+			}//if dto.getStopPeriod()!=0
+		}//for list
 		return list;
 	}
 
