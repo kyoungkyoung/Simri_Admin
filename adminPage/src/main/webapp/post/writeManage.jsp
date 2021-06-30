@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <!-- 메인 화면 -->
 
-
+<input type="hidden" id="pg" value="${pg}">
+<input type="hidden" id="category" value="심리 테스트">
 
 <h3>
 	글관리
@@ -28,8 +29,8 @@
 		</div>
 		
 		       
-          <input class="form-control me-2" type="search" placeholder="제목입력" aria-label="Search" style="margin-top:10px; margin-left: 400px; margin-right: 10px; margin-bottom:10px;">
-          <button class="btn btn-outline-success" type="submit" style="margin-top:10px; margin-right: 10px; margin-bottom:13px;">Search</button>
+          <input class="form-control me-2" type="search" id="postSearchText" placeholder="제목입력" aria-label="Search" style="margin-top:10px; margin-left: 400px; margin-right: 10px; margin-bottom:10px;">
+          <button class="btn btn-outline-success" type="button" id="postSearchBtn" style="margin-top:10px; margin-right: 10px; margin-bottom:13px;">Search</button>
 		
 		
         </form>
@@ -41,56 +42,18 @@
 	<div class="card-body ">
 		<h4 class="card-title">글목록</h4>
 		<ul class="list-group list-group-flush">
-			<li class="list-group-item"><input
-				class="form-check-input me-1 pr-1" type="checkbox" value=""
-				aria-label="..." style="margin-top:30px;"> <a href="#"
-				class="list-group-item list-group-item-action">
-
-					<div class="d-flex w-100 justify-content-between">
-						<h5 class="mb-1">[글번호]210608</h5>
-						<input type="hidden" id="seq" value="21"><!-- ${community.seq}넣어주기 -->
-						<small class="text-muted">1 days ago</small>
-					</div>
-
-					<small class="text-muted"><strong>[100 P]</strong> 
-
-						<button type="button"
-							class="btn btn-outline-secondary float-right" onclick="location.href='/simri/chart/postGraphDetail'">통계</button>
-
-						<button type="button"
-							class="btn btn-outline-secondary float-right mr-1" onclick="location.href='/simri/post/postModify'">수정</button>
-
-				</small>
-			</a></li>
-
-			
-			
-			
-			
-			
-			
+			<form id="simriPostList">
+			</form>
 		</ul>
 	</div>
 </div>
 
 
 <!-- 페이징 -->
-<div class= "col text-center">
-<nav aria-label="Page navigation example" class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-  <ul class="pagination" >
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
+<nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center my-4" id="postPagingDiv">
+      </ul>
 </nav>
-</div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../js/postList.js"></script>

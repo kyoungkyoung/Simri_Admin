@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="postSQL">
+
+	<insert id="postWrite" parameterType="post">
+		insert into community values(#{category},seq.nextval, #{email}, #{subject}, #{content}, sysdate, #{image}, #{hit}, #{comSingo}, #{comShare}, #{reply}, #{nickname},
+		#{palette}, #{comLike}, #{testURL}, #{point})
+	</insert>
+	
+	<select id="getSimriPostList" parameterType="java.util.Map" resultType="post">
+	select * from (select rownum rn, tt.*from 
+		(select * from community where category=#{comCategory} order by comlogtime desc, seq desc)tt 
+		)where rn<![CDATA[ >= ]]>#{startNum}
+		 and rn <![CDATA[ <= ]]>#{endNum}
+	</select>
+	
+	<select id="getTotalA"  parameterType="java.util.Map" resultType="int">
+		select count(*) from community where category = #{comCategory}
+	</select>
+	
+	<select id="getSearchTotalA"  parameterType="java.util.Map" resultType="int">
+		select count(*) from community where category = #{comCategory} and subject like '%'||#{postSearchText}||'%'
+	</select>
+	
+	<select id="postSearch" parameterType="java.util.Map" resultType="post">
+		select * from (select rownum rn, tt.*from 
+		(select * from community where category = #{comCategory} and subject like '%'||#{postSearchText}||'%' order by comlogtime desc, seq desc)tt 
+		)where rn<![CDATA[ >= ]]>#{startNum}
+		 and rn <![CDATA[ <= ]]>#{endNum}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

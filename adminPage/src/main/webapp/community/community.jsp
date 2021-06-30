@@ -45,26 +45,8 @@
 		<h4 class="card-title">글목록</h4>
 		
 		<ul class="list-group list-group-flush">
-			<form id="communityListTable">
+			<form id="communityList">
 		
-		<!-- 			
-			<li class="list-group-item mb-3">
-				<input class="form-check-input me-1 pr-1" type="checkbox" value="" aria-label="..." style="margin-top:30px;"> 
-				<a href="#" class="list-group-item list-group-item-action">
-					<div class="d-flex w-100 justify-content-between">
-						<h5 class="mb-1">[글번호] 글제목</h5>
-						<small class="text-muted">21/06/21</small>
-					</div>
-				
-					<small class="text-muted">[희선]</small>
-					
-					<div class="d-flex w-100 justify-content-end" >
-						<button type="button" class="btn btn-outline-secondary float-right mr-1 " onclick="location.href='/simri/chart/postGraphDetail'">통계</button>
-						<button type="button" class="btn btn-outline-secondary float-right " onclick="location.href='/simri/community/communityModify'">수정</button>
-					</div>
-				</a>
-			</li> 
-			-->
 			
 			</form>
 		</ul>

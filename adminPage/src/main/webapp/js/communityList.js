@@ -34,7 +34,7 @@ $(function(){
 		},
 		dataType: 'json',
 		success: function(data){
-			$('#communityListTable').empty();
+			$('#communityList').empty();
 			
 			$.each(data.list, function(index, items){
 				
@@ -74,7 +74,7 @@ $(function(){
 				  				type: 'button', 
 				  				class: 'btn btn-outline-secondary float-right mr-1 chartBtn'+items.seq,
 				  				text: '통계'
-				  			})))).appendTo('#communityListTable');	
+				  			})))).appendTo('#communityList');	
 				$('.chartBtn'+items.seq).click(function(){
 					location.href="/simri/chart/postGraphDetail?seq="+items.seq;
 				});
@@ -106,7 +106,7 @@ $(document).ready(function(){
 			},
 			dataType: 'json',
 			success: function(data){
-				$('#communityListTable').empty();
+				$('#communityList').empty();
 				
 				$.each(data.list, function(index, items){
 					
@@ -146,7 +146,7 @@ $(document).ready(function(){
 					  				type: 'button', 
 					  				class: 'btn btn-outline-secondary float-right mr-1 chartBtn'+items.seq,
 					  				text: '통계'
-					  			})))).appendTo('#communityListTable');	
+					  			})))).appendTo('#communityList');	
 					
 					$('.chartBtn'+items.seq).click(function(){
 						location.href="/simri/chart/postGraphDetail?seq="+items.seq;
@@ -281,7 +281,7 @@ $('#comSearchBtn').click(function(event){
 		dataType: "json",
 		success: function(data){
 			alert(JSON.stringify(data));
-			$('#communityListTable').empty();
+			$('#communityList').empty();
 			
 			$.each(data.list, function(index, items){
 				
@@ -321,7 +321,7 @@ $('#comSearchBtn').click(function(event){
 				  				type: 'button', 
 				  				class: 'btn btn-outline-secondary float-right mr-1 chartBtn'+items.seq,
 				  				text: '통계'
-				  			})))).appendTo('#communityListTable');	
+				  			})))).appendTo('#communityList');	
 				
 				$('.chartBtn'+items.seq).click(function(){
 					location.href="/simri/chart/postGraphDetail?seq="+items.seq;

@@ -21,6 +21,8 @@
 	<context:component-scan base-package="member.dao"/>
 	<context:component-scan base-package="member.service"/>
 
+	<context:component-scan base-package="post.bean"/>
+	<context:component-scan base-package="post.dao"/>
 	<context:component-scan base-package="post.service"/>
 	
 	<context:component-scan base-package="spring.conf"/>

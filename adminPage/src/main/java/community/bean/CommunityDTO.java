@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class CommunityDTO {
 	private String category,  email, nickname, palette, subject, content, image, testURL;
-	private int seq, hit, comSingo, comLike, comShare, reply;
+	private int seq, hit, comSingo, comLike, comShare, reply, point;
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yy/MM/dd")
 	private Date comLogtime;
 	

@@ -93,7 +93,9 @@ public class CommunityController {
 			@RequestParam MultipartFile img) {
 		//System.out.println(communityDTO.getImage());
 		
-		String filePath = "C:\\git_home\\gitAdmin\\adminPage\\src\\main\\webapp\\storage";
+		//D:\Spring\FinalProject\git_Project\gitAdmin\adminPage\src\main\webapp\storage
+		//C:\\git_home\\gitAdmin\\adminPage\\src\\main\\webapp\\storage
+		String filePath = "D:\\Spring\\FinalProject\\git_Project\\gitAdmin\\adminPage\\src\\main\\webapp\\storage";
 		String fileName = img.getOriginalFilename();
 		File file = new File(filePath, fileName);//파일 생성
 		
@@ -151,7 +153,9 @@ public class CommunityController {
 			@RequestParam MultipartFile img) {
 		//System.out.println(communityDTO.getImage());
 		
-		String filePath = "C:\\git_home\\gitAdmin\\adminPage\\src\\main\\webapp\\storage";
+		//D:\Spring\FinalProject\git_Project\gitAdmin\adminPage\src\main\webapp\storage
+		//C:\\git_home\\gitAdmin\\adminPage\\src\\main\\webapp\\storage
+		String filePath = "D:\\Spring\\FinalProject\\git_Project\\gitAdmin\\adminPage\\src\\main\\webapp\\storage";
 		String fileName = img.getOriginalFilename();
 		File file = new File(filePath, fileName);//파일 생성
 		

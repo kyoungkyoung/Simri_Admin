@@ -8,6 +8,7 @@
 		<typeAlias type="community.bean.CommunityDTO" alias="community"/>
 		<typeAlias type="chart.bean.EtcDTO" alias="etc"/>
 		<typeAlias type="member.bean.SimriMemberDTO" alias="member"/>
+		<typeAlias type="post.bean.PostDTO" alias="post"/>
 	</typeAliases>
 
 </configuration>
