@@ -61,6 +61,7 @@ $(function(){
 			console.log(err);
 		}
 	});
+	$('#pg').val('1');
 });
 
 $('#postSearchBtn').click(function(event){
@@ -128,8 +129,8 @@ $('#postSearchBtn').click(function(event){
 			console.log(err);
 		}
 	});
+	$('#pg').val('1');
 });
-
 
 function postPaging(pg){
 	var postSearchText = document.getElementById('postSearchText').value;

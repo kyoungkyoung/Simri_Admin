@@ -118,8 +118,8 @@ public class PostController {
 		
 		PostPaging postPaging = postService.postSearchPaging(map);
 		
-		
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("pg", Integer.parseInt(pg));
 		mav.addObject("list", list);
 		mav.addObject("postPaging", postPaging);
 		mav.setViewName("jsonView");
