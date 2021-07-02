@@ -3,13 +3,13 @@
 <!-- 메인 화면 -->
 
 <input type="hidden" id="pg" value="${pg}">
-<input type="hidden" id="comCategory" value="심리 테스트">
+<input type="hidden" id="comCategory" value="연애 심리">
 <input type="hidden" id="DHL1" value="${DHL1}">
 
 <h3>
-	심리 테스트
+	연애 심리
 	<button type="button" id="comDeleteBtn" class="btn btn-outline-secondary float-right">삭제</button>
-	<button type="button" onclick="location.href='/simri/post/writeForm'" class="btn btn-outline-secondary float-right mr-2">글쓰기</button>
+	<button type="button" onclick="location.href='/simri/post/loveWriteForm'" class="btn btn-outline-secondary float-right mr-2">글쓰기</button>
 	
 </h3>
 <div class="card shadow mb-3">
@@ -39,7 +39,7 @@
 	<div class="card-body ">
 		<h4 class="card-title">글목록</h4>
 		<ul class="list-group list-group-flush">
-			<form id="simriPostList">
+			<form id="lovePostList">
 			</form>
 		</ul>
 	</div>
@@ -53,4 +53,4 @@
 </nav>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../js/postList.js"></script>
+<script src="../js/loveList.js"></script>

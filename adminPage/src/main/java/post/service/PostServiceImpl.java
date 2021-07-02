@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import post.bean.PostDTO;
 import post.bean.PostPaging;
+import post.bean.PostPaging2;
 import post.dao.PostDAO;
 
 @Service
@@ -17,6 +18,9 @@ public class PostServiceImpl implements PostService {
 	private PostDAO postDAO;
 	@Autowired
 	private PostPaging postPaging;
+	@Autowired
+	private PostPaging2 postPaging2;
+	
 
 	@Override
 	public void postWrite(PostDTO postDTO) {
@@ -24,7 +28,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<PostDTO> getSimriPostList(String pg, String comCategory) {
+	public List<PostDTO> getSimriPostList(String pg, String comCategory, String DHL) {
 		//페이징 처리 ; 1페이지당
 		int endNum = Integer.parseInt(pg)*5;
 		int startNum = endNum-4;
@@ -34,6 +38,7 @@ public class PostServiceImpl implements PostService {
 		map.put("endNum",endNum);
 		map.put("comCategory", comCategory);
 		map.put("pg", Integer.parseInt(pg));
+		map.put("DHL", DHL);
 		
 		List<PostDTO> list = postDAO.getSimriPostList(map);
 		
@@ -41,21 +46,25 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public PostPaging postPaging(String pg, String comCategory) {
+	public PostPaging2 postPaging2(String pg, String comCategory, String DHL) {
+		System.out.println("서비스 :" + DHL);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pg", Integer.parseInt(pg));
 		map.put("comCategory", comCategory);
+		map.put("DHL", DHL);
+		
+		
 		
 		int totalA = postDAO.getTotalA(map);
 		
-		postPaging.setCurrentPage(Integer.parseInt(pg));
-		postPaging.setPageBlock(3);
-		postPaging.setPageSize(5);
-		postPaging.setTotalA(totalA);
-		postPaging.makePagingHTML();
-		System.out.println(postPaging);
+		postPaging2.setCurrentPage(Integer.parseInt(pg));
+		postPaging2.setPageBlock(3);
+		postPaging2.setPageSize(5);
+		postPaging2.setTotalA(totalA);
+		postPaging2.makePagingHTML(DHL);
+		System.out.println(postPaging2);
 		
-		return postPaging;
+		return postPaging2;
 	}
 
 	@Override
@@ -84,5 +93,59 @@ public class PostServiceImpl implements PostService {
 		
 		return postPaging;
 	}
+
+	@Override
+	public void postDelete(String seq) {
+		postDAO.postDelete(seq);
+	}
+
+	@Override
+	public void viewModify(PostDTO postDTO) {
+		postDAO.viewModify(postDTO);
+	}
+
+	@Override
+	public PostDTO getPostView(String seq) {
+		PostDTO postDTO = postDAO.getPostView(seq);
+		return postDTO;
+	}
+
+	@Override
+	public void loveWrite(PostDTO postDTO) {
+		postDAO.loveWrite(postDTO);
+		
+	}
+
+	@Override
+	public List<PostDTO> getLovePostList(String pg, String comCategory, String DHL) {
+		//페이징 처리 ; 1페이지당
+		int endNum = Integer.parseInt(pg)*5;
+		int startNum = endNum-4;
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("startNum",startNum);
+		map.put("endNum",endNum);
+		map.put("comCategory", comCategory);
+		map.put("pg", Integer.parseInt(pg));
+		map.put("DHL", DHL);
+		
+		List<PostDTO> list = postDAO.getLovePostList(map);
+		
+		return list;
+	}
+
+	@Override
+	public PostDTO getLoveView(String seq) {
+		
+		PostDTO postDTO = postDAO.getLoveView(Integer.parseInt(seq));
+		return postDTO;
+	}
+
+	
+
+
+
+
+
 
 }

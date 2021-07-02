@@ -17,5 +17,17 @@ public interface PostDAO {
 
 	public List<PostDTO> postSearch(Map<String, Object> map);
 
+	public void postDelete(String seq);
+
+	public void viewModify(PostDTO postDTO);
+
+	public PostDTO getPostView(String seq);
+
+	public void loveWrite(PostDTO postDTO);
+
+	public List<PostDTO> getLovePostList(Map<String, Object> map);
+
+	public PostDTO getLoveView(int seq);
+
 
 }

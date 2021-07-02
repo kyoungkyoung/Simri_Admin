@@ -6,7 +6,7 @@
 
 	<insert id="postWrite" parameterType="post">
 		insert into community values(#{category},seq.nextval, #{email}, #{subject}, #{content}, sysdate, #{image}, #{hit}, #{comSingo}, #{comShare}, #{reply}, #{nickname},
-		#{palette}, #{comLike}, #{testURL}, #{point})
+		#{palette}, #{comLike}, #{testURL}, #{point}, #{hashTag2}, #{hashTag3}, #{hashTag1})
 	</insert>
 	
 	<select id="getSimriPostList" parameterType="java.util.Map" resultType="post">
@@ -29,6 +29,49 @@
 		(select * from community where category = #{comCategory} and subject like '%'||#{postSearchText}||'%' order by comlogtime desc, seq desc)tt 
 		)where rn<![CDATA[ >= ]]>#{startNum}
 		 and rn <![CDATA[ <= ]]>#{endNum}
+	</select>
+	
+	<delete id="postDelete" parameterType="int">
+		delete community where seq = #{seq}
+	</delete>
+	
+	
+	<select id="DHitLList" parameterType="java.util.Map" resultType="post">
+		select * from (select rownum rn, tt.*from 
+		(select * from community where category=#{comCategory}  order by hit desc, comlogtime desc, seq desc)tt 
+		)where rn<![CDATA[ >= ]]>#{startNum}
+		 and rn <![CDATA[ <= ]]>#{endNum}
+	</select>
+	
+	<select id="DHLikeList" parameterType="java.util.Map" resultType="post">
+		select * from (select rownum rn, tt.*from 
+		(select * from community where category=#{comCategory}  order by comlike desc, comlogtime desc, seq desc)tt 
+		)where rn<![CDATA[ >= ]]>#{startNum}
+		 and rn <![CDATA[ <= ]]>#{endNum}
+	</select>
+	
+	<update id="viewModify" parameterType="post">
+		update community set subject = #{subject}, content = #{content}, comlogtime = sysdate, image = #{image}, testurl =#{testURL}  where seq=#{seq}
+	</update>
+	
+	<select id="getPostView" parameterType="int" resultType="post">
+		select * from community where seq=#{seq}
+	</select>
+	
+	<insert id="loveWrite" parameterType="post">
+		insert into community values(#{category},seq.nextval, #{email}, #{subject}, #{content}, sysdate, #{image}, #{hit}, #{comSingo}, #{comShare}, #{reply}, #{nickname},
+		#{palette}, #{comLike}, #{testURL}, #{point})
+	</insert>
+	
+	<select id="getLovePostList" parameterType="java.util.Map" resultType="post">
+		select * from (select rownum rn, tt.*from 
+		(select * from community where category=#{comCategory} order by comlogtime desc, seq desc)tt 
+		)where rn<![CDATA[ >= ]]>#{startNum}
+		 and rn <![CDATA[ <= ]]>#{endNum}
+	</select>
+	
+	<select id="getLoveView" parameterType="int" resultType="post">
+		select * from community where seq=#{seq}
 	</select>
 	
 </mapper>

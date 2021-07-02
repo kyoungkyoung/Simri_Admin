@@ -13,7 +13,7 @@ public class PostPaging {
 	   private int totalA;
 	   private StringBuffer pagingHTML;
 	   
-	   
+	   //서치페이징
 	   
 	   public void makePagingHTML() {
 		   

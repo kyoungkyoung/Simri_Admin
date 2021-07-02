@@ -23,7 +23,7 @@ li{
 				<div class="collapse" id="dashboard1-collapse">
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 						<li><a href="/simri/post/writeManage" class="link-dark rounded">심리테스트</a></li>
-						<li><a href="#" class="link-dark rounded">연애심리</a></li>
+						<li><a href="/simri/post/writeLove" class="link-dark rounded">연애심리</a></li>
 					</ul>
 				</div>
 			</li>

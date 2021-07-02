@@ -20,10 +20,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import community.bean.CommunityDTO;
 import community.bean.CommunityPaging;
 import community.bean.CommunitySearchPaging;
 import post.bean.PostDTO;
 import post.bean.PostPaging;
+import post.bean.PostPaging2;
 import post.service.PostService;
 
 @Controller
@@ -33,17 +35,20 @@ public class PostController {
 	private PostService postService;
 	
 	@RequestMapping(value = "/writeManage", method = RequestMethod.GET)
-	public String writeManage(@RequestParam(required=false, defaultValue="1") String pg, Model model) { 
+	public String writeManage(@RequestParam(required=false, defaultValue="1") String pg,
+							  @RequestParam(required=false, defaultValue="최신순") String DHL1, Model model) { 
+		System.out.println("컨트롤러 writeM : "+ DHL1);
 		model.addAttribute("pg", pg);
+		model.addAttribute("DHL1", DHL1);
 		model.addAttribute("display", "/post/writeManage.jsp");
 		return "/section/login";
 	}// writeForm()
 	
-	@RequestMapping(value = "/postModify", method = RequestMethod.GET)
-	public String postModify(Model model) { 
-		model.addAttribute("display", "/post/postModify.jsp");
-		return "/section/login";
-	}// postModify()
+//	@RequestMapping(value = "/postModify", method = RequestMethod.GET)
+//	public String postModify(Model model) { 
+//		model.addAttribute("display", "/post/postModify.jsp");
+//		return "/section/login";
+//	}// postModify()
 	
 	@RequestMapping(value = "/writeForm", method = RequestMethod.GET)
 	public String writeForm(Model model) { 
@@ -85,25 +90,30 @@ public class PostController {
 	
 	@RequestMapping(value="/getSimriPostList", method=RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView getSimriPostList(@RequestParam String comCategory, @RequestParam String pg) {
+	public ModelAndView getSimriPostList(@RequestParam String comCategory, @RequestParam String DHL,
+										 @RequestParam(required=false, defaultValue="1") String pg) {
 		
-		System.out.println(comCategory+pg);
+		System.out.println(comCategory+pg+DHL);
 		
-		List<PostDTO> list = postService.getSimriPostList(pg, comCategory);
+		List<PostDTO> list = postService.getSimriPostList(pg, comCategory, DHL);
 		
 		//페이징 처리
-		PostPaging postPaging = postService.postPaging(pg, comCategory);
+		PostPaging2 postPaging2 = postService.postPaging2(pg, comCategory,DHL);
 		
 		ModelAndView mav = new ModelAndView();
-		//mav.addObject("comCategory", comCategory);
+		mav.addObject("comCategory", comCategory);
+		mav.addObject("DHL", DHL);
 		mav.addObject("pg", pg);
 		mav.addObject("list", list);
-		mav.addObject("postPaging", postPaging);
+		mav.addObject("postPaging2", postPaging2);
 		mav.setViewName("jsonView");
+		System.out.println(mav);
 		
 		return mav;
 		
 	}
+
+	
 	@RequestMapping(value="/postSearch", method=RequestMethod.POST)
 	@ResponseBody  
 	public ModelAndView postSearch(@RequestParam String pg, @RequestParam String comCategory,
@@ -127,6 +137,136 @@ public class PostController {
 		return mav;
 		
 	}
+	@RequestMapping(value="/postDelete")
+	@ResponseBody
+	public void communityDelete(@RequestParam String seq) {
+		 postService.postDelete(seq);
+	}
+	
+	@RequestMapping(value = "/postView", method = RequestMethod.GET)
+	public String postView(@RequestParam String seq, Model model) {
+		System.out.println(seq);
+		PostDTO postDTO = postService.getPostView(seq);
+		System.out.println("Controller = " + postDTO);
+		
+		model.addAttribute("postDTO", postDTO);
+		model.addAttribute("seq", Integer.parseInt(seq));
+		model.addAttribute("display", "/post/postView.jsp");
+		return "/section/login"; 
+	}// postModify() 
+	
+	@RequestMapping(value="viewModify", method=RequestMethod.POST)
+	@ResponseBody
+	public void viewModify(@ModelAttribute PostDTO postDTO,
+			@RequestParam MultipartFile img) {
+		//System.out.println(communityDTO.getImage());
+		
+		//D:\Spring\FinalProject\git_Project\gitAdmin\adminPage\src\main\webapp\storage
+		//C:\\git_home\\gitAdmin\\adminPage\\src\\main\\webapp\\storage
+		String filePath = "D:\\Spring\\FinalProject\\git_Project\\gitAdmin\\adminPage\\src\\main\\webapp\\storage";
+		String fileName = img.getOriginalFilename();
+		File file = new File(filePath, fileName);//파일 생성
+		
+		if (fileName.equals("")) {
+			postDTO.setImage("null.jpg");
+	      } else {
+	         // 파일 복사
+	         try {
+	            FileCopyUtils.copy(img.getInputStream(), new FileOutputStream(file));
+	         } catch (IOException e) {
+	            e.printStackTrace();
+	         }
+	         postDTO.setImage(fileName);
+	      }
+		
+		postService.viewModify(postDTO);
+		
+	}//공지사항 수정등록
+	
+//----------------------------연애심리--------------------
+	
+	@RequestMapping(value = "/writeLove", method = RequestMethod.GET)
+	public String writeLove(@RequestParam(required=false, defaultValue="1") String pg, Model model) { 
+		model.addAttribute("pg", pg);
+		model.addAttribute("display", "/post/writeLove.jsp");
+		return "/section/login";
+	}// 
+	
+	@RequestMapping(value = "/loveWriteForm", method = RequestMethod.GET)
+	public String loveWriteForm(Model model) { 
+		model.addAttribute("display", "/post/loveWriteForm.jsp");
+		return "/section/login";
+	}// 글쓰기
+	
+	@RequestMapping(value="/loveWrite", method=RequestMethod.POST)
+	@ResponseBody
+	public void loveWrite(@ModelAttribute PostDTO postDTO, 
+						  @RequestParam MultipartFile img) {
+		
+		//D:\Spring\FinalProject\git_Project\gitAdmin\adminPage\src\main\webapp\storage
+		//C:\\git_home\\gitAdmin\\adminPage\\src\\main\\webapp\\storage
+		String filePath = "D:\\Spring\\FinalProject\\git_Project\\gitAdmin\\adminPage\\src\\main\\webapp\\storage";
+		String fileName = img.getOriginalFilename();
+		File file = new File(filePath, fileName);//파일 생성
+		
+		if (fileName.equals("")) {
+	         postDTO.setImage("null.jpg");
+	      } else {
+	         // 파일 복사
+	         try {
+	            FileCopyUtils.copy(img.getInputStream(), new FileOutputStream(file));
+	         } catch (IOException e) {
+	            e.printStackTrace();
+	         }
+	         postDTO.setImage(fileName);
+	      }
+		postDTO.setEmail("admin@gamil.com");
+		postDTO.setNickname("admin");
+		postDTO.setPalette("관리자");
+		
+		System.out.println(postDTO);
+		
+		postService.loveWrite(postDTO);
+		
+	}
+	
+	@RequestMapping(value="/getLovePostList", method=RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView getLovePostList(@RequestParam String comCategory, @RequestParam String DHL,
+										 @RequestParam(required=false, defaultValue="1") String pg) {
+		
+		System.out.println(comCategory+pg+DHL);
+		
+		List<PostDTO> list = postService.getLovePostList(pg, comCategory, DHL);
+		
+		//페이징 처리
+		PostPaging2 postPaging2 = postService.postPaging2(pg, comCategory,DHL);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("comCategory", comCategory);
+		mav.addObject("DHL", DHL);
+		mav.addObject("pg", pg);
+		mav.addObject("list", list);
+		mav.addObject("postPaging2", postPaging2);
+		mav.setViewName("jsonView");
+		System.out.println(mav);
+		
+		return mav;
+		
+	}
+	
+	@RequestMapping(value = "/loveView", method = RequestMethod.GET)
+	public String loveView(@RequestParam String seq, Model model) {
+		System.out.println(seq);
+		PostDTO postDTO = postService.getLoveView(seq);
+		System.out.println("Controller = " + postDTO);
+		
+		model.addAttribute("postDTO", postDTO);
+		model.addAttribute("seq", Integer.parseInt(seq));
+		model.addAttribute("display", "/post/loveView.jsp");
+		return "/section/login"; 
+	}// postModify() 
+	
 	
 }
 

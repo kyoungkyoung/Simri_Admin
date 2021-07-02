@@ -6,9 +6,9 @@
    <div class="card mb-4">
       <div class="card-header ">커뮤니티 글쓰기</div>
 
-      <form id="postWriteForm">
+      <form id="loveWriteForm">
 		 <div class="form-group mb-3 mt-3" style="padding-left: 20px; padding-right: 20px">
-             <input type="text" id="category" name="category" value="심리 테스트" class="form-control" readonly>
+             <input type="text" id="category" name="category" value="연애 심리" class="form-control" readonly>
          </div>
          
 
@@ -32,19 +32,6 @@
              <input type="text" id="point" name="point" class="form-control">
          </div>
          
-         <div class="form-group mb-3 mt-3" style="padding-left: 20px; padding-right: 20px">
-             <label for="board_content">hashTag1</label>
-             <input type="text" id="hashTag1" name="hashTag1" class="form-control">
-         </div>
-         <div class="form-group mb-3 mt-3" style="padding-left: 20px; padding-right: 20px">
-             <label for="board_content">hashTag2</label>
-             <input type="text" id="hashTag2" name="hashTag2" class="form-control">
-         </div>
-         <div class="form-group mb-3 mt-3" style="padding-left: 20px; padding-right: 20px">
-             <label for="board_content">hashTag3</label>
-             <input type="text" id="hashTag3" name="hashTag3" class="form-control">
-         </div>
-         
          <div class="form-group mb-3"
             style="padding-left: 20px; padding-right: 20px">
             <label for="board_file">첨부 이미지</label>
@@ -63,5 +50,5 @@
 </div>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../js/post.js"></script>
+<script src="../js/love.js"></script>
 
