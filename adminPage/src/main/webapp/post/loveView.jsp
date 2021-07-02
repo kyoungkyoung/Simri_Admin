@@ -32,10 +32,28 @@
          <input type="text" id="testURL" name="testURL" class="form-control" value="${postDTO.testURL}"/>
          </div>
          
-           <div class="form-group mb-3"
+          <div class="form-group mb-3"
             style="padding-left: 20px; padding-right: 20px">
             <label for="board_content">포인트</label>
          <input type="text" id="testURL" name="testURL" class="form-control" value="${postDTO.point}"/>
+         </div>
+         
+         <div class="form-group mb-3"
+            style="padding-left: 20px; padding-right: 20px">
+            <label for="board_content">hashTag1</label>
+         <input type="text" id="hashTag1" name="hashTag1" class="form-control" value="${postDTO.hashTag1}"/>
+         </div>
+         
+         <div class="form-group mb-3"
+            style="padding-left: 20px; padding-right: 20px">
+            <label for="board_content">hashTag2</label>
+         <input type="text" id="hashTag2" name="hashTag2" class="form-control" value="${postDTO.hashTag2}"/>
+         </div>
+         
+         <div class="form-group mb-3"
+            style="padding-left: 20px; padding-right: 20px">
+            <label for="board_content">hashTag3</label>
+         <input type="text" id="hashTag3" name="hashTag3" class="form-control" value="${postDTO.hashTag3}"/>
          </div>
          
          <div class="form-group mb-3"

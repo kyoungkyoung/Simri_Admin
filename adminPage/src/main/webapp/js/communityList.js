@@ -57,7 +57,7 @@ $(function(){
 				  				class: 'mb-1 flex-fill',
 				  				style: 'text-decoration: none; color: black;'
 					  			}).append($('<h5/>',{
-					  				text: '['+items.seq+'] '+items.subject,
+					  				html: items.category+'<br>['+items.seq+'] '+items.subject,
 					  				style: 'color: black;',
 					  				id: 'comSeq'
 				  			}))).append($('<small/>',{
@@ -129,7 +129,7 @@ $(document).ready(function(){
 					  				class: 'mb-1 flex-fill',
 					  				style: 'text-decoration: none; color: black;'
 						  			}).append($('<h5/>',{
-						  				text: '['+items.seq+'] '+items.subject,
+						  				html: items.category+'<br>['+items.seq+'] '+items.subject,
 						  				style: 'color: black;',
 						  				id: 'comSeq'
 					  			}))).append($('<small/>',{

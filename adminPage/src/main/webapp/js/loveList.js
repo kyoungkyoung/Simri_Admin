@@ -1,4 +1,12 @@
 $(function(){
+	if($('#DHL1').val()==='최신순'){
+		$("#DHL").val("최신순").attr("selected", "selected");
+	}else if($('#DHL1').val()==='조회수'){
+		$("#DHL").val("조회수").attr("selected", "selected");
+	}else if($('#DHL1').val()==='좋아요'){
+		$("#DHL").val("좋아요").attr("selected", "selected");
+	}
+	
 	$.ajax({
 		type:'post',
 		url: '/simri/post/getLovePostList',
@@ -56,13 +64,12 @@ $(function(){
 				});
 				
 			});
-			$('#postPagingDiv').html(data.postPaging.pagingHTML);
+			$('#postPagingDiv').html(data.postPaging2.pagingHTML);
 		},
 		error: function(err){
 			console.log(err);
 		}
 	});
-	$('#pg').val('1');
 });
 
 $(document).ready(function(){
@@ -130,14 +137,14 @@ $(document).ready(function(){
 					});
 					
 				});
-				$('#postPagingDiv').html(data.postPaging.pagingHTML);
+				$('#postPagingDiv').html(data.postPaging2.pagingHTML);
 			},
 			error: function(err){
 				console.log(err);
 			}
 		});
-		$('#pg').val('1');
 	});
+	$('#pg').val('1');
 });
 
 //---연애 서치
@@ -282,20 +289,44 @@ $('#comDeleteBtn').click(function(){
 	
 });
 
+
+function postPaging2(pg, num){
+	//var searchText = document.getElementById('searchText').value;
+	var DHL1;
+	
+	if(num == 1) {
+		DHL1 = "최신순";
+	 }else if( num == 2) {
+		 DHL1="조회수";
+	 }else if(num == 3) {
+		 DHL1="좋아요";
+	 }
+	//if(searchText==''){
+		//$('#pg').val(pg);  $('input[name=이름명]').attr("속성명","값");
+		location.href = '/simri/post/writeLove?pg='+pg+'&DHL1='+DHL1;
+		
+		
+	//}
+	//else{
+		//$('#pg').val(pg);
+		//$('#searchBtn').trigger('click', 'search');
+	//}
+	 
+}
 //페이징
 function postPaging(pg){
 	var postSearchText = document.getElementById('postSearchText').value;
-	alert(postSearchText);
+//	alert(postSearchText);
 	
-	if(postSearchText == ''){
-		alert("오니");
+	//if(postSearchText == ''){
+		//alert("오니");
 		location.href= '/simri/post/writeLove?pg='+pg;
-	}else{
+	//}else{
 		$('#pg').val(pg);
-		$('#postSearchBtn').trigger('click');
 		$('#postSearchText').val(postSearchText);
+		$('#postSearchBtn').trigger('click');
 		
-	}
+//	}
 	
 
 }

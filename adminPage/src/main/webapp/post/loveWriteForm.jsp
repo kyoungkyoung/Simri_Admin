@@ -32,6 +32,19 @@
              <input type="text" id="point" name="point" class="form-control">
          </div>
          
+         <div class="form-group mb-3 mt-3" style="padding-left: 20px; padding-right: 20px">
+             <label for="board_content">hashTag1</label>
+             <input type="text" id="hashTag1" name="hashTag1" class="form-control">
+         </div>
+         <div class="form-group mb-3 mt-3" style="padding-left: 20px; padding-right: 20px">
+             <label for="board_content">hashTag2</label>
+             <input type="text" id="hashTag2" name="hashTag2" class="form-control">
+         </div>
+         <div class="form-group mb-3 mt-3" style="padding-left: 20px; padding-right: 20px">
+             <label for="board_content">hashTag3</label>
+             <input type="text" id="hashTag3" name="hashTag3" class="form-control">
+         </div>
+         
          <div class="form-group mb-3"
             style="padding-left: 20px; padding-right: 20px">
             <label for="board_file">첨부 이미지</label>

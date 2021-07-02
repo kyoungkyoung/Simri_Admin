@@ -152,7 +152,6 @@ $(document).ready(function(){
 
 
 $('#postSearchBtn').click(function(event){
-	alert("s")
 	$.ajax({
 		type:'post',
 		url: '/simri/post/postSearch',
@@ -319,12 +318,11 @@ function postPaging2(pg, num){
 
 
 function postPaging(pg){
-	alert("오니");
 	var postSearchText = document.getElementById('postSearchText').value;
-	alert(postSearchText);
+//	alert(postSearchText);
 	
 //	if(postSearchText == ''){
-//		location.href= '/simri/post/writeManage?pg='+pg;
+		location.href= '/simri/post/writeManage?pg='+pg;
 //	}else{
 		$('#pg').val(pg);
 		$('#postSearchText').val(postSearchText);

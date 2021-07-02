@@ -186,8 +186,10 @@ public class PostController {
 //----------------------------연애심리--------------------
 	
 	@RequestMapping(value = "/writeLove", method = RequestMethod.GET)
-	public String writeLove(@RequestParam(required=false, defaultValue="1") String pg, Model model) { 
+	public String writeLove(@RequestParam(required=false, defaultValue="1") String pg,
+							@RequestParam(required=false, defaultValue="최신순") String DHL1, Model model) { 
 		model.addAttribute("pg", pg);
+		model.addAttribute("DHL1", DHL1);
 		model.addAttribute("display", "/post/writeLove.jsp");
 		return "/section/login";
 	}// 
@@ -233,7 +235,7 @@ public class PostController {
 	@RequestMapping(value="/getLovePostList", method=RequestMethod.POST)
 	@ResponseBody
 	public ModelAndView getLovePostList(@RequestParam String comCategory, @RequestParam String DHL,
-										 @RequestParam(required=false, defaultValue="1") String pg) {
+										@RequestParam(required=false, defaultValue="1") String pg) {
 		
 		System.out.println(comCategory+pg+DHL);
 		

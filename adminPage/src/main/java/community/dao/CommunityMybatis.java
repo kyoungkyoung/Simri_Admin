@@ -19,9 +19,14 @@ public class CommunityMybatis implements CommunityDAO {
 	
 	@Override
 	public List<CommunityDTO> getCommunity(Map<String, Object> newMap) {
-		List<CommunityDTO> list = sqlSession.selectList("communitySQL.getCommunity",newMap);
-		System.out.println(list);
-		return list;
+		if(newMap.get("comCategory").equals("[전체 게시글]팔레트")){
+			List<CommunityDTO> list = sqlSession.selectList("communitySQL.getComPalette", newMap);
+			return list;
+		}else {
+			List<CommunityDTO> list = sqlSession.selectList("communitySQL.getCommunity",newMap);
+			System.out.println(list);
+			return list;
+		}
 	}
 
 	@Override
@@ -40,8 +45,13 @@ public class CommunityMybatis implements CommunityDAO {
 	
 	@Override
 	public int getTotalA(Map<String, String> map) {
-		int totalA = sqlSession.selectOne("communitySQL.getTotalA", map);
-		return totalA;
+		if(map.get("comCategory").equals("[전체 게시글]팔레트")){
+			int totalA = sqlSession.selectOne("communitySQL.getTotalB", map);
+			return totalA;
+		}else {
+			int totalA = sqlSession.selectOne("communitySQL.getTotalA", map);
+			return totalA;
+		}
 	}
 
 	@Override

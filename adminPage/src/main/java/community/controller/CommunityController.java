@@ -63,6 +63,7 @@ public class CommunityController {
 	@ResponseBody
 	public ModelAndView getCommunity(@RequestParam String comCategory,
 									 @RequestParam(required=false, defaultValue="1") String pg) {
+		System.out.println("컨트"+comCategory);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("comCategory", comCategory);
 		map.put("pg", pg);

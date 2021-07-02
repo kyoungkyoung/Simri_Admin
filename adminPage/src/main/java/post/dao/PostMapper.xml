@@ -60,7 +60,7 @@
 	
 	<insert id="loveWrite" parameterType="post">
 		insert into community values(#{category},seq.nextval, #{email}, #{subject}, #{content}, sysdate, #{image}, #{hit}, #{comSingo}, #{comShare}, #{reply}, #{nickname},
-		#{palette}, #{comLike}, #{testURL}, #{point})
+		#{palette}, #{comLike}, #{testURL}, #{point}, #{hashTag2}, #{hashTag3}, #{hashTag1})
 	</insert>
 	
 	<select id="getLovePostList" parameterType="java.util.Map" resultType="post">
