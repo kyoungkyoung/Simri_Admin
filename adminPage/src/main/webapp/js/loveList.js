@@ -1,15 +1,7 @@
 $(function(){
-	if($('#DHL1').val()==='최신순'){
-		$("#DHL").val("최신순").attr("selected", "selected");
-	}else if($('#DHL1').val()==='조회수'){
-		$("#DHL").val("조회수").attr("selected", "selected");
-	}else if($('#DHL1').val()==='좋아요'){
-		$("#DHL").val("좋아요").attr("selected", "selected");
-	}
-	
 	$.ajax({
 		type:'post',
-		url: '/simri/post/getSimriPostList',
+		url: '/simri/post/getLovePostList',
 		data: {
 			'DHL': $('#DHL').val(),
 			'comCategory': $('#comCategory').val(),
@@ -18,7 +10,7 @@ $(function(){
 		dataType: 'json',
 		success: function(data){
 			alert(JSON.stringify(data));
-			$('#simriPostList').empty();
+			$('#lovePostList').empty();
 			
 			$.each(data.list, function(index, items){
 				
@@ -37,7 +29,7 @@ $(function(){
 								value: items.seq,
 								onclick: 'checkSelectAll(this)'
 				  			})).append($('<a/>',{
-				  				href: '/simri/post/postView?seq='+items.seq,
+				  				href: '/simri/post/loveView?seq='+items.seq,
 				  				class: 'mb-1 flex-fill',
 				  				style: 'text-decoration: none; color: black;'
 					  			}).append($('<h5/>',{
@@ -58,22 +50,24 @@ $(function(){
 				  				type: 'button', 
 				  				class: 'btn btn-outline-secondary float-right mr-1 chartBtn'+items.seq,
 				  				text: '통계'
-				  			})))).appendTo('#simriPostList');	
+				  			})))).appendTo('#lovePostList');	
 				$('.chartBtn'+items.seq).click(function(){
 					location.href="/simri/chart/postGraphDetail?seq="+items.seq;
 				});
 				
 			});
-			$('#postPagingDiv').html(data.postPaging2.pagingHTML);
+			$('#postPagingDiv').html(data.postPaging.pagingHTML);
 		},
 		error: function(err){
 			console.log(err);
 		}
 	});
-	
+	$('#pg').val('1');
 });
 
 $(document).ready(function(){
+	
+
 	
 	$('#DHL').change(function(){
 		
@@ -81,7 +75,7 @@ $(document).ready(function(){
 		
 		$.ajax({
 			type:'post',
-			url: '/simri/post/getSimriPostList',
+			url: '/simri/post/getLovePostList',
 			data: {
 				'DHL': $('#DHL').val(),
 				'comCategory': $('#comCategory').val(),
@@ -90,7 +84,7 @@ $(document).ready(function(){
 			dataType: 'json',
 			success: function(data){
 				alert(JSON.stringify(data));
-				$('#simriPostList').empty();
+				$('#lovePostList').empty();
 				
 				$.each(data.list, function(index, items){
 					
@@ -109,7 +103,7 @@ $(document).ready(function(){
 									value: items.seq,
 									onclick: 'checkSelectAll(this)'
 					  			})).append($('<a/>',{
-					  				href: '/simri/post/postView?seq='+items.seq,
+					  				href: '/simri/post/loveView?seq='+items.seq,
 					  				class: 'mb-1 flex-fill',
 					  				style: 'text-decoration: none; color: black;'
 						  			}).append($('<h5/>',{
@@ -130,29 +124,24 @@ $(document).ready(function(){
 					  				type: 'button', 
 					  				class: 'btn btn-outline-secondary float-right mr-1 chartBtn'+items.seq,
 					  				text: '통계'
-					  			})))).appendTo('#simriPostList');	
+					  			})))).appendTo('#lovePostList');	
 					$('.chartBtn'+items.seq).click(function(){
 						location.href="/simri/chart/postGraphDetail?seq="+items.seq;
 					});
 					
 				});
-				$('#postPagingDiv').html(data.postPaging2.pagingHTML);
+				$('#postPagingDiv').html(data.postPaging.pagingHTML);
 			},
 			error: function(err){
 				console.log(err);
 			}
 		});
-		
-	});//change
-	$('#pg').val('1');
+		$('#pg').val('1');
+	});
 });
 
-
-
-
-
+//---연애 서치
 $('#postSearchBtn').click(function(event){
-	alert("s")
 	$.ajax({
 		type:'post',
 		url: '/simri/post/postSearch',
@@ -164,7 +153,7 @@ $('#postSearchBtn').click(function(event){
 		dataType: 'json',
 		success: function(data){
 			alert(JSON.stringify(data));
-			$('#simriPostList').empty();
+			$('#lovePostList').empty();
 			
 			$.each(data.list, function(index, items){
 				
@@ -183,7 +172,7 @@ $('#postSearchBtn').click(function(event){
 								value: items.seq,
 								onclick: 'checkSelectAll(this)'
 				  			})).append($('<a/>',{
-				  				href: '/simri/post/postView?seq='+items.seq,
+				  				href: '/simri/post/loveView?seq='+items.seq,
 				  				class: 'mb-1 flex-fill',
 				  				style: 'text-decoration: none; color: black;'
 					  			}).append($('<h5/>',{
@@ -204,7 +193,7 @@ $('#postSearchBtn').click(function(event){
 				  				type: 'button', 
 				  				class: 'btn btn-outline-secondary float-right mr-1 chartBtn'+items.seq,
 				  				text: '통계'
-				  			})))).appendTo('#simriPostList');	
+				  			})))).appendTo('#lovePostList');	
 				$('.chartBtn'+items.seq).click(function(){
 					location.href="/simri/chart/postGraphDetail?seq="+items.seq;
 				});
@@ -219,6 +208,7 @@ $('#postSearchBtn').click(function(event){
 	$('#pg').val('1');
 });
 
+//----체크박스---
 function checkAll(){
 	var check = document.getElementsByName("check");
 	
@@ -244,6 +234,7 @@ function checkSelectAll(checkbox)  {
 	  
 	}
 
+//-----삭제----
 $('#comDeleteBtn').click(function(){
 	alert("클릭됨");
 	var check1 = document.getElementsByName("check");
@@ -292,45 +283,19 @@ $('#comDeleteBtn').click(function(){
 });
 
 //페이징
-function postPaging2(pg, num){
-	//var searchText = document.getElementById('searchText').value;
-	var DHL1;
-	
-	if(num == 1) {
-		DHL1 = "최신순";
-	 }else if( num == 2) {
-		 DHL1="조회수";
-	 }else if(num == 3) {
-		 DHL1="좋아요";
-	 }
-	//if(searchText==''){
-		//$('#pg').val(pg);  $('input[name=이름명]').attr("속성명","값");
-		location.href = '/simri/post/writeManage?pg='+pg+'&DHL1='+DHL1;
-		
-		
-	//}
-	//else{
-		//$('#pg').val(pg);
-		//$('#searchBtn').trigger('click', 'search');
-	//}
-	 
-}
-
-
-
 function postPaging(pg){
-	alert("오니");
 	var postSearchText = document.getElementById('postSearchText').value;
 	alert(postSearchText);
 	
-//	if(postSearchText == ''){
-//		location.href= '/simri/post/writeManage?pg='+pg;
-//	}else{
+	if(postSearchText == ''){
+		alert("오니");
+		location.href= '/simri/post/writeLove?pg='+pg;
+	}else{
 		$('#pg').val(pg);
-		$('#postSearchText').val(postSearchText);
 		$('#postSearchBtn').trigger('click');
+		$('#postSearchText').val(postSearchText);
 		
-//	}
+	}
 	
 
 }

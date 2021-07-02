@@ -23,9 +23,20 @@ public class PostMybatis implements PostDAO {
 
 	@Override
 	public List<PostDTO> getSimriPostList(Map<String, Object> map) {
-		List<PostDTO> list = sqlSession.selectList("postSQL.getSimriPostList", map);
-		System.out.println(list);
-		return list;
+		if(map.get("DHL").equals("조회수")) {
+			List<PostDTO> list = sqlSession.selectList("postSQL.DHitLList", map);
+			System.out.println(map.get("DHL"));
+			return list;
+		}else if(map.get("DHL").equals("좋아요")) {
+			
+			List<PostDTO> list = sqlSession.selectList("postSQL.DHLikeList", map);
+			System.out.println(map.get("DHL"));
+			return list;
+		}else{
+			List<PostDTO> list = sqlSession.selectList("postSQL.getSimriPostList", map);
+			return list;
+		}
+		
 	}
 
 	@Override
@@ -43,6 +54,67 @@ public class PostMybatis implements PostDAO {
 	@Override
 	public List<PostDTO> postSearch(Map<String, Object> map) {
 		return sqlSession.selectList("postSQL.postSearch", map);
+	}
+
+	@Override
+	public void postDelete(String seq) {
+		String newSeq1 = seq.replace("{\"seq\":\"", "");
+		String newSeq2 = newSeq1.replace("\"}","");
+		String newSeq3 = newSeq2.replace("[","");
+		String newSeq4 = newSeq3.replace("]","");
+		
+		String[] arraySeq = newSeq4.split(",");
+		
+		for(int i=0; i<arraySeq.length; i++) {
+			sqlSession.delete("postSQL.postDelete", Integer.parseInt(arraySeq[i]));
+		}
+		
+	}
+
+	@Override
+	public void viewModify(PostDTO postDTO) {
+		if(postDTO.getImage() == null) {
+			postDTO.setImage("null.jpg");
+		}
+		
+		sqlSession.update("postSQL.viewModify", postDTO);
+		
+	}
+
+	@Override
+	public PostDTO getPostView(String seq) {
+		PostDTO postDTO = sqlSession.selectOne("postSQL.getPostView", Integer.parseInt(seq));
+		System.out.println("마바"+postDTO);
+		return postDTO;
+	}
+
+	@Override
+	public void loveWrite(PostDTO postDTO) {
+		sqlSession.insert("postSQL.loveWrite", postDTO);
+		
+	}
+
+	@Override
+	public List<PostDTO> getLovePostList(Map<String, Object> map) {
+		if(map.get("DHL").equals("조회수")) {
+			List<PostDTO> list = sqlSession.selectList("postSQL.DHitLList", map);
+			System.out.println(map.get("DHL"));
+			return list;
+		}else if(map.get("DHL").equals("좋아요")) {
+			
+			List<PostDTO> list = sqlSession.selectList("postSQL.DHLikeList", map);
+			System.out.println(map.get("DHL"));
+			return list;
+		}else{
+			List<PostDTO> list = sqlSession.selectList("postSQL.getSimriPostList", map);
+			return list;
+		}
+	}
+
+	@Override
+	public PostDTO getLoveView(int seq) {
+		PostDTO postDTO = sqlSession.selectOne("postSQL.getLoveView", seq);
+		return postDTO;
 	}
 
 	
