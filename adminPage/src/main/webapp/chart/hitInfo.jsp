@@ -12,21 +12,12 @@
 </div>
 <h4 style="margin-bottom: 0;">
 
- 
-<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-
-
-
-
-</div>
 		<div class="btn-group" style="margin-right: 490px; margin-top: 10px;">
 			<div class="btn-group">
-			<select class="btn btn-danger dropdown-toggle mr-1" type="button"
-				id="dropdownMenuButton" data-bs-toggle="dropdown"
-				aria-expanded="false" >
-				<option>전체목록</option>		
-				<option>심리테스트</option>
-				<option>심리글</option>
+			<select class="btn btn-danger dropdown-toggle mr-1" id="comCategory" data-bs-toggle="dropdown" aria-expanded="false" >
+				<option value="comCategoryAll">전체목록</option>		
+				<option value="심리테스트">심리테스트</option>
+				<option value="연애심리">연애심리</option>
 			
 			</select>
 		</div>
