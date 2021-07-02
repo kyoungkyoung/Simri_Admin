@@ -4,19 +4,6 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="chartSQL">
  
- <!-- 
-	<select id="getHit" parameterType="String" resultType="hit">		
-	<![CDATA[ 
-		select hitlogtime, sum(hithit) as hithit from hit
-			where seq=#{seq}
-			and hitlogtime >= to_char(sysdate-6, 'YY/MM/DD')
-    			and hitlogtime <= to_char(sysdate, 'YY/MM/DD')
-			group by hitlogtime
-			order by hitlogtime asc
-	]]>
-	</select>
-	 -->
-
 	<select id="getEtc" parameterType="String" resultType="etc">
 		<![CDATA[
 		select etclogtime, sum(hithit) as hithit, sum(likelike) as likelike, sum(shareshare) as shareshare
@@ -41,7 +28,60 @@
 		]]>
 	</select>
 	
+	<select id="getCommunityDTO" parameterType="int" resultType="community">
+		select * from community where seq=#{seq}
+	</select>
 	
+	<select id="getMemDataDay" resultType="memChart">
+		<![CDATA[
+		
+		select b.dt+1 as dt, nvl(sum(a.cnt), 0) cnt from
+		(select signlogtime, count(signlogtime) as cnt
+		from simrimember 
+		where signlogtime >= to_char(sysdate-6, 'YY/MM/DD')
+    		and signlogtime <= to_char(sysdate, 'YY/MM/DD')
+		group by signlogtime
+		)a,
+		(select to_date(to_char(sysdate-6, 'YY/MM/DD'), 'YY/MM/DD') + LEVEL-1 as dt from dual
+			connect by level <= (sysdate - (sysdate-6)+1)
+		)b
+		where b.dt = a.signlogtime(+)
+		group by b.dt, signlogtime 
+		order by b.dt
+		
+		]]>
+	</select>
 	
+	<select id="getMemDataMonth" resultType="memChart">
+		<![CDATA[
+		
+		SELECT TO_CHAR(b.dt, 'YY/MM') as dtmonth, NVL(SUM(a.cnt), 0) cnt from
+		(select signlogtime, count(signlogtime) as cnt
+		from simrimember
+		group by signlogtime
+		) a
+		, (select to_date(to_char(sysdate, 'yy')||'/01/01', 'yy/mm/dd') + level -1 as dt from dual
+		connect by level <=(TO_DATE(to_char(sysdate, 'yy')||'/12/31','yy/mm/dd') 
+                            - TO_DATE(to_char(sysdate, 'yy')||'/01/01','yy/mm/dd') + 1)
+		)b
+		WHERE b.dt = a.signlogtime(+) group by TO_CHAR(b.dt, 'YY/MM')
+		order by 1
+		
+		]]>
+	</select>
+	
+	<select id="getTestHit" resultType="community">
+		select * from
+		(select rownum rn, tt.*from
+		(select * from community where category='심리 테스트' order by hit desc)tt
+		)where rn between 1 and 3
+	</select>
+	
+	<select id="getloveHit" resultType="community">
+		select * from
+		(select rownum rn, tt.*from
+		(select * from community where category='연애 심리글' order by hit desc)tt
+		)where rn between 1 and 3
+	</select>
 	
 </mapper>

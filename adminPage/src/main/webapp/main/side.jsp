@@ -56,8 +56,8 @@ li{
 					aria-expanded="false">통계관리</button>
 				<div class="collapse" id="visit-collapse">
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-						<li><a href="/simri/section/graph" class="link-dark rounded">통계</a></li>
-						<li><a href="/simri/section/hitInfo" class="link-dark rounded">카테고리별 순위</a></li>
+						<li><a href="/simri/chart/graph" class="link-dark rounded">통계</a></li>
+						<li><a href="/simri/chart/hitInfo" class="link-dark rounded">카테고리별 순위</a></li>
 					</ul>
 				</div>
 			</li>

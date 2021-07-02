@@ -3,9 +3,8 @@
 
 
 
-<h4>게시글 제목
-<button type="button" class="btn btn-outline-danger btn-sm">게시물보기</button>
-</h4>
+<h1>${communityDTO.category}<br><br></h1>
+<h4>[${communityDTO.seq}] ${communityDTO.subject }</h4>
 <hr>
 <input type="hidden" id="seq" value="${seq}"> <!-- 넘어온 seq값을 hidden으로 값 저장해서 넘겨주기 -->
 
@@ -15,7 +14,7 @@
 <div class="card" style="width: 18rem;">
   <div class="card-body">
     <p class="card-text text-danger"><strong>누적 조회수</strong></p>
-    <h3 class="card-title text-danger">301</h3>
+    <h3 class="card-title text-danger">${communityDTO.hit}</h3>
    
   </div>
 </div>
@@ -25,7 +24,7 @@
 <div class="card" style="width: 18rem;">
   <div class="card-body">
      <p class="card-text">누적 좋아요수</p>
-    <h3 class="card-title">50</h3>
+    <h3 class="card-title">${communityDTO.comLike}</h3>
   </div>
 </div>
 </div>
@@ -34,7 +33,7 @@
 <div class="card" style="width: 18rem;">
   <div class="card-body">
      <p class="card-text">누적 댓글수</p>
-    <h3 class="card-title">5</h3>
+    <h3 class="card-title">${communityDTO.reply}</h3>
   </div>
 </div>
 </div>
@@ -98,8 +97,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
 <script src="../js/chart.js"></script>
 	
 	   

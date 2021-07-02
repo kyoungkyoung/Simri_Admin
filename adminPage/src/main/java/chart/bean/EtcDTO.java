@@ -6,7 +6,7 @@ import lombok.Data;
 public class EtcDTO {
 	private int seq;
 	private String etcLogtime;
-	private int hitHit;
-	private int likeLike;
-	private int shareShare;
+	private int hitHit; 			//조회수
+	private int likeLike;			//좋아요수
+	private int shareShare;			//공유수
 }

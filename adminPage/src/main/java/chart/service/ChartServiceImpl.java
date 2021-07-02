@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import chart.bean.EtcDTO;
+import chart.bean.MemChartDTO;
 import chart.dao.ChartDAO;
+import community.bean.CommunityDTO;
 
 @Service
 public class ChartServiceImpl implements ChartService {
@@ -34,5 +36,25 @@ public class ChartServiceImpl implements ChartService {
 		List<EtcDTO> list = chartDAO.getData(map);
 		
 		return list;
+	}
+
+	@Override
+	public CommunityDTO getCommunityDTO(int seq) {
+		return chartDAO.getCommunityDTO(seq);
+	}
+
+	@Override
+	public List<MemChartDTO> getMemData(String date) {
+		return chartDAO.getMemData(date);
+	}
+
+	@Override
+	public List<CommunityDTO> getTestHit() {
+		return chartDAO.getTestHit();
+	}
+
+	@Override
+	public List<CommunityDTO> getloveHit() {
+		return chartDAO.getloveHit();
 	}
 }           

@@ -23,23 +23,12 @@ public class adminController {
 	
 	
 	
-	@RequestMapping(value = "/graph", method = RequestMethod.GET)
-	public String graph(Model model) { 
-		model.addAttribute("display", "/section/graph.jsp");
-		return "/section/login";
-	}// memberView()
-	
 	//팝업창
 	@RequestMapping(value = "/memberView", method = RequestMethod.GET)
 	public String memberView() { 
 		return "/section/memberView";
 	}// checkPost()
 	
-	@RequestMapping(value = "/hitInfo", method = RequestMethod.GET)
-	public String hitInfo(Model model) { 
-		model.addAttribute("display", "/section/hitInfo.jsp");
-		return "/section/login";
-	}// memberView()
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() { 
