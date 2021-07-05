@@ -289,7 +289,6 @@ function checkAllStop(){
 		}
 	}
 }
-
 function checkSelectAllStop(checkbox)  {
 	  const selectall3 
 	    = document.querySelector('input[id="allStop"]');

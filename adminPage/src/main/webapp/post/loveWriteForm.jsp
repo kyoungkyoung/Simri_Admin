@@ -8,7 +8,7 @@
 
       <form id="loveWriteForm">
 		 <div class="form-group mb-3 mt-3" style="padding-left: 20px; padding-right: 20px">
-             <input type="text" id="category" name="category" value="연애 심리" class="form-control" readonly>
+             <input type="text" id="category" name="category" value="연애 심리글" class="form-control" readonly>
          </div>
          
 
