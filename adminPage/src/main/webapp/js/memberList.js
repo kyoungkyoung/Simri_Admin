@@ -355,9 +355,9 @@ $('#stopBtn').click(function(){
 			
 		}//if general-tab
 		
-		if(buttonId=='warning-tab'){
 			
 //check2-------------------------------------------------------------------------	
+		if(buttonId=='warning-tab'){
 			
 			var check2 = document.getElementsByName("checkWarning");
 			var listEmail2 = new Array();
@@ -463,7 +463,7 @@ $('#deleteBtn').click(function(){
 	console.log(jsonEmail);
 	
 	if(count != 0 && yn==0){
-		alert('활동정지할 회원을 선택해주세요');
+		alert('강제 탈퇴할 회원을 선택해주세요');
 	}else{
 		if(confirm("정말 강퇴하시겠습니까?")){
 			$.ajax({
