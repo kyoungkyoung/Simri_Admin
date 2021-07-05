@@ -57,4 +57,9 @@ public class ChartServiceImpl implements ChartService {
 	public List<CommunityDTO> getloveHit() {
 		return chartDAO.getloveHit();
 	}
+
+	@Override
+	public List<CommunityDTO> getHitInfoDay(Map<String, String> map) {
+		return chartDAO.getHitInfoDay(map);
+	}
 }           

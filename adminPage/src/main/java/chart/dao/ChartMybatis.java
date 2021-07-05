@@ -1,5 +1,6 @@
 package chart.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -66,6 +67,56 @@ public class ChartMybatis implements ChartDAO {
 		List<CommunityDTO> list = sqlSession.selectList("chartSQL.getloveHit");
 		System.out.println(list);
 		return list;
+	}
+
+	@Override
+	public List<CommunityDTO> getHitInfoDay(Map<String, String> map) {
+		List<CommunityDTO> list = new ArrayList<CommunityDTO>();
+	
+		System.out.println(map.get("comCategory"));
+		System.out.println(map.get("condition"));
+		System.out.println(map.get("date"));
+			
+		if(map.get("comCategory").equals("comCategoryAll")) {
+			if(map.get("date").equals("day")) {
+				list = sqlSession.selectList("chartSQL.getHitInfoAll", map);
+				System.out.println(list);
+				return list;
+			}else if(map.get("date").equals("week")) {
+				list = sqlSession.selectList("chartSQL.getHitInfoAllWeek", map);
+				System.out.println(list);
+				return list;
+			}else {
+				list = sqlSession.selectList("chartSQL.getHitInfoAllMonth", map);
+				System.out.println(list);
+				return list;
+			}
+		}
+		else if(map.get("comCategory").equals("심리테스트")) {
+			map.put("comCategory", "심리 테스트");
+			if(map.get("date").equals("day")) {
+				list = sqlSession.selectList("chartSQL.getHitInfo", map);
+				return list;
+			}else if(map.get("date").equals("week")) {
+				list = sqlSession.selectList("chartSQL.getHitInfoWeek", map);
+				return list;
+			}else {
+				list = sqlSession.selectList("chartSQL.getHitInfoMonth", map);
+				return list;
+			}
+		}else {
+			map.put("comCategory", "연애 심리글");
+			if(map.get("date").equals("day")) {
+				list = sqlSession.selectList("chartSQL.getHitInfo", map);
+				return list;
+			}else if(map.get("date").equals("week")) {
+				list = sqlSession.selectList("chartSQL.getHitInfoWeek", map);
+				return list;
+			}else {
+				list = sqlSession.selectList("chartSQL.getHitInfoMonth", map);
+				return list;
+			}
+		}
 	}
 	
 }
