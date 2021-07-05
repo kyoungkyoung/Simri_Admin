@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,6 +33,7 @@ public class CommunityController {
 	
 	
 	@RequestMapping(value = "/community", method = RequestMethod.GET)
+	@GetMapping("/community")
 	public String community(@RequestParam(required=false, defaultValue="1") String pg,
 							@RequestParam(required=false, defaultValue="[전체 게시글]팔레트") String comCategory1,
 							Model model) { 

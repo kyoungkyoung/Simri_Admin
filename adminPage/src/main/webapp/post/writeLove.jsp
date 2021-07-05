@@ -3,11 +3,11 @@
 <!-- 메인 화면 -->
 
 <input type="hidden" id="pg" value="${pg}">
-<input type="hidden" id="comCategory" value="연애 심리">
+<input type="hidden" id="comCategory" value="연애 심리글">
 <input type="hidden" id="DHL1" value="${DHL1}">
 
 <h3>
-	연애 심리
+	연애 심리글
 	<button type="button" id="comDeleteBtn" class="btn btn-outline-secondary float-right">삭제</button>
 	<button type="button" onclick="location.href='/simri/post/loveWriteForm'" class="btn btn-outline-secondary float-right mr-2">글쓰기</button>
 	

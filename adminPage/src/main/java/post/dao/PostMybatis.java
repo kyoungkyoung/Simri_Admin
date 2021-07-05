@@ -90,6 +90,7 @@ public class PostMybatis implements PostDAO {
 
 	@Override
 	public void loveWrite(PostDTO postDTO) {
+		//System.out.println(postDTO);
 		sqlSession.insert("postSQL.loveWrite", postDTO);
 		
 	}
