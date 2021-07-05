@@ -27,7 +27,7 @@
 		
 	
 		<div class="btn-group mt-3 mb-2" role="group" aria-label="Basic outlined example">
-		  <button type="button" id="day" class="btn btn-outline-danger">일간</button>
+		  <button type="button" id="day" class="btn btn-outline-danger" selected>일간</button>
 		  <button type="button" id="week" class="btn btn-outline-danger">주간</button>
 		  <button type="button" id="month" class="btn btn-outline-danger">월간</button>
 		</div>
