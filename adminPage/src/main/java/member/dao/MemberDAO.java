@@ -15,7 +15,7 @@ public interface MemberDAO {
 
 	public List<SimriMemberDTO> getMemberWarningList(Map<String, Integer> map);
 
-	public List<SimriMemberDTO> getMemberStopList();
+	public List<SimriMemberDTO> getMemberStopList(Map<String, Integer> map);
 
 	public void stopInsert(Map<String, String> map);
 
@@ -32,5 +32,7 @@ public interface MemberDAO {
 	public List<SimriMemberDTO> getMemberWarningSearch(Map<String, Object> map);
 
 	public int warningSearchTotalA(Map<String, String> map);
+
+	public int getStopTotalA();
 
 }

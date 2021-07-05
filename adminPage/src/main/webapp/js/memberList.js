@@ -7,6 +7,14 @@ $(function(){
 		
 		$('#general').removeClass('show active');
 		$('#warning').addClass('show active');
+	}else if($('#btnId').val() === 'stop'){
+		$('#stop-tab').addClass('active');
+		$('#general-tab').removeClass('active');
+		$('#warning-tab').removeClass('active');
+		
+		$('#general').removeClass('show active');
+		$('#warning').removeClass('show active');
+		$('#stop').addClass('show active');
 	}
 	
 	var buttonId = $('.active').attr('id');
@@ -15,6 +23,8 @@ $(function(){
 		$('#general-tab').trigger('click')
 	}else if(buttonId == 'warning-tab'){
 		$('#warning-tab').trigger('click');
+	}else if(buttonId == 'stop-tab'){
+		$('#stop-tab').trigger('click');
 	}
 });
 
@@ -108,7 +118,7 @@ $('#warning-tab').click(function(){
 		data:'pg='+$('#pg').val(),
 		dataType:'json',
 		success: function(data){
-			
+			alert(JSON.stringify(data));
 			$('#memberWarningListTable tr:gt(0)').remove();
 			
 			$.each(data.list, function(index, items){
@@ -140,10 +150,13 @@ $('#warning-tab').click(function(){
 							text: items.memsingo
 							
 						})).append($('<td/>',{
+							text: items.warningReason
+							
+						})).append($('<td/>',{
 							text: items.condition
 							
 						})).append($('<td/>',{
-							text: items.signlogtime
+							text: items.singologtime
 							
 						})).appendTo($('#memberWarningListTable'));
 			});//each
@@ -171,9 +184,10 @@ $('#stop-tab').click(function(){
 	$.ajax({
 		type:'post',
 		url:'/simri/member/getMemberStopList',
+		data:'pg='+$('#pg').val(),
 		dataType:'json',
 		success: function(data){
-			
+			alert(JSON.stringify(data));
 			$('#memberStopListTable tr:gt(0)').remove();
 			$.each(data.list, function(index, items){
 				
@@ -205,15 +219,19 @@ $('#stop-tab').click(function(){
 							text: items.memsingo
 							
 						})).append($('<td/>',{
+							text: items.stopReason
+							
+						})).append($('<td/>',{
 							text: items.condition
 							
 						})).append($('<td/>',{
-							text: items.signlogtime
+							text: items.stoplogtime
 							
 						})).appendTo($('#memberStopListTable'));
 			});//each
 			
-			 
+			//페이징 처리
+			$('#memberStopPagingDiv').html(data.memberStopPaging.pagingHTML);
 			
 			$(document).on('click', '#memberInfo', function(){
 				window.open('/simri/member/memberView?email='+$(this).text(), 'ss', 'width=640 height=540 left=800 top=200 scrollbars=yes');
@@ -225,6 +243,7 @@ $('#stop-tab').click(function(){
 			console.log(err);
 		}
 	});
+	$('#pg').val('1');
 });
 
 
@@ -668,4 +687,22 @@ function memberWarningPaging(pg){
 		$('#searchBtn').trigger('click', 'search');
 	}
 	
+}
+
+//정지 회원 페이징
+function memberStopPaging(pg){
+	var searchText = document.getElementById('searchText').value;
+	$('#stop-tab').addClass('active');
+	$('#general-tab').removeClass('active');
+	
+	if(searchText==''){
+		location.href = '/simri/member/memberList?pg='+pg+"&btnId=stop";
+	}else{
+		$('#pg').val(pg);
+		$('#searchBtn').trigger('click', 'search');
 	}
+	
+}
+
+
+

@@ -140,8 +140,9 @@
          <th scope="col">팔레트</th>
          <th scope="col">포인트</th>
          <th scope="col">신고내역</th>
+         <th scope="col">신고내용</th>
          <th scope="col">회원상태</th>
-         <th scope="col">가입일</th>
+         <th scope="col">신고일</th>
       </tr>
    </thead>
 </table>
@@ -171,15 +172,16 @@
          <th scope="col">이메일</th>
          <th scope="col">팔레트</th>
          <th scope="col">포인트</th>
-         <th scope="col">신고내역</th>
+         <th scope="col">정지내역</th>
+         <th scope="col">정지내용</th>
          <th scope="col">회원상태</th>
-         <th scope="col">가입일</th>
+         <th scope="col">정지일</th>
       </tr>
    </thead>
 </table>
 <!-- 페이징 -->
 <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-center my-4" id="memberPagingDiv">
+      <ul class="pagination justify-content-center my-4" id="memberStopPagingDiv">
       </ul>
 </nav>
 	<%-- <input type="hidden" id="pg" value="${pg}"> --%>

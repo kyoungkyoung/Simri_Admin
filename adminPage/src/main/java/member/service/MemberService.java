@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import member.bean.MemberPaging;
+import member.bean.MemberStopPaging;
 import member.bean.MemberWarningPaging;
 import member.bean.SimriMemberDTO;
 
@@ -17,7 +18,7 @@ public interface MemberService {
 
 	public List<SimriMemberDTO> getMemberWarningList(int pg);
 
-	public List<SimriMemberDTO> getMemberStopList();
+	public List<SimriMemberDTO> getMemberStopList(int pg);
 
 	public void stopInsert(Map<String, String> map);
 
@@ -34,5 +35,7 @@ public interface MemberService {
 	public List<SimriMemberDTO> getMemberWarningSearch(String category, String searchText, String pg);
 
 	public MemberPaging memberWarningSearchPaging(Map<String, String> map);
+
+	public MemberStopPaging stopMemberPaging(int pg);
 
 }

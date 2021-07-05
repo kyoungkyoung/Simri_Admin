@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import member.bean.MemberPaging;
+import member.bean.MemberStopPaging;
 import member.bean.MemberWarningPaging;
 import member.bean.SimriMemberDTO;
 import member.service.MemberService;
@@ -35,13 +36,13 @@ public class memberController {
 		return "/section/login";
 	}// memberList()
 	
-	@RequestMapping(value = "/getMemberStopList", method = RequestMethod.GET)
-	public String getMemberStopList(@RequestParam(required=false, defaultValue="1") String pg, Model model) { 
-		model.addAttribute("pg", pg);
-		model.addAttribute("display", "/member/memberList.jsp");
-		
-		return "/section/login";
-	}// memberList()
+//	@RequestMapping(value = "/getMemberStopList", method = RequestMethod.GET)
+//	public String getMemberStopList(@RequestParam(required=false, defaultValue="1") String pg, Model model) { 
+//		model.addAttribute("pg", pg);
+//		model.addAttribute("display", "/member/memberList.jsp");
+//		
+//		return "/section/login";
+//	}// memberList()
 	
 	@RequestMapping(value = "/memberView", method=RequestMethod.GET)
 	public String memberView(@RequestParam String email, Model model) { 
@@ -101,22 +102,32 @@ public class memberController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/memberWarningList2", method=RequestMethod.POST)
-	@ResponseBody
-	public String getMemberWarningList2(@RequestParam(required=false, defaultValue="1") String pg, Model model) {
-		model.addAttribute("pg", pg);
-		model.addAttribute("display", "/member/memberList.jsp");
-		
-		return "/section/login";
-	}
+//	@RequestMapping(value = "/memberWarningList2", method=RequestMethod.POST)
+//	@ResponseBody
+//	public String getMemberWarningList2(@RequestParam(required=false, defaultValue="1") String pg, Model model) {
+//		model.addAttribute("pg", pg);
+//		model.addAttribute("display", "/member/memberList.jsp");
+//		
+//		return "/section/login";
+//	}
 	
 	@RequestMapping(value = "/getMemberStopList", method=RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView getMemberStopList() {
+	public ModelAndView getMemberStopList(@RequestParam(required=false, defaultValue="1") String pg, Model model) {
+		System.out.println("stop: "+ pg);
 		
-		List<SimriMemberDTO> list = memberService.getMemberStopList();
+		List<SimriMemberDTO> list = memberService.getMemberStopList(Integer.parseInt(pg));
+		
+		//페이징 처리
+		MemberStopPaging memberStopPaging = memberService.stopMemberPaging(Integer.parseInt(pg));
+		
+		
+		System.out.println("stopMemberPaging"+ memberStopPaging);
+		
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("pg",pg);
 		mav.addObject("list",list);
+		mav.addObject("memberStopPaging",memberStopPaging);
 		mav.setViewName("jsonView");
 
 		return mav;

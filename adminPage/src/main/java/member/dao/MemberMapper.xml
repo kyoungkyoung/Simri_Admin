@@ -41,12 +41,21 @@
 	
 	
 	
-	<select id="getMemberStopList" resultType="member">
-		select * from simrimember where condition = '정지' order by signlogtime desc
+	<select id="getMemberStopList" parameterType="java.util.Map" resultType="member">
+		select * from (select rownum rn, tt.*from 
+		(select * from simrimember where condition = '정지' order by signlogtime desc)tt 
+		)where rn<![CDATA[ >= ]]>#{startNum}
+		 and rn <![CDATA[ <= ]]>#{endNum}
+		 
+		<!-- select * from simrimember where condition = '정지' order by signlogtime desc -->
+	</select>
+	
+	<select id="getStopTotalA" resultType="int">
+		select count(*) from simrimember where condition = '정지' order by signlogtime desc
 	</select>
 	
 	<update id="stopInsert" parameterType="java.util.Map">
-		update simrimember set condition='정지', singologtime=#{singologtime}, stopreason=#{stopReason}, stopperiod=#{stopPeriod} where email=#{email}
+		update simrimember set condition='정지', singologtime=#{singologtime}, stopreason=#{stopReason}, stopperiod=#{stopPeriod}, stoplogtime=sysdate  where email=#{email}
 	</update>
 	
 	<delete id="memberDelete" parameterType="String">

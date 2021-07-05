@@ -98,8 +98,8 @@ public class MemberMybatis implements MemberDAO {
 	}
 
 	@Override
-	public List<SimriMemberDTO> getMemberStopList() {
-		List<SimriMemberDTO> list = sqlSession.selectList("memberSQL.getMemberStopList");
+	public List<SimriMemberDTO> getMemberStopList(Map<String, Integer> map) {
+		List<SimriMemberDTO> list = sqlSession.selectList("memberSQL.getMemberStopList", map);
 		
 		for(SimriMemberDTO dto : list) {
 			if(dto.getStopPeriod()!=0) {
@@ -207,6 +207,12 @@ public class MemberMybatis implements MemberDAO {
 	@Override
 	public int warningSearchTotalA(Map<String, String> map) {
 		return sqlSession.selectOne("memberSQL.warningSearchTotalA", map);
+	}
+
+	@Override
+	public int getStopTotalA() {
+		//총글수
+		return sqlSession.selectOne("memberSQL.getStopTotalA");
 	}
 
 

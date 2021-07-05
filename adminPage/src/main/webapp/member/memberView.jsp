@@ -30,15 +30,17 @@
 
 				<div class="row">
 					<div class="col-xs-3 mr-4">
-						<svg class="bd-placeholder-img rounded-circle" width="180"
-							height="180" xmlns="http://www.w3.org/2000/svg" role="img"
-							aria-label="Placeholder: 140x140"
-							preserveAspectRatio="xMidYMid slice" focusable="false">
-							<title>Placeholder</title><rect width="100%" height="100%"
-								fill="#777" />
+					
+						<img class="rounded-circle ms-3 me-4"id="profileImg"style="width: 200px; height: 200px;"alt="profile" src="${SimriMemberDTO.profile}"/>
+						<input type="hidden" name="profile_url">
+					
+					<%-- 	<svg class="bd-placeholder-img rounded-circle" width="180" height="180" xmlns="http://www.w3.org/2000/svg" role="img" value = "${SimriMemberDTO.profile}" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+							<title>Placeholder</title><rect width="100%" height="100%"fill="#777" />
 							<text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
-      
-        </svg>
+      							
+        				</svg>
+        			 --%>
+        			
 					</div>
 					<!-- /.col-lg-4 -->
 
@@ -111,6 +113,19 @@
 						<div class="input-group input-group-sm mb-3">
 							<span class="input-group-text mr-1" id="inputGroup-sizing-sm">회원상태</span>
 							<input type="text" class="form-control" value="${SimriMemberDTO.condition }"
+								aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-sm" readonly>
+						</div>
+						
+						<div class="input-group input-group-sm mb-3">
+							<span class="input-group-text mr-1" id="inputGroup-sizing-sm">신고내용</span>
+							<input type="text" class="form-control" value="${SimriMemberDTO.warningReason }"
+								aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-sm" readonly>
+						</div>
+						<div class="input-group input-group-sm mb-3">
+							<span class="input-group-text mr-1" id="inputGroup-sizing-sm">정지내용</span>
+							<input type="text" class="form-control" value="${SimriMemberDTO.stopReason }"
 								aria-label="Sizing example input"
 								aria-describedby="inputGroup-sizing-sm" readonly>
 						</div>

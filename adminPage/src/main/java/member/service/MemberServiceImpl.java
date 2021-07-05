@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import member.bean.MemberPaging;
+import member.bean.MemberStopPaging;
 import member.bean.MemberWarningPaging;
 import member.bean.SimriMemberDTO;
 import member.dao.MemberDAO;
@@ -20,7 +21,8 @@ public class MemberServiceImpl implements MemberService {
 	private MemberPaging memberPaging;
 	@Autowired
 	private MemberWarningPaging memberWarningPaging;
-	
+	@Autowired
+	private MemberStopPaging memberStopPaging;
 	@Override
 	public List<SimriMemberDTO> getMemberList(int pg) {
 		//페이징 처리
@@ -88,10 +90,32 @@ public class MemberServiceImpl implements MemberService {
 		return memberWarningPaging;
 	}
 	
-
 	@Override
-	public List<SimriMemberDTO> getMemberStopList() {
-		List<SimriMemberDTO> list = memberDAO.getMemberStopList();
+	public MemberStopPaging stopMemberPaging(int pg) {
+		int totalA = memberDAO.getStopTotalA();
+		
+		memberStopPaging.setCurrentPage(pg);//현재 페이지
+		memberStopPaging.setPageBlock(3);
+		memberStopPaging.setPageSize(10);
+		memberStopPaging.setTotalA(totalA);
+		memberStopPaging.makePagingHTML();
+		
+		return memberStopPaging;
+	}
+	 
+	
+	@Override
+	public List<SimriMemberDTO> getMemberStopList(int pg) {
+		//페이징 처리
+		//1페이지당 10개
+		int endNum = pg*10;
+		int startNum = endNum-9;
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+		
+		List<SimriMemberDTO> list = memberDAO.getMemberStopList(map);
 		return list;
 	}
 
@@ -171,6 +195,8 @@ public class MemberServiceImpl implements MemberService {
 		
 		return memberPaging;
 	}
+
+
 
 
 }
