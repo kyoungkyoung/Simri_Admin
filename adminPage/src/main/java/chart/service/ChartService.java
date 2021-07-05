@@ -1,6 +1,7 @@
 package chart.service;
 
 import java.util.List;
+import java.util.Map;
 
 import chart.bean.EtcDTO;
 import chart.bean.MemChartDTO;
@@ -19,4 +20,6 @@ public interface ChartService {
 	public List<CommunityDTO> getTestHit();
 
 	public List<CommunityDTO> getloveHit();
+
+	public List<CommunityDTO> getHitInfoDay(Map<String, String> map);
 }

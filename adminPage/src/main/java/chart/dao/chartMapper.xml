@@ -84,4 +84,51 @@
 		)where rn between 1 and 3
 	</select>
 	
+	<select id="getHitInfoAll" parameterType="java.util.Map" resultType="community">
+		select * from community where category in ('심리 테스트', '연애 심리글') 
+		and comlogtime like TO_DATE(to_char(sysdate, 'yy/mm/dd')) 
+		order by ${condition} desc
+	</select>
+	
+	<select id="getHitInfoAllWeek" parameterType="java.util.Map" resultType="community">
+		select * from community 
+		where category in ('심리 테스트', '연애 심리글') 
+    		and to_char(comlogtime, 'yy/mm/dd') 
+    		between to_char(sysdate-6, 'yy/mm/dd') 
+    			and to_char(sysdate, 'yy/mm/dd')
+		order by ${condition} desc
+	</select>
+	
+	<select id="getHitInfoAllMonth" parameterType="java.util.Map" resultType="community">
+		select * from community 
+		where category in ('심리 테스트', '연애 심리글') 
+    		and to_char(comlogtime, 'yy/mm/dd') 
+    		between to_char(sysdate-30, 'yy/mm/dd') 
+    			and to_char(sysdate, 'yy/mm/dd')
+		order by ${condition} desc
+	</select>
+	
+	<select id="getHitInfo" parameterType="java.util.Map" resultType="community">
+		select * from community where category=#{comCategory} and comlogtime like TO_DATE(to_char(sysdate, 'yy/mm/dd')) order by ${condition} desc
+	</select>
+	
+	<select id="getHitInfoWeek" parameterType="java.util.Map" resultType="community">
+		select * from community 
+		where category = #{comCategory}
+    		and to_char(comlogtime, 'yy/mm/dd') 
+    		between to_char(sysdate-6, 'yy/mm/dd') 
+    			and to_char(sysdate, 'yy/mm/dd')
+		order by ${condition} desc
+	</select>
+	
+	<select id="getHitInfoMonth" parameterType="java.util.Map" resultType="community">
+		select * from community 
+		where category = #{comCategory} 
+    		and to_char(comlogtime, 'yy/mm/dd') 
+    		between to_char(sysdate-30, 'yy/mm/dd') 
+    			and to_char(sysdate, 'yy/mm/dd')
+		order by ${condition} desc
+	</select>
+	
+	
 </mapper>

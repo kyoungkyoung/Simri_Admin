@@ -12,96 +12,38 @@
 			<select class="btn btn-outline-danger dropdown-toggle mr-1" id="comCategory" aria-expanded="false" >
 				<option value="comCategoryAll">전체목록</option>		
 				<option value="심리테스트">심리테스트</option>
-				<option value="연애심리">연애심리</option>
+				<option value="연애심리글">연애심리글</option>
 			</select>
 		</div>
 			
 		<div class="btn-group">
-			<select class="btn btn-outline-danger dropdown-toggle mr-1" id="condition" data-bs-toggle="dropdown" aria-expanded="false" >
-				<option value="latest">최신순</option>		
-				<option value="like">좋아요</option>
+			<select class="btn btn-outline-danger dropdown-toggle mr-1" id="condition" aria-expanded="false" >
+				<option value="seq">최신순</option>		
 				<option value="hit">조회수</option>
+				<option value="comlike">좋아요</option>
 			</select>
 		</div>
 	</div>
 		
 	
 		<div class="btn-group mt-3 mb-2" role="group" aria-label="Basic outlined example">
-		  <button type="button" id="day" class="btn btn-outline-danger" selected>일간</button>
+		  <button type="button" id="day" class="btn btn-outline-danger">일간</button>
 		  <button type="button" id="week" class="btn btn-outline-danger">주간</button>
 		  <button type="button" id="month" class="btn btn-outline-danger">월간</button>
 		</div>
 	</h4>
 	
-<table class="table table-hover">
-	<thead>
+<table class="table table-hover" id="hitInfoTable">
 		<tr>
-			<th scope="col">
-				<div class="form-check">
-					<label class="form-check-label" for="flexCheckDefault">글번호</label>
-				</div>
-			</th>
+			<th scope="col">글번호</th>
+			<th scope="col">카테고리</th>
 			<th scope="col">제목</th>
 			<th scope="col">조회수</th>
-			<th scope="col">카테고리</th>
-		</tr>
-	</thead>
-		<tr id="memberInfo" style="cursor: pointer;">
-			<th scope="row">
-				<div class="form-check">
-					<label class="form-check-label" for="flexCheckDefault"> 1 </label>
-				</div>
-			</th>
-			<td>안읽씹하는 남자친구의 심리</td>
-			<td>200</td>
-			<td>심리글</td>
-		</tr>
-		
-		<tr>
-			<th scope="row">
-				<div class="form-check">
-				<label class="form-check-label"
-						for="flexCheckDefault"> 2 </label>
-				</div>
-			</th>
-			<td>짱구심리테스트</td>
-			<td>135</td>
-			<td>심리테스트</td>
-		</tr>
-		<tr>
-			<th scope="row">
-				<div class="form-check">
-					<label class="form-check-label"
-						for="flexCheckDefault"> 3 </label>
-				</div>
-			</th>
-			<td>삼겹살 먹자고 했는데 돈이 없대요 무슨 의미일까요?</td>
-			<td>110</td>
-			<td>심리글</td>
+			<th scope="col">좋아요</th>
+			<th scope="col">작성일</th>
+
 		</tr>
 </table>
-<hr>
-
-<!-- 페이징 -->
-<!-- <div class= "col text-center">
-<nav aria-label="Page navigation example" class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-  <ul class="pagination" >
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
-</div> -->
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../js/hitInfo.js"></script>

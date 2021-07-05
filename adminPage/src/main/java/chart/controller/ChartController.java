@@ -114,5 +114,22 @@ public class ChartController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/getHitInfoDay", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView getHitInfoDay(@RequestParam String comCategory, @RequestParam String condition, @RequestParam String date) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("comCategory", comCategory);
+		map.put("condition", condition);
+		map.put("date", date);
+		
+		List<CommunityDTO> list = chartService.getHitInfoDay(map);
+		
+		System.out.println(list);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", list);
+		mav.setViewName("jsonView");
+		
+		return mav;
+	}
 	
 }
