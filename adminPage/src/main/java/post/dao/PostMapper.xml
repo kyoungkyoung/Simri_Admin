@@ -4,10 +4,28 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="postSQL">
 
-	<insert id="postWrite" parameterType="post">
-		insert into community values(#{category},seq.nextval, #{email}, #{subject}, #{content}, sysdate, #{image}, #{hit}, #{comSingo}, #{comShare}, #{reply}, #{nickname},
-		#{palette}, #{comLike}, #{testURL}, #{point}, #{hashTag2}, #{hashTag3}, #{hashTag1})
-	</insert>
+	   <insert id="postWrite" parameterType="post">
+      insert into community values(#{category},
+                           seq.nextval, 
+                           #{email},
+                           #{nickname},
+                           #{palette}, 
+                           #{subject}, 
+                           #{content}, 
+                           #{testURL}, 
+                           sysdate, 
+                           #{image},
+                           #{hashTag1}, 
+                           #{hashTag2},
+                           #{hashTag3},
+                           #{hit},
+                           #{comLike}, 
+                           #{comSingo}, 
+                           #{comShare}, 
+                           #{point},
+                           #{reply}
+      )
+   </insert>
 	
 	<select id="getSimriPostList" parameterType="java.util.Map" resultType="post">
 	select * from (select rownum rn, tt.*from 
