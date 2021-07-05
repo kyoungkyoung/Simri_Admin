@@ -11,31 +11,23 @@
 	</h3>
 </div>
 <h4 style="margin-bottom: 0;">
-
-		<div class="btn-group" style="margin-right: 490px; margin-top: 10px;">
-			<div class="btn-group">
+	<div class="btn-group" style="margin-right: 490px; margin-top: 10px;">
+		<div class="btn-group">
 			<select class="btn btn-danger dropdown-toggle mr-1" id="comCategory" data-bs-toggle="dropdown" aria-expanded="false" >
 				<option value="comCategoryAll">전체목록</option>		
 				<option value="심리테스트">심리테스트</option>
 				<option value="연애심리">연애심리</option>
-			
 			</select>
 		</div>
 			
-			<div class="btn-group">
-			<select class="btn btn-danger dropdown-toggle mr-1" type="button"
-				id="dropdownMenuButton" data-bs-toggle="dropdown"
-				aria-expanded="false" >
-				<option>전체목록</option>		
+		<div class="btn-group">
+			<select class="btn btn-danger dropdown-toggle mr-1" id="condition" data-bs-toggle="dropdown" aria-expanded="false" >
+				<option value="">최신순</option>		
 				<option>좋아요</option>
 				<option>조회수</option>
-			
 			</select>
 		</div>
-			
-			
-					
-		</div>
+	</div>
 		
 	
 		<div class="btn-group mt-3 mb-2" role="group" aria-label="Basic outlined example " >
