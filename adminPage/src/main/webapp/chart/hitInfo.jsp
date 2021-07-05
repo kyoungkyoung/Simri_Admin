@@ -4,16 +4,12 @@
 <div class="p-2">
 	<h3>
 		카테고리별  순위
-		
-
-		
-		
 	</h3>
 </div>
 <h4 style="margin-bottom: 0;">
 	<div class="btn-group" style="margin-right: 490px; margin-top: 10px;">
 		<div class="btn-group">
-			<select class="btn btn-danger dropdown-toggle mr-1" id="comCategory" data-bs-toggle="dropdown" aria-expanded="false" >
+			<select class="btn btn-outline-danger dropdown-toggle mr-1" id="comCategory" aria-expanded="false" >
 				<option value="comCategoryAll">전체목록</option>		
 				<option value="심리테스트">심리테스트</option>
 				<option value="연애심리">연애심리</option>
@@ -21,50 +17,46 @@
 		</div>
 			
 		<div class="btn-group">
-			<select class="btn btn-danger dropdown-toggle mr-1" id="condition" data-bs-toggle="dropdown" aria-expanded="false" >
-				<option value="">최신순</option>		
-				<option>좋아요</option>
-				<option>조회수</option>
+			<select class="btn btn-outline-danger dropdown-toggle mr-1" id="condition" data-bs-toggle="dropdown" aria-expanded="false" >
+				<option value="latest">최신순</option>		
+				<option value="like">좋아요</option>
+				<option value="hit">조회수</option>
 			</select>
 		</div>
 	</div>
 		
 	
-		<div class="btn-group mt-3 mb-2" role="group" aria-label="Basic outlined example " >
-		  <button type="button" class="btn btn-outline-danger">일간</button>
-		  <button type="button" class="btn btn-outline-danger">주간</button>
-		  <button type="button" class="btn btn-outline-danger">월간</button>
+		<div class="btn-group mt-3 mb-2" role="group" aria-label="Basic outlined example">
+		  <button type="button" id="day" class="btn btn-outline-danger">일간</button>
+		  <button type="button" id="week" class="btn btn-outline-danger">주간</button>
+		  <button type="button" id="month" class="btn btn-outline-danger">월간</button>
 		</div>
 	</h4>
 	
-
-  
-		
 <table class="table table-hover">
 	<thead>
 		<tr>
-			<th scope="col"><div class="form-check">
-					<label class="form-check-label"
-						for="flexCheckDefault">순위</label>
-				</div></th>
-
+			<th scope="col">
+				<div class="form-check">
+					<label class="form-check-label" for="flexCheckDefault">글번호</label>
+				</div>
+			</th>
 			<th scope="col">제목</th>
 			<th scope="col">조회수</th>
 			<th scope="col">카테고리</th>
 		</tr>
 	</thead>
-	<tbody>
 		<tr id="memberInfo" style="cursor: pointer;">
 			<th scope="row">
 				<div class="form-check">
-				<label class="form-check-label"
-						for="flexCheckDefault"> 1 </label>
+					<label class="form-check-label" for="flexCheckDefault"> 1 </label>
 				</div>
 			</th>
 			<td>안읽씹하는 남자친구의 심리</td>
 			<td>200</td>
 			<td>심리글</td>
 		</tr>
+		
 		<tr>
 			<th scope="row">
 				<div class="form-check">
@@ -87,12 +79,11 @@
 			<td>110</td>
 			<td>심리글</td>
 		</tr>
-	</tbody>
 </table>
-<hr />
+<hr>
 
 <!-- 페이징 -->
-<div class= "col text-center">
+<!-- <div class= "col text-center">
 <nav aria-label="Page navigation example" class="d-grid gap-2 d-sm-flex justify-content-sm-center">
   <ul class="pagination" >
     <li class="page-item">
@@ -110,12 +101,13 @@
     </li>
   </ul>
 </nav>
-</div>
+</div> -->
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
+<script src="../js/hitInfo.js"></script>
+<!-- <script>
 //팝업창
 $('#memberInfo').click(function(){
 	window.open('/simri/section/memberView', 'ss', 'width=640 height=540 left=800 top=200 scrollbars=yes');
 });// click
-</script>
+</script> -->
