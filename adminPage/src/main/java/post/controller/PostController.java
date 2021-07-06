@@ -63,9 +63,11 @@ public class PostController {
 		
 		//D:\Spring\FinalProject\git_Project\gitAdmin\adminPage\src\main\webapp\storage
 		//C:\\git_home\\gitAdmin\\adminPage\\src\\main\\webapp\\storage
-		String filePath = "D:\\Spring\\FinalProject\\git_Project\\gitAdmin\\adminPage\\src\\main\\webapp\\storage";
+		String filePath = "C:\\git_home\\gitAdmin\\adminPage\\src\\main\\webapp\\storage";
+		String filePathSimri = "C:\\git_home\\simriTest\\simri\\src\\main\\webapp\\storage";
 		String fileName = img.getOriginalFilename();
 		File file = new File(filePath, fileName);//파일 생성
+		File fileSimri = new File(filePathSimri, fileName);//파일 생성
 		
 		if (fileName.equals("")) {
 	         postDTO.setImage("null.jpg");
@@ -73,6 +75,7 @@ public class PostController {
 	         // 파일 복사
 	         try {
 	            FileCopyUtils.copy(img.getInputStream(), new FileOutputStream(file));
+	            FileCopyUtils.copy(img.getInputStream(), new FileOutputStream(fileSimri));
 	         } catch (IOException e) {
 	            e.printStackTrace();
 	         }
@@ -163,9 +166,11 @@ public class PostController {
 		
 		//D:\Spring\FinalProject\git_Project\gitAdmin\adminPage\src\main\webapp\storage
 		//C:\\git_home\\gitAdmin\\adminPage\\src\\main\\webapp\\storage
-		String filePath = "D:\\Spring\\FinalProject\\git_Project\\gitAdmin\\adminPage\\src\\main\\webapp\\storage";
+		String filePath = "C:\\git_home\\gitAdmin\\adminPage\\src\\main\\webapp\\storage";
+		String filePathSimri = "C:\\git_home\\simriTest\\simri\\src\\main\\webapp\\storage";
 		String fileName = img.getOriginalFilename();
 		File file = new File(filePath, fileName);//파일 생성
+		File fileSimri = new File(filePathSimri, fileName);//파일 생성
 		
 		if (fileName.equals("")) {
 			postDTO.setImage("null.jpg");
@@ -173,6 +178,7 @@ public class PostController {
 	         // 파일 복사
 	         try {
 	            FileCopyUtils.copy(img.getInputStream(), new FileOutputStream(file));
+	            FileCopyUtils.copy(img.getInputStream(), new FileOutputStream(fileSimri));
 	         } catch (IOException e) {
 	            e.printStackTrace();
 	         }
@@ -207,9 +213,11 @@ public class PostController {
 		
 		//D:\Spring\FinalProject\git_Project\gitAdmin\adminPage\src\main\webapp\storage
 		//C:\\git_home\\gitAdmin\\adminPage\\src\\main\\webapp\\storage
-		String filePath = "D:\\Spring\\FinalProject\\git_Project\\gitAdmin\\adminPage\\src\\main\\webapp\\storage";
+		String filePath = "C:\\git_home\\gitAdmin\\adminPage\\src\\main\\webapp\\storage";
+		String filePathSimri = "C:\\git_home\\simriTest\\simri\\src\\main\\webapp\\storage";
 		String fileName = img.getOriginalFilename();
 		File file = new File(filePath, fileName);//파일 생성
+		File fileSimri = new File(filePathSimri, fileName);//파일 생성
 		
 		if (fileName.equals("")) {
 	         postDTO.setImage("null.jpg");
@@ -217,6 +225,7 @@ public class PostController {
 	         // 파일 복사
 	         try {
 	            FileCopyUtils.copy(img.getInputStream(), new FileOutputStream(file));
+	            FileCopyUtils.copy(img.getInputStream(), new FileOutputStream(fileSimri));
 	         } catch (IOException e) {
 	            e.printStackTrace();
 	         }
