@@ -24,6 +24,8 @@ public interface ChartDAO {
 
 	public List<CommunityDTO> getloveHit();
 
-	public List<CommunityDTO> getHitInfoDay(Map<String, String> map);
+	public List<CommunityDTO> getHitInfoDay(Map<String, Object> newMap);
+
+	public int getTotalA(Map<String, String> map);
 
 }

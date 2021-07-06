@@ -85,50 +85,111 @@
 	</select>
 	
 	<select id="getHitInfoAll" parameterType="java.util.Map" resultType="community">
-		select * from community where category in ('심리 테스트', '연애 심리글') 
+		select * from
+		(select rownum rn, tt.*from
+		(select * from community where category in ('심리 테스트', '연애 심리글') 
 		and comlogtime like TO_DATE(to_char(sysdate, 'yy/mm/dd')) 
-		order by ${condition} desc
+		order by ${condition} desc)tt
+		)where rn between #{startNum} and #{endNum}
 	</select>
 	
 	<select id="getHitInfoAllWeek" parameterType="java.util.Map" resultType="community">
-		select * from community 
+		select * from
+		(select rownum rn, tt.*from
+		(select * from community 
 		where category in ('심리 테스트', '연애 심리글') 
     		and to_char(comlogtime, 'yy/mm/dd') 
     		between to_char(sysdate-6, 'yy/mm/dd') 
     			and to_char(sysdate, 'yy/mm/dd')
-		order by ${condition} desc
+		order by ${condition} desc)tt
+		)where rn between #{startNum} and #{endNum}
 	</select>
 	
 	<select id="getHitInfoAllMonth" parameterType="java.util.Map" resultType="community">
-		select * from community 
+		select * from
+		(select rownum rn, tt.*from
+		(select * from community 
 		where category in ('심리 테스트', '연애 심리글') 
     		and to_char(comlogtime, 'yy/mm/dd') 
     		between to_char(sysdate-30, 'yy/mm/dd') 
     			and to_char(sysdate, 'yy/mm/dd')
-		order by ${condition} desc
+		order by ${condition} desc)tt
+		)where rn between #{startNum} and #{endNum}
 	</select>
 	
 	<select id="getHitInfo" parameterType="java.util.Map" resultType="community">
-		select * from community where category=#{comCategory} and comlogtime like TO_DATE(to_char(sysdate, 'yy/mm/dd')) order by ${condition} desc
+		select * from
+		(select rownum rn, tt.*from
+		(select * from community 
+		where category=#{comCategory} 
+			and comlogtime like TO_DATE(to_char(sysdate, 'yy/mm/dd')) 
+		order by ${condition} desc)tt
+		)where rn between #{startNum} and #{endNum}
 	</select>
 	
 	<select id="getHitInfoWeek" parameterType="java.util.Map" resultType="community">
-		select * from community 
+		select * from
+		(select rownum rn, tt.*from
+		(select * from community  
 		where category = #{comCategory}
     		and to_char(comlogtime, 'yy/mm/dd') 
     		between to_char(sysdate-6, 'yy/mm/dd') 
     			and to_char(sysdate, 'yy/mm/dd')
-		order by ${condition} desc
+		order by ${condition} desc)tt
+		)where rn between #{startNum} and #{endNum}
 	</select>
 	
 	<select id="getHitInfoMonth" parameterType="java.util.Map" resultType="community">
-		select * from community 
+		select * from
+		(select rownum rn, tt.*from
+		(select * from community  
 		where category = #{comCategory} 
     		and to_char(comlogtime, 'yy/mm/dd') 
     		between to_char(sysdate-30, 'yy/mm/dd') 
     			and to_char(sysdate, 'yy/mm/dd')
-		order by ${condition} desc
+		order by ${condition} desc)tt
+		)where rn between #{startNum} and #{endNum}
 	</select>
 	
+	<select id="getTotalHitInfoAll" parameterType="java.util.Map" resultType="int">
+		select count(*) from community where category in ('심리 테스트', '연애 심리글') 
+		and comlogtime like TO_DATE(to_char(sysdate, 'yy/mm/dd'))
+	</select>
+	
+	<select id="getTotalHitInfoAllWeek" parameterType="java.util.Map" resultType="int">
+		select count(*) from community 
+		where category in ('심리 테스트', '연애 심리글') 
+    		and to_char(comlogtime, 'yy/mm/dd') 
+    		between to_char(sysdate-6, 'yy/mm/dd') 
+    			and to_char(sysdate, 'yy/mm/dd')
+	</select>
+	
+	<select id="getTotalHitInfoAllMonth" parameterType="java.util.Map" resultType="int">
+		select count(*) from community 
+		where category in ('심리 테스트', '연애 심리글') 
+    		and to_char(comlogtime, 'yy/mm/dd') 
+    		between to_char(sysdate-30, 'yy/mm/dd')
+    			and to_char(sysdate, 'yy/mm/dd')
+	</select>
+	
+	<select id="getTotalHitInfo" parameterType="java.util.Map" resultType="int">
+		select count(*) from community where category=#{comCategory} and comlogtime like TO_DATE(to_char(sysdate, 'yy/mm/dd'))
+	</select>
+	
+	<select id="getTotalHitInfoWeek" parameterType="java.util.Map" resultType="int">
+		select count(*) from community 
+		where category = #{comCategory}
+    		and to_char(comlogtime, 'yy/mm/dd') 
+    		between to_char(sysdate-6, 'yy/mm/dd') 
+    			and to_char(sysdate, 'yy/mm/dd')
+	</select>
+	
+	<select id="getTotalHitInfoMonth" parameterType="java.util.Map" resultType="int">
+		select count(*) from community 
+		where category = #{comCategory} 
+    		and to_char(comlogtime, 'yy/mm/dd') 
+    		between to_char(sysdate-30, 'yy/mm/dd') 
+    			and to_char(sysdate, 'yy/mm/dd')
+	</select>
 	
 </mapper>

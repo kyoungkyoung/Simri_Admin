@@ -343,7 +343,6 @@ $('#comSearchBtn').click(function(event){
 
 //페이징
 function communityPaging(pg, num){
-	//var searchText = document.getElementById('searchText').value;
 	var comCategory1;
 	
 	if(num == 1) {
@@ -365,26 +364,11 @@ function communityPaging(pg, num){
 	 }else if( num == 9) {
 		 comCategory1="공지사항";
 	 }
-	
-	
-	
-	//if(searchText==''){
-		//$('#pg').val(pg);  $('input[name=이름명]').attr("속성명","값");
-		location.href = '/simri/community/community?pg='+pg+'&comCategory1='+comCategory1;
-		
-		
-	//}
-	//else{
-		//$('#pg').val(pg);
-		//$('#searchBtn').trigger('click', 'search');
-	//}
-	 
+	location.href = '/simri/community/community?pg='+pg+'&comCategory1='+comCategory1;
 }
 
 function communitySearchPaging(pg){
-	alert("오니");
 	var comSearchText = document.getElementById('comSearchText').value;
-	alert(comSearchText);
 	$('#pg').val(pg);
 	$('#comSearchText').val(comSearchText);
 	$('#comSearchBtn').trigger('click');

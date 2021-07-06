@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import chart.bean.ChartPaging;
 import chart.bean.EtcDTO;
 import chart.bean.MemChartDTO;
 import chart.service.ChartService;
@@ -72,7 +73,15 @@ public class ChartController {
 	}
 	
 	@RequestMapping(value = "/hitInfo", method = RequestMethod.GET)
-	public String hitInfo(Model model) { 
+	public String hitInfo(@RequestParam(required=false, defaultValue="1") String pg,
+						  @RequestParam(required=false, defaultValue="comCategoryAll") String comCategory1,
+						  @RequestParam(required=false, defaultValue="seq") String condition1,
+						//  @RequestParam(required=false, defaultValue="day") String date,
+										Model model) { 
+		model.addAttribute("comCategory1", comCategory1);
+		model.addAttribute("condition1", condition1);
+		//model.addAttribute("date", date);
+		model.addAttribute("pg", pg);
 		model.addAttribute("display", "/chart/hitInfo.jsp");
 		return "/section/login";
 	}// memberView()
@@ -91,42 +100,45 @@ public class ChartController {
 	}
 	
 	@RequestMapping(value="/getTestHit", method = RequestMethod.POST)
-	@ResponseBody
-	public ModelAndView getTestHit() {
-		List<CommunityDTO> list = chartService.getTestHit();
-		
-		
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("list", list);
-		mav.setViewName("jsonView");
-		return mav;
-	}
-	
-	@RequestMapping(value="/getloveHit", method = RequestMethod.POST)
-	@ResponseBody
-	public ModelAndView getloveHit() {
-		List<CommunityDTO> list = chartService.getloveHit();
-		
-		
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("list", list);
-		mav.setViewName("jsonView");
-		return mav;
-	}
+	   @ResponseBody
+	   public ModelAndView getTestHit() {
+	      List<CommunityDTO> list = chartService.getTestHit();
+	      
+	      ModelAndView mav = new ModelAndView();
+	      mav.addObject("list", list);
+	      mav.setViewName("jsonView");
+	      return mav;
+	   }
+	   
+	   @RequestMapping(value="/getloveHit", method = RequestMethod.POST)
+	   @ResponseBody
+	   public ModelAndView getloveHit() {
+	      List<CommunityDTO> list = chartService.getloveHit();
+	      
+	      
+	      ModelAndView mav = new ModelAndView();
+	      mav.addObject("list", list);
+	      mav.setViewName("jsonView");
+	      return mav;
+	   }
 	
 	@RequestMapping(value="/getHitInfoDay", method = RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView getHitInfoDay(@RequestParam String comCategory, @RequestParam String condition, @RequestParam String date) {
+	public ModelAndView getHitInfoDay(@RequestParam String comCategory, @RequestParam String condition, @RequestParam String date, @RequestParam String pg) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("comCategory", comCategory);
 		map.put("condition", condition);
 		map.put("date", date);
+		map.put("pg", pg);
 		
 		List<CommunityDTO> list = chartService.getHitInfoDay(map);
+		
+		ChartPaging chartPaging = chartService.chartPaging(map);
 		
 		System.out.println(list);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", list);
+		mav.addObject("chartPaging", chartPaging);
 		mav.setViewName("jsonView");
 		
 		return mav;
