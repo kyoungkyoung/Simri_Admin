@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<input type="hidden" id="pg" value="${pg}">
+<input type="hidden" id="comCategory1" value="${comCategory1}">
+<input type="hidden" id="condition1" value="${condition1}">
 <!-- 메인 화면 -->
 <div class="p-2">
 	<h3>
@@ -45,11 +49,12 @@
 		</tr>
 </table>
 
+<!-- 페이징 -->
+<nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center my-4" id="hitInfoPagingDiv">
+      </ul>
+</nav>
+
+
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../js/hitInfo.js"></script>
-<!-- <script>
-//팝업창
-$('#memberInfo').click(function(){
-	window.open('/simri/section/memberView', 'ss', 'width=640 height=540 left=800 top=200 scrollbars=yes');
-});// click
-</script> -->

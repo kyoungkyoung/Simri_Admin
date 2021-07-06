@@ -70,51 +70,84 @@ public class ChartMybatis implements ChartDAO {
 	}
 
 	@Override
-	public List<CommunityDTO> getHitInfoDay(Map<String, String> map) {
+	public List<CommunityDTO> getHitInfoDay(Map<String, Object> newMap) {
 		List<CommunityDTO> list = new ArrayList<CommunityDTO>();
 	
-		System.out.println(map.get("comCategory"));
-		System.out.println(map.get("condition"));
-		System.out.println(map.get("date"));
+		System.out.println(newMap.get("comCategory"));
+		System.out.println(newMap.get("condition"));
+		System.out.println(newMap.get("date"));
 			
-		if(map.get("comCategory").equals("comCategoryAll")) {
-			if(map.get("date").equals("day")) {
-				list = sqlSession.selectList("chartSQL.getHitInfoAll", map);
+		if(newMap.get("comCategory").equals("comCategoryAll")) {
+			if(newMap.get("date").equals("day")) {
+				list = sqlSession.selectList("chartSQL.getHitInfoAll", newMap);
 				System.out.println(list);
 				return list;
-			}else if(map.get("date").equals("week")) {
-				list = sqlSession.selectList("chartSQL.getHitInfoAllWeek", map);
+			}else if(newMap.get("date").equals("week")) {
+				list = sqlSession.selectList("chartSQL.getHitInfoAllWeek", newMap);
 				System.out.println(list);
 				return list;
 			}else {
-				list = sqlSession.selectList("chartSQL.getHitInfoAllMonth", map);
+				list = sqlSession.selectList("chartSQL.getHitInfoAllMonth", newMap);
 				System.out.println(list);
 				return list;
+			}
+		}
+		else if(newMap.get("comCategory").equals("심리테스트")) {
+			newMap.put("comCategory", "심리 테스트");
+			if(newMap.get("date").equals("day")) {
+				list = sqlSession.selectList("chartSQL.getHitInfo", newMap);
+				return list;
+			}else if(newMap.get("date").equals("week")) {
+				list = sqlSession.selectList("chartSQL.getHitInfoWeek", newMap);
+				return list;
+			}else {
+				list = sqlSession.selectList("chartSQL.getHitInfoMonth", newMap);
+				return list;
+			}
+		}else {
+			newMap.put("comCategory", "연애 심리글");
+			if(newMap.get("date").equals("day")) {
+				list = sqlSession.selectList("chartSQL.getHitInfo", newMap);
+				return list;
+			}else if(newMap.get("date").equals("week")) {
+				list = sqlSession.selectList("chartSQL.getHitInfoWeek", newMap);
+				return list;
+			}else {
+				list = sqlSession.selectList("chartSQL.getHitInfoMonth", newMap);
+				return list;
+			}
+		}
+	}
+
+	@Override
+	public int getTotalA(Map<String, String> map) {
+		
+		if(map.get("comCategory").equals("comCategoryAll")) {
+			if(map.get("date").equals("day")) {
+				return sqlSession.selectOne("chartSQL.getTotalHitInfoAll", map);
+			}else if(map.get("date").equals("week")) {
+				return sqlSession.selectOne("chartSQL.getTotalHitInfoAllWeek", map);
+			}else {
+				return sqlSession.selectOne("chartSQL.getTotalHitInfoAllMonth", map);
 			}
 		}
 		else if(map.get("comCategory").equals("심리테스트")) {
 			map.put("comCategory", "심리 테스트");
 			if(map.get("date").equals("day")) {
-				list = sqlSession.selectList("chartSQL.getHitInfo", map);
-				return list;
+				return sqlSession.selectOne("chartSQL.getTotalHitInfo", map);
 			}else if(map.get("date").equals("week")) {
-				list = sqlSession.selectList("chartSQL.getHitInfoWeek", map);
-				return list;
+				return sqlSession.selectOne("chartSQL.getTotalHitInfoWeek", map);
 			}else {
-				list = sqlSession.selectList("chartSQL.getHitInfoMonth", map);
-				return list;
+				return sqlSession.selectOne("chartSQL.getTotalHitInfoMonth", map);
 			}
 		}else {
 			map.put("comCategory", "연애 심리글");
 			if(map.get("date").equals("day")) {
-				list = sqlSession.selectList("chartSQL.getHitInfo", map);
-				return list;
+				return sqlSession.selectOne("chartSQL.getTotalHitInfo", map);
 			}else if(map.get("date").equals("week")) {
-				list = sqlSession.selectList("chartSQL.getHitInfoWeek", map);
-				return list;
+				return sqlSession.selectOne("chartSQL.getTotalHitInfoWeek", map);
 			}else {
-				list = sqlSession.selectList("chartSQL.getHitInfoMonth", map);
-				return list;
+				return sqlSession.selectOne("chartSQL.getTotalHitInfoMonth", map);
 			}
 		}
 	}

@@ -1,5 +1,20 @@
-$(function(){
 //default : 일간
+$(function(){
+	if($('#comCategory1').val() === 'comCategoryAll'){
+		$('#comCategory').val('comCategoryAll').attr("selected", "selected");
+	}else if($('#comCategory1').val() === '심리테스트'){
+		$('#comCategory').val('심리테스트').attr("selected", "selected");
+	}else if($('#comCategory1').val() === '연애심리글'){
+		$('#comCategory').val('연애심리글').attr("selected", "selected");
+	}
+	
+	if($('#condition1').val() === 'seq'){
+		$('#condition').val('seq').attr("selected", "selected");
+	}else if($('#condition1').val() === 'hit'){
+		$('#condition').val('hit').attr("selected", "selected");
+	}else if($('#condition1').val() === 'comlike'){
+		$('#condition').val('comlike').attr("selected", "selected");
+	}
 	
 	$.ajax({
 		type: 'post',
@@ -7,7 +22,8 @@ $(function(){
 		data: {
 			'comCategory': $('#comCategory').val(),
 			'condition': $('#condition').val(),
-			'date' : 'day'
+			'date': 'day',
+			'pg': $('#pg').val()
 		},
 		dataType: 'json',
 		success: function(data){
@@ -53,6 +69,9 @@ $(function(){
 				})).appendTo('#hitInfoTable');
 				
 			});
+			
+			$('#hitInfoPagingDiv').html(data.chartPaging.pagingHTML);
+			
 		},
 		error: function(err){
 			console.log(err);
@@ -61,18 +80,19 @@ $(function(){
 });
 
 
-$('#day').click(function(){
+$('#day').click(function(event){
 	$.ajax({
 		type: 'post',
 		url: '/simri/chart/getHitInfoDay',
 		data: {
 			'comCategory': $('#comCategory').val(),
 			'condition': $('#condition').val(),
-			'date' : 'day'
+			'date' : 'day',
+			'pg': $('#pg').val()
 		},
 		dataType: 'json',
 		success: function(data){
-			//alert(JSON.stringify(data));
+			alert(JSON.stringify(data));
 			
 			$('#hitInfoTable tr:gt(0)').remove();
 			
@@ -114,16 +134,20 @@ $('#day').click(function(){
 				})).appendTo('#hitInfoTable');
 				
 			});
+			
+			$('#hitInfoPagingDiv').html(data.chartPaging.pagingHTML);
+			
 		},
 		error: function(err){
 			console.log(err);
 		}
 	});
+	$('#pg').val('1');
 });
 
 
 
-$('#week').click(function(){
+$('#week').click(function(event){
 	
 	$.ajax({
 		type: 'post',
@@ -131,11 +155,12 @@ $('#week').click(function(){
 		data: {
 			'comCategory': $('#comCategory').val(),
 			'condition': $('#condition').val(),
-			'date' : 'week'
+			'date' : 'week',
+			'pg': $('#pg').val()
 		},
 		dataType: 'json',
 		success: function(data){
-			//alert(JSON.stringify(data));
+			alert(JSON.stringify(data));
 			
 			$('#hitInfoTable tr:gt(0)').remove();
 			
@@ -177,15 +202,19 @@ $('#week').click(function(){
 				})).appendTo('#hitInfoTable');
 				
 			});
+			
+			$('#hitInfoPagingDiv').html(data.chartPaging.pagingHTML);
+			
 		},
 		error: function(err){
 			console.log(err);
 		}
 	});
+	$('#pg').val('1');
 });
 
 
-$('#month').click(function(){
+$('#month').click(function(event){
 	
 	$.ajax({
 		type: 'post',
@@ -193,11 +222,12 @@ $('#month').click(function(){
 		data: {
 			'comCategory': $('#comCategory').val(),
 			'condition': $('#condition').val(),
-			'date' :'month'
+			'date' :'month',
+			'pg': $('#pg').val()
 		},
 		dataType: 'json',
 		success: function(data){
-			//alert(JSON.stringify(data));
+			alert(JSON.stringify(data));
 			
 			$('#hitInfoTable tr:gt(0)').remove();
 			
@@ -238,17 +268,51 @@ $('#month').click(function(){
 					text: items.comLogtime
 					
 				})).appendTo('#hitInfoTable');
-				
-				$('#hitInfo').click(function(){
-					window.open('/simri/post/postView?seq='+items.seq, 'ss', 'width=640 height=540 left=800 top=200 scrollbars=yes');
-				});
-				
 			});
+			
+			$('#hitInfoPagingDiv').html(data.chartPaging.pagingHTML);
+			
 		},
 		error: function(err){
 			console.log(err);
 		}
 	});
+	$('#pg').val('1');
 });
 
-
+function chartPaging(pg, comCategoryNum, conditionNum, dateNum){
+	var comCategory1;
+	var condition1;
+	
+	$('#pg').val(pg);
+	
+	if(comCategoryNum == 1){
+		comCategory1 = "comCategoryAll";
+		$('#comCategory').val('comCategoryAll').attr("selected", "selected");
+	}else if(comCategoryNum == 2){
+		comCategory1 = "심리테스트";
+		$('#comCategory').val('심리테스트').attr("selected", "selected");
+	}else if(comCategoryNum == 3){
+		comCategory1 = "연애심리글";
+		$('#comCategory').val('연애심리글').attr("selected", "selected");
+	}
+	
+	if(conditionNum == 1){
+		condition1 = "seq";
+		$('#condition').val('seq').attr("selected", "selected");
+	}else if(conditionNum == 2){
+		condition1 = "hit";
+		$('#condition').val('hit').attr("selected", "selected");
+	}else if(conditionNum == 3){
+		condition1 = "comlike";
+		$('#condition').val('comlike').attr("selected", "selected");
+	}
+	
+	if(dateNum == 1){
+		$('#date').trigger('click');
+	}else if(dateNum == 2){
+		$('#week').trigger('click');
+	}else if(dateNum == 3){
+		$('#month').trigger('click');
+	}
+}
