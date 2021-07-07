@@ -33,7 +33,27 @@
 	
 	
 	<insert id="noticeWrite" parameterType="community">
-      insert into community values('[공지사항]', seq.nextval,'admin@gmail.com','admin', 'rainbow', #{subject}, #{content}, 'null' ,sysdate, #{image}, 0,0,0,0,0,0,0,0,0)
+      insert into community(category, seq, email, nickname, palette, subject, content, testURL, comLogtime, image, hashTag1, hashTag2, hashTag3, hit, comLike, comSingo, comSingoReason, comShare, point, reply)
+       values('[공지사항]', 
+       			seq.nextval, 
+       			'admin@gmail.com', 
+       			'admin', 
+       			'rainbow', 
+       			#{subject}, 
+       			#{content}, 
+       			'notice',
+       			sysdate, 
+       			#{image}, 
+       			'#공지사항',
+       			'', 
+       			'', 
+       			0, 
+       			0, 
+       			0, 
+       			'', 
+       			0, 
+       			0, 
+       			0)
    </insert>
 	
 	<select id="getCommunityView" parameterType="int" resultType="community">
