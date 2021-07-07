@@ -29,7 +29,7 @@
    </insert>
 	
 	<select id="getSimriPostList" parameterType="java.util.Map" resultType="post">
-	select * from (select rownum rn, tt.*from 
+		select * from (select rownum rn, tt.*from 
 		(select * from community where category=#{comCategory} order by comlogtime desc, seq desc)tt 
 		)where rn<![CDATA[ >= ]]>#{startNum}
 		 and rn <![CDATA[ <= ]]>#{endNum}

@@ -66,12 +66,7 @@ public class adminController {
 	
 	
 
-	//광고목록
-	@RequestMapping(value = "/advertiseList", method = RequestMethod.GET)
-	public String advertiseList(Model model) { 
-		model.addAttribute("display", "/section/advertiseList.jsp");
-		return "/section/login";
-	}// postModify()
+
 	
 //로그인
     @RequestMapping(value = "sign", method = RequestMethod.POST)

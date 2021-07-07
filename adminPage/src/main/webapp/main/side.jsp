@@ -68,7 +68,7 @@ li{
 					aria-expanded="false">광고관리</button>
 				<div class="collapse" id="ad-collapse">
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-						<li><a href="/simri/section/advertiseList" class="link-dark rounded">광고목록</a></li>
+						<li><a href="/simri/advertise/advertiseList" class="link-dark rounded">광고목록</a></li>
 					</ul>
 				</div>
 			</li>

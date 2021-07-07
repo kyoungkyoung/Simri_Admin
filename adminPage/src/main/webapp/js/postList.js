@@ -343,21 +343,27 @@ $('#adBtn').click(function(){
 	if(count != 0 && yn == 0){
 		alert('광고등록 게시물을  선택해주세요.');
 	}
-//	else{
-//		if(confirm("정말 등록하시겠습니까?")){
-//			$.ajax({
-//				type: 'post',
-//				url: '/simri/post/ad',
-//				data: 'seq='+jsonSeq,
-//				success: function(data){
-//					alert('등록완료');
-//					window.location.reload();
-//				},
-//				error: function(err){
-//					console.log(err);
-//				}
-//			});
-//		}
-//	}
+	else{
+		if(confirm("정말 등록하시겠습니까?")){
+			$.ajax({
+				type: 'post',
+				url: '/simri/advertise/addAd',
+				data: 'seq='+jsonSeq,
+				dataType: 'text',
+				success: function(data){
+					//alert(data);
+					if(data == 'exist'){
+						alert("이미 등록되어 있습니다.")
+					}else{
+						alert('등록완료');
+						window.location.reload();
+					}
+				},
+				error: function(err){
+					console.log(err);
+				}
+			});
+		}
+	}
 	
 });

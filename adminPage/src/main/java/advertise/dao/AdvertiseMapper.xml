@@ -3,7 +3,35 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="advertiseSQL">
-
+	<insert id="addAd" parameterType="advertise" >
+		insert into indexCF(seq, category, subject, image, cflogtime) values (#{seq}, #{category}, #{subject}, #{image}, sysdate)
+	</insert>
+	
+	<select id="getAdvertiseDTO" parameterType="int" resultType="advertise">
+		select * from indexCF where seq = #{seq}
+	</select>
+	
+	<select id="getcommunity" parameterType="int" resultType="community">
+		select * from community where seq = #{seq}	
+	</select>
+	
+	<select id="getAdList" parameterType="java.util.Map" resultType="advertise">
+		select * from (select rownum rn, tt.*from 
+		(select * from indexcf order by cflogtime desc)tt 
+		)where rn<![CDATA[ >= ]]>#{startNum}
+		 and rn <![CDATA[ <= ]]>#{endNum}
+		
+	</select>
+	<delete id="adDelete" parameterType="int">
+		delete indexcf where seq = #{seq}
+	</delete>
+	
+	<select id="getTotalA"  parameterType="java.util.Map" resultType="int">
+		select count(*) from indexcf
+	</select>
+	
+	
+	
 </mapper>
 
 
