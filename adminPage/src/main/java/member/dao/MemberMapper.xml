@@ -55,7 +55,7 @@
 	</select>
 	
 	<update id="stopInsert" parameterType="java.util.Map">
-		update simrimember set condition='정지', singologtime=#{singologtime}, stopreason=#{stopReason}, stopperiod=#{stopPeriod}, stoplogtime=sysdate  where email=#{email}
+		update simrimember set condition='정지', singologtime=#{singologtime}, stopreason=#{stopReason}, stopperiod=#{stopPeriod} where email=#{email}
 	</update>
 	
 	<delete id="memberDelete" parameterType="String">

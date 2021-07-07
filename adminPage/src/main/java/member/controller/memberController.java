@@ -121,8 +121,8 @@ public class memberController {
 		//페이징 처리
 		MemberStopPaging memberStopPaging = memberService.stopMemberPaging(Integer.parseInt(pg));
 		
-		
 		System.out.println("stopMemberPaging"+ memberStopPaging);
+		System.out.println(list);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("pg",pg);

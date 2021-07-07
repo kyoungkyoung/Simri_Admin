@@ -142,7 +142,6 @@
          <th scope="col">신고내역</th>
          <th scope="col">신고내용</th>
          <th scope="col">회원상태</th>
-         <th scope="col">신고일</th>
       </tr>
    </thead>
 </table>
@@ -172,7 +171,7 @@
          <th scope="col">이메일</th>
          <th scope="col">팔레트</th>
          <th scope="col">포인트</th>
-         <th scope="col">정지내역</th>
+         <th scope="col">정지기간</th>
          <th scope="col">정지내용</th>
          <th scope="col">회원상태</th>
          <th scope="col">정지일</th>

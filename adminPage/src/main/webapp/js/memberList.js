@@ -155,9 +155,6 @@ $('#warning-tab').click(function(){
 						})).append($('<td/>',{
 							text: items.condition
 							
-						})).append($('<td/>',{
-							text: items.singologtime
-							
 						})).appendTo($('#memberWarningListTable'));
 			});//each
 			
@@ -216,7 +213,7 @@ $('#stop-tab').click(function(){
 							text: items.point
 							
 						})).append($('<td/>',{
-							text: items.memsingo
+							text: items.stopPeriod
 							
 						})).append($('<td/>',{
 							text: items.stopReason
@@ -225,7 +222,7 @@ $('#stop-tab').click(function(){
 							text: items.condition
 							
 						})).append($('<td/>',{
-							text: items.stoplogtime
+							text: items.singologtime
 							
 						})).appendTo($('#memberStopListTable'));
 			});//each
