@@ -49,6 +49,7 @@
 
 	<context:component-scan base-package="com.admin.simri" />
 	<context:component-scan base-package="admin.controller" />
+	<context:component-scan base-package="advertise.controller" />
 	<context:component-scan base-package="chart.controller"/>
 	<context:component-scan base-package="community.controller"/>
 	<context:component-scan base-package="member.controller"/>
