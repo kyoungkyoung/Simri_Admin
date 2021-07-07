@@ -5,6 +5,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="admin.bean.AdminDTO" alias="admin"/>
+		<typeAlias type="advertise.bean.AdvertiseDTO" alias="advertise"/>
 		<typeAlias type="community.bean.CommunityDTO" alias="community"/>
 		<typeAlias type="chart.bean.EtcDTO" alias="etc"/>
 		<typeAlias type="chart.bean.MemChartDTO" alias="memChart"/>

@@ -10,6 +10,9 @@
 	<context:component-scan base-package="admin.dao"/>
 	<context:component-scan base-package="admin.service"/>
 	
+	<context:component-scan base-package="advertise.dao"/>
+	<context:component-scan base-package="advertise.service"/>
+	
 	<context:component-scan base-package="chart.bean"/>
 	<context:component-scan base-package="chart.dao"/>
 	<context:component-scan base-package="chart.service"/>

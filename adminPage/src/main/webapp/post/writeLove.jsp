@@ -8,8 +8,9 @@
 
 <h3>
 	연애 심리글
-	<button type="button" id="comDeleteBtn" class="btn btn-outline-secondary float-right">삭제</button>
-	<button type="button" onclick="location.href='/simri/post/loveWriteForm'" class="btn btn-outline-secondary float-right mr-2">글쓰기</button>
+	<button type="button" id="adBtn" class="btn btn-outline-secondary float-right">광고등록</button>
+	<button type="button" id="comDeleteBtn" class="btn btn-outline-secondary float-right mr-1">삭제</button>
+	<button type="button" onclick="location.href='/simri/post/loveWriteForm'" class="btn btn-outline-secondary float-right mr-1">글쓰기</button>
 	
 </h3>
 <div class="card shadow mb-3">

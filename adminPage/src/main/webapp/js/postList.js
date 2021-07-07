@@ -292,7 +292,6 @@ $('#comDeleteBtn').click(function(){
 
 //페이징
 function postPaging2(pg, num){
-	//var searchText = document.getElementById('searchText').value;
 	var DHL1;
 	
 	if(num == 1) {
@@ -302,33 +301,63 @@ function postPaging2(pg, num){
 	 }else if(num == 3) {
 		 DHL1="좋아요";
 	 }
-	//if(searchText==''){
-		//$('#pg').val(pg);  $('input[name=이름명]').attr("속성명","값");
 		location.href = '/simri/post/writeManage?pg='+pg+'&DHL1='+DHL1;
-		
-		
-	//}
-	//else{
-		//$('#pg').val(pg);
-		//$('#searchBtn').trigger('click', 'search');
-	//}
-	 
 }
 
 
 
 function postPaging(pg){
 	var postSearchText = document.getElementById('postSearchText').value;
-//	alert(postSearchText);
-	
-//	if(postSearchText == ''){
 		location.href= '/simri/post/writeManage?pg='+pg;
-//	}else{
 		$('#pg').val(pg);
 		$('#postSearchText').val(postSearchText);
 		$('#postSearchBtn').trigger('click');
-		
+}
+//광고등록
+$('#adBtn').click(function(){
+	alert("클릭됨");
+	var check1 = document.getElementsByName("check");
+	var count=0;
+	var yn=0;
+	var listSeq = new Array();
+	
+	for(var i=0; i<check1.length; i++){
+		if(check1[i].checked == false){
+			count++;
+			
+		}else if(check1[i].checked == true){
+			
+			var dataSeq = new Object();
+
+			dataSeq.seq = check1[i].value;
+			listSeq.push(dataSeq);
+			
+			
+			yn++;
+			
+		}//else if
+	}//for
+	
+	var jsonSeq = JSON.stringify(listSeq);
+	
+	if(count != 0 && yn == 0){
+		alert('광고등록 게시물을  선택해주세요.');
+	}
+//	else{
+//		if(confirm("정말 등록하시겠습니까?")){
+//			$.ajax({
+//				type: 'post',
+//				url: '/simri/post/ad',
+//				data: 'seq='+jsonSeq,
+//				success: function(data){
+//					alert('등록완료');
+//					window.location.reload();
+//				},
+//				error: function(err){
+//					console.log(err);
+//				}
+//			});
+//		}
 //	}
 	
-
-}
+});
