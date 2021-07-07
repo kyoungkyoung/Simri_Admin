@@ -342,8 +342,7 @@ $('#adBtn').click(function(){
 	
 	if(count != 0 && yn == 0){
 		alert('광고등록 게시물을  선택해주세요.');
-	}
-	else{
+	}else{
 		if(confirm("정말 등록하시겠습니까?")){
 			$.ajax({
 				type: 'post',

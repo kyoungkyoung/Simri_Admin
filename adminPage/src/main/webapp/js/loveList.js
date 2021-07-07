@@ -330,3 +330,59 @@ function postPaging(pg){
 	
 
 }
+
+//광고등록
+//광고등록
+$('#adBtn').click(function(){
+	alert("클릭됨");
+	var check1 = document.getElementsByName("check");
+	var count=0;
+	var yn=0;
+	var listSeq = new Array();
+	
+	for(var i=0; i<check1.length; i++){
+		if(check1[i].checked == false){
+			count++;
+			
+		}else if(check1[i].checked == true){
+			
+			var dataSeq = new Object();
+
+			dataSeq.seq = check1[i].value;
+			listSeq.push(dataSeq);
+			
+			
+			yn++;
+			
+		}//else if
+	}//for
+	
+	var jsonSeq = JSON.stringify(listSeq);
+	
+	if(count != 0 && yn == 0){
+		alert('광고등록 게시물을  선택해주세요.');
+	}
+	else{
+		if(confirm("정말 등록하시겠습니까?")){
+			$.ajax({
+				type: 'post',
+				url: '/simri/advertise/addAd',
+				data: 'seq='+jsonSeq,
+				dataType: 'text',
+				success: function(data){
+					//alert(data);
+					if(data == 'exist'){
+						alert("이미 등록되어 있습니다.")
+					}else{
+						alert('등록완료');
+						window.location.reload();
+					}
+				},
+				error: function(err){
+					console.log(err);
+				}
+			});
+		}
+	}
+	
+});

@@ -14,9 +14,9 @@
 	
 </h3>
 <div class="card shadow mb-3">
-	<div class="form-check ml-3 mt-2 mb-2">
+	<div class="form-check ml-3 mt-2 pt-2 mb-2">
  	<form class="d-flex">
-		<input class="form-check-input" type="checkbox" value="" id="all" style="margin-top:25px;" onclick="checkAll(this)">
+		<input class="form-check-input" type="checkbox" value="" id="all" style="margin-top:18px;" onclick="checkAll(this)">
 		
 		
 		<div class="btn-group">

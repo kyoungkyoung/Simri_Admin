@@ -6,7 +6,7 @@
 	<h3>
 		광고목록
 	</h3>
-		<button type="button" id="adDeleteBtn" class="btn btn-outline-danger float-right ">삭제</button>
+		<button type="button" id="adDeleteBtn" class="btn btn-outline-danger float-right mb-1">삭제</button>
 </div>
 
 	<div></div>
