@@ -119,7 +119,7 @@
 						
 						<div class="input-group input-group-sm mb-3">
 							<span class="input-group-text mr-1" id="inputGroup-sizing-sm">신고내용</span>
-							<input type="text" class="form-control" value="${SimriMemberDTO.warningReason }"
+							<input type="text" class="form-control" value="${SimriMemberDTO.singoReason }"
 								aria-label="Sizing example input"
 								aria-describedby="inputGroup-sizing-sm" readonly>
 						</div>
