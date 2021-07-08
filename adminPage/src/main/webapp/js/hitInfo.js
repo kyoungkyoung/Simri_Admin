@@ -55,6 +55,8 @@ $(function(){
 					}).append($('<a/>',{
 						style: 'text-decoration: none; color: black;',
 						//href: '/simri/post/postView?seq='+items.seq,
+						href: "javascript:void(0)",
+						onclick: 'goView('+items.seq+'); return false;',
 						text: items.subject
 						
 				}))).append($('<td/>',{
@@ -77,6 +79,7 @@ $(function(){
 			console.log(err);
 		}
 	});
+	
 });
 
 
@@ -120,7 +123,10 @@ $('#day').click(function(event){
 					}).append($('<a/>',{
 						style: 'text-decoration: none; color: black;',
 						//href: '/simri/post/postView?seq='+items.seq,
-						text: items.subject
+						href: "javascript:void(0)",
+						onclick: 'goView('+items.seq+'); return false;',
+						text: items.subject,
+						
 						
 				}))).append($('<td/>',{
 					text: items.hit
@@ -188,6 +194,8 @@ $('#week').click(function(event){
 					}).append($('<a/>',{
 						style: 'text-decoration: none; color: black;',
 						//href: '/simri/post/postView?seq='+items.seq,
+						href: "javascript:void(0)",
+						onclick: 'goView('+items.seq+'); return false;',
 						text: items.subject
 						
 				}))).append($('<td/>',{
@@ -255,6 +263,8 @@ $('#month').click(function(event){
 					}).append($('<a/>',{
 						style: 'text-decoration: none; color: black;',
 						//href: '/simri/post/postView?seq='+items.seq,
+						href: "javascript:void(0)",
+						onclick: 'goView('+items.seq+'); return false;',
 						text: items.subject,
 						id: 'hitInfo'
 						
@@ -279,6 +289,11 @@ $('#month').click(function(event){
 	});
 	$('#pg').val('1');
 });
+
+function goView(seq){
+	location.href="/simri/post/postView?seq="+seq;
+	return false;
+}
 
 function chartPaging(pg, comCategoryNum, conditionNum, dateNum){
 	var comCategory1;

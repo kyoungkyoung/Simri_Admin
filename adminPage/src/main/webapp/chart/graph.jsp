@@ -16,9 +16,9 @@
 
 <main class="col-md-9 ms-sm-auto col-lg-12 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">회원수</h1>
+        <h2 class="h2">회원가입 통계</h2>
         <div class="btn-toolbar mb-2 mb-md-0">
-			<div class="btn-group">
+			<div class="btn-group"> 
 				<select class="btn btn-sm btn-outline-secondary dropdown-toggle mb-3" id="date" aria-expanded="false">
 					<option value="day" >일간</option>
 					<option value="month" >월간</option>

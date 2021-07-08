@@ -49,9 +49,13 @@ $(function(){
 							text: items.seq,
 							style: 'text-align: center'
 						})).append($('<td/>',{
-							text: items.subject
 							
-						})).append($('<td/>',{
+							}).append($('<a/>',{
+								text: items.subject,
+								style: 'color: black;',
+								href: '/simri/post/postView?seq='+items.seq
+								
+						}))).append($('<td/>',{
 							text: items.hit,
 							style: 'text-align: center;'
 							
@@ -78,9 +82,12 @@ $(function(){
 							text: items.seq,
 							style: 'text-align: center'
 						})).append($('<td/>',{
-							text: items.subject
 							
-						})).append($('<td/>',{
+							}).append($('<a/>',{
+								text: items.subject,
+								style: 'color: black;',
+								href: '/simri/post/postView?seq='+items.seq
+						}))).append($('<td/>',{
 							text: items.hit,
 							style: 'text-align: center;'
 							
@@ -145,7 +152,7 @@ function createChart(chartLabels, memData) {
 				
 				{
 					
-					label : "memData",
+					label : "회원가입자 수",
 					
 					backgroundColor: 'transparent',
 					borderColor: 'red',
