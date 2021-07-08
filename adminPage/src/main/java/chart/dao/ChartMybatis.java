@@ -31,7 +31,7 @@ public class ChartMybatis implements ChartDAO {
 		//System.out.println(map.get("startDate"));
 		//System.out.println(map.get("endDate"));
 		List<EtcDTO> list = sqlSession.selectList("chartSQL.getData", map);
-		//System.out.println(list);
+		System.out.println(list);
 		return list;
 	}
 
