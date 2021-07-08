@@ -12,7 +12,7 @@ import lombok.Data;
 @Data
 @Component
 public class AdvertiseDTO {
-	private int seq;
+	private int seq, point;
 	private String category, subject, image;
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yy/MM/dd/ hh:mm:ss")
 	private Date cflogtime;

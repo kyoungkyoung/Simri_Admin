@@ -37,6 +37,7 @@ public class AdvertiseMybatis implements AdvertiseDAO {
 			advertiseDTO.setCategory(communityDTO.getCategory());
 			advertiseDTO.setSubject(communityDTO.getSubject());
 			advertiseDTO.setImage(communityDTO.getImage());
+			advertiseDTO.setPoint(communityDTO.getPoint());
 			
 			AdvertiseDTO advertiseDTO2 = sqlSession.selectOne("advertiseSQL.getAdvertiseDTO", advertiseDTO.getSeq());
 			if(advertiseDTO2 != null) {
