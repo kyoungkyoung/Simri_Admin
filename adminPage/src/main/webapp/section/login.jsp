@@ -47,12 +47,6 @@
 <script src="/simri/js/sidebar.js"></script>
 <script src="/simri/js/writing.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-//팝업창
-$('#memberModify').click(function(){
-	window.open('/simri/section/adminModify', 'ss', 'width=800 height=327 left=800 top=200 scrollbars=yes');
-});// click
-</script>
 
 </body>
 </html>

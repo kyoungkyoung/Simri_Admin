@@ -39,12 +39,12 @@
 	
 <table class="table table-hover" id="hitInfoTable">
 		<tr>
-			<th scope="col">글번호</th>
-			<th scope="col">카테고리</th>
-			<th scope="col">제목</th>
-			<th scope="col">조회수</th>
-			<th scope="col">좋아요</th>
-			<th scope="col">작성일</th>
+			<th scope="col" width="10%">글번호</th>
+			<th scope="col" width="15%">카테고리</th>
+			<th scope="col" width="40%">제목</th>
+			<th scope="col" width="10%">조회수</th>
+			<th scope="col" width="10%">좋아요</th>
+			<th scope="col" width="15%">작성일</th>
 
 		</tr>
 </table>

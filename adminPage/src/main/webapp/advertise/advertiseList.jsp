@@ -14,16 +14,16 @@
   <table class="table table-hover" id="adTable">
 	<thead>
 		<tr>
-			<th scope="col">
+			<th scope="col" width="11%">
 				<div class="form-check">
 					<input class="form-check-input" type="checkbox" value="" id="all" onclick="checkAll(this)"> 
 						<label class="form-check-label" for="flexCheckDefault">글번호</label>
 				</div>
 			</th>
-			<th scope="col">카테고리</th>
-			<th scope="col">제목</th>
-			<th scope="col">이미지파일</th>
-			<th scope="col">광고 등록 날짜</th>
+			<th scope="col" width="13%">카테고리</th>
+			<th scope="col" width="33%">제목</th>
+			<th scope="col" width="25%">이미지파일</th>
+			<th scope="col" width="20%">광고 등록 날짜</th>
 		</tr>
 	</thead>
 	
