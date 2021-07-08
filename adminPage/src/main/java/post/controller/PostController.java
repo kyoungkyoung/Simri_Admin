@@ -63,8 +63,8 @@ public class PostController {
 		
 		//D:\Spring\FinalProject\git_Project\gitAdmin\adminPage\src\main\webapp\storage
 		//C:\\git_home\\gitAdmin\\adminPage\\src\\main\\webapp\\storage
-		String filePath = "D:\\Spring\\FinalProject\\git_Project\\gitAdmin\\adminPage\\src\\main\\webapp\\storage";
-		String filePathSimri = "D:\\Spring\\FinalProject\\git_Project\\simriTest\\simri\\src\\main\\webapp\\storage";
+		String filePath = "C:\\programming\\Spring\\git\\gitAdmin\\adminPage\\src\\main\\webapp\\storage";
+		String filePathSimri = "C:\\programming\\Spring\\git\\simriTest\\simri\\src\\main\\webapp\\storage";
 		String fileName = img.getOriginalFilename();
 		File file = new File(filePath, fileName);//파일 생성
 		File fileSimri = new File(filePathSimri, fileName);//파일 생성
@@ -213,8 +213,8 @@ public class PostController {
 		
 		//D:\Spring\FinalProject\git_Project\gitAdmin\adminPage\src\main\webapp\storage
 		//C:\\git_home\\gitAdmin\\adminPage\\src\\main\\webapp\\storage
-		String filePath = "D:\\Spring\\FinalProject\\git_Project\\gitAdmin\\adminPage\\src\\main\\webapp\\storage";
-		String filePathSimri = "D:\\Spring\\FinalProject\\git_Project\\simriTest\\simri\\src\\main\\webapp\\storage";
+		String filePath = "C:\\programming\\Spring\\git\\gitAdmin\\adminPage\\src\\main\\webapp\\storage";
+		String filePathSimri = "C:\\programming\\Spring\\git\\simriTest\\simri\\src\\main\\webapp\\storage";
 		String fileName = img.getOriginalFilename();
 		File file = new File(filePath, fileName);//파일 생성
 		File fileSimri = new File(filePathSimri, fileName);//파일 생성
