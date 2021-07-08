@@ -27,6 +27,8 @@ $(function(){
 							class: 'form-check-label',
 							text: items.seq
 				})))).append($('<td/>',{
+					text: items.point
+				})).append($('<td/>',{
 					text: items.category
 				})).append($('<td/>',{
 					text: items.subject
