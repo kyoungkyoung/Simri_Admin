@@ -20,8 +20,9 @@
 						<label class="form-check-label" for="flexCheckDefault">글번호</label>
 				</div>
 			</th>
+			<th scope="col" width="9%">포인트</th>
 			<th scope="col" width="13%">카테고리</th>
-			<th scope="col" width="33%">제목</th>
+			<th scope="col" width="25%">제목</th>
 			<th scope="col" width="25%">이미지파일</th>
 			<th scope="col" width="20%">광고 등록 날짜</th>
 		</tr>
