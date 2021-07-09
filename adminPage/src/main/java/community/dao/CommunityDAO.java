@@ -3,6 +3,7 @@ package community.dao;
 import java.util.List;
 import java.util.Map;
 
+import advertise.bean.AdvertiseDTO;
 import community.bean.CommunityDTO;
 
 public interface CommunityDAO {
@@ -22,5 +23,10 @@ public interface CommunityDAO {
 	public int getSearchTotalA(String comSearchText);
 
 	public void viewModify(CommunityDTO communityDTO);
+
+	public List<CommunityDTO> singoList(Map<String, Object> newMap);
+
+	public int getSingoTotalA(Map<String, String> map);
+
 
 }

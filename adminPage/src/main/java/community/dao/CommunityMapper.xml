@@ -17,6 +17,22 @@
 		)where rn<![CDATA[ >= ]]>#{startNum}
 		 and rn <![CDATA[ <= ]]>#{endNum}
 	</select>
+
+	<select id="singoList" parameterType="java.util.Map" resultType="community">
+		select * from (select rownum rn, tt.*from 
+		(select * from community where category=#{comCategory} and comsingo > 0 order by comlogtime desc, seq desc)tt 
+		)where rn<![CDATA[ >= ]]>#{startNum}
+		 and rn <![CDATA[ <= ]]>#{endNum}
+	</select>
+	
+	<select id="singoComPalette" parameterType="java.util.Map" resultType="community">
+		select * from (select rownum rn, tt.*from 
+		(select * from community where category like '%팔레트%' and comsingo > 0 order by comlogtime desc, seq desc)tt 
+		)where rn<![CDATA[ >= ]]>#{startNum}
+		 and rn <![CDATA[ <= ]]>#{endNum}
+	</select>
+
+	
 	
 	
 	<delete id="communityDelete" parameterType="int">
@@ -31,6 +47,13 @@
 		select count(*) from community  where category like '%팔레트%'
 	</select>
 	
+	<select id="getSingoTotalA" parameterType="java.util.Map" resultType="int">
+		select count(*) from community where category=#{comCategory} and comsingo > 0
+	</select>
+	
+	<select id="getSingoTotalB" parameterType="java.util.Map" resultType="int">
+		select count(*) from community  where category like '%팔레트%' and comsingo > 0
+	</select>
 	
 	<insert id="noticeWrite" parameterType="community">
       insert into community(category, seq, email, nickname, palette, subject, content, testURL, comLogtime, image, hashTag1, hashTag2, hashTag3, hit, comLike, comSingo, comSingoReason, comShare, point, reply)

@@ -35,6 +35,7 @@ li{
 				<div class="collapse" id="dashboard-collapse">
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 						<li><a href="/simri/community/community" class="link-dark rounded">커뮤니티 관리</a></li>
+						<li><a href="/simri/community/singoCommunity" class="link-dark rounded">신고 커뮤니티 관리</a></li>
 					</ul>
 				</div>
 			</li>

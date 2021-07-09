@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import advertise.bean.AdvertiseDTO;
 import community.bean.CommunityDTO;
 
 @Repository
@@ -28,6 +29,18 @@ public class CommunityMybatis implements CommunityDAO {
 			return list;
 		}
 	}
+	
+	@Override
+	public List<CommunityDTO> singoList(Map<String, Object> newMap) {
+		if(newMap.get("comCategory").equals("[전체 게시글]팔레트")){
+			List<CommunityDTO> list = sqlSession.selectList("communitySQL.singoComPalette", newMap);
+			return list;
+		}else {
+			List<CommunityDTO> list = sqlSession.selectList("communitySQL.singoList",newMap);
+			return list;
+		}
+	}
+
 
 	@Override
 	public void communityDelete(String seq) {
@@ -50,6 +63,17 @@ public class CommunityMybatis implements CommunityDAO {
 			return totalA;
 		}else {
 			int totalA = sqlSession.selectOne("communitySQL.getTotalA", map);
+			return totalA;
+		}
+	}
+	
+	@Override
+	public int getSingoTotalA(Map<String, String> map) {
+		if(map.get("comCategory").equals("[전체 게시글]팔레트")){
+			int totalA = sqlSession.selectOne("communitySQL.getSingoTotalB", map);
+			return totalA;
+		}else {
+			int totalA = sqlSession.selectOne("communitySQL.getSingoTotalA", map);
 			return totalA;
 		}
 	}
@@ -89,5 +113,13 @@ public class CommunityMybatis implements CommunityDAO {
 		
 		sqlSession.update("communitySQL.viewModify", communityDTO);
 	}//공지사항 수정등록
+
+
+
+
+
+
+
+
 
 }

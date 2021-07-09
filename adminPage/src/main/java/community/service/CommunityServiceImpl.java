@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import advertise.bean.AdvertiseDTO;
 import community.bean.CommunityDTO;
 import community.bean.CommunityPaging;
 import community.bean.CommunitySearchPaging;
@@ -35,6 +36,19 @@ public class CommunityServiceImpl implements CommunityService {
 		
 		return communityDAO.getCommunity(newMap);
 	}
+	
+	@Override
+	public List<CommunityDTO> singoList(Map<String, String> map) {
+		int endNum = Integer.parseInt(map.get("pg"))*5;
+		int startNum = endNum-4;
+		
+		Map<String, Object> newMap = new HashMap<String, Object>();
+		newMap.put("startNum", startNum);
+		newMap.put("endNum", endNum);
+		newMap.put("comCategory", map.get("comCategory"));
+		
+		return communityDAO.singoList(newMap);
+	}
 
 	@Override
 	public void communityDelete(String seq) {
@@ -44,6 +58,19 @@ public class CommunityServiceImpl implements CommunityService {
 	@Override
 	public CommunityPaging communityPaging(Map<String, String> map) {
 		int totalA = communityDAO.getTotalA(map);
+		
+		communityPaging.setCurrentPage(Integer.parseInt(map.get("pg")));
+		communityPaging.setPageBlock(3);
+		communityPaging.setPageSize(5);
+		communityPaging.setTotalA(totalA);
+		communityPaging.makePagingHTML(map.get("comCategory"));
+		System.out.println(communityPaging);
+		return communityPaging;
+	}
+	
+	@Override
+	public CommunityPaging singoCommunityPaging(Map<String, String> map) {
+		int totalA = communityDAO.getSingoTotalA(map);
 		
 		communityPaging.setCurrentPage(Integer.parseInt(map.get("pg")));
 		communityPaging.setPageBlock(3);
@@ -99,6 +126,13 @@ public class CommunityServiceImpl implements CommunityService {
 	public void viewModify(CommunityDTO communityDTO) {
 		communityDAO.viewModify(communityDTO);
 		} //공지사항 수정등록
+
+
+
+
+
+
+	
 
 
 
