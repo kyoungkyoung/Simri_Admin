@@ -169,11 +169,16 @@ $(function(){
 					})))).append($('<td/>',{
 						text: items.category
 					})).append($('<td/>',{
-						text: items.subject
+						
+						}).append($('<a/>',{
+							style: 'text-decoration: none; color: black;',
+							href: '/simri/community/communityView?seq='+items.seq,
+							text: items.subject
+							
+					}))).append($('<td/>',{
+						text: items.comSingo
 					})).append($('<td/>',{
-						text: items.comsingo
-					})).append($('<td/>',{
-						text: items.comlogtime
+						text: items.comLogtime
 					})).appendTo($('#adTable'))
 				});
 				$('#communityPagingDiv').html(data.communityPaging.pagingHTML);
