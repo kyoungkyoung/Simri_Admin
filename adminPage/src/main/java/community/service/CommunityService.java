@@ -3,6 +3,7 @@ package community.service;
 import java.util.List;
 import java.util.Map;
 
+import advertise.bean.AdvertiseDTO;
 import community.bean.CommunityDTO;
 import community.bean.CommunityPaging;
 import community.bean.CommunitySearchPaging;
@@ -24,5 +25,10 @@ public interface CommunityService {
 	public CommunitySearchPaging getcommunitySearchPaging(String comSearchText, String pg);
 
 	public void viewModify(CommunityDTO communityDTO);
+
+	public List<CommunityDTO> singoList(Map<String, String> map);
+
+	public CommunityPaging singoCommunityPaging(Map<String, String> map);
+
 
 }

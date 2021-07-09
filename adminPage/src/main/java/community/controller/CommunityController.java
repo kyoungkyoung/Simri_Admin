@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import advertise.bean.AdvertiseDTO;
+import advertise.bean.AdvertisePaging;
 import community.bean.CommunityDTO;
 import community.bean.CommunityPaging;
 import community.bean.CommunitySearchPaging;
@@ -42,7 +44,46 @@ public class CommunityController {
 		model.addAttribute("display", "/community/community.jsp");
 		return "/section/login";
 	}// postModify()
+
+//-----------------------------------------------------------------------------신고목록
+	@RequestMapping(value = "/singoCommunity", method = RequestMethod.GET)
+	public String singoCommunity(@RequestParam(required=false, defaultValue="1") String pg,
+								 @RequestParam(required=false, defaultValue="[전체 게시글]팔레트") String comCategory1,
+								 Model model) { 
+		model.addAttribute("pg", pg);
+		model.addAttribute("comCategory1", comCategory1);
+		model.addAttribute("display", "/community/singoCommunity.jsp");
+		return "/section/login";
+	}// 신고목록
 	
+	@RequestMapping(value="/singoList", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView singoList(@RequestParam String comCategory,
+			 					  @RequestParam(required=false, defaultValue="1") String pg) {
+		
+		System.out.println("커ㅏㄴ트돌"+comCategory +pg);
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("comCategory", comCategory);
+		map.put("pg", pg);
+		
+		List<CommunityDTO> list = communityService.singoList(map);
+		System.out.println("신고 ->" + list);
+		//페이징 처리
+		CommunityPaging communityPaging = communityService.singoCommunityPaging(map);
+		
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("comCategory", comCategory);
+		mav.addObject("pg", pg);
+		mav.addObject("list", list);
+		mav.addObject("communityPaging", communityPaging);
+		mav.setViewName("jsonView");
+		
+		return mav;
+	}
+//-----------------------------------------------------------------------------------end	
 	@RequestMapping(value = "/communityModify", method = RequestMethod.GET)
 	public String postModify(Model model) { 
 		model.addAttribute("display", "/community/communityModify.jsp");
@@ -83,6 +124,8 @@ public class CommunityController {
 		mav.setViewName("jsonView");
 		return mav;
 	}
+	
+
 	
 	@RequestMapping(value="/communityDelete")
 	@ResponseBody
@@ -183,9 +226,9 @@ public class CommunityController {
 		
 		communityService.viewModify(communityDTO);
 		
-	
 
 	}//공지사항 수정등록
+	
 	
 }
 
