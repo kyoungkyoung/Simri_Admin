@@ -4,9 +4,12 @@ $(function(){
 	if($('#btnId').val() === 'warning'){
 		$('#warning-tab').addClass('active');
 		$('#general-tab').removeClass('active');
+		$('#stop-tab').removeClass('active');
 		
 		$('#general').removeClass('show active');
 		$('#warning').addClass('show active');
+		$('#stop').removeClass('show active');
+		
 	}else if($('#btnId').val() === 'stop'){
 		$('#stop-tab').addClass('active');
 		$('#general-tab').removeClass('active');
@@ -31,6 +34,8 @@ $(function(){
 $('#general-tab').click(function(){
 	$('#general-tab').addClass('active');
 	$('#warning-tab').removeClass('active');
+	$('#stop-tab').removeClass('active');
+	
 	$('#searchText').val('');
 	$.ajax({
 		type:'post',
@@ -110,6 +115,7 @@ $('#general-tab').click(function(){
 $('#warning-tab').click(function(){
 	$('#warning-tab').addClass('active');
 	$('#general-tab').removeClass('active');
+	$('#stop-tab').removeClass('active');
 	$('#searchText').val('');
 	
 	$.ajax({
@@ -150,7 +156,7 @@ $('#warning-tab').click(function(){
 							text: items.memsingo
 							
 						})).append($('<td/>',{
-							text: items.warningReason
+							text: items.singoReason
 							
 						})).append($('<td/>',{
 							text: items.condition
@@ -176,6 +182,9 @@ $('#warning-tab').click(function(){
 
 
 $('#stop-tab').click(function(){
+	$('#stop-tab').addClass('active');
+	$('#general-tab').removeClass('active');
+	$('#warning-tab').removeClass('active');
 	$('#searchText').val('');
 	
 	$.ajax({
@@ -449,11 +458,98 @@ $('#stopInsertBtn').click(function(){
 	});
 });
 
+$('#stopPeriodBtn').click(function(){
+
+	//check3----------------------------------------------------------------
+	let count3=0;
+	let yn3=0;
+		
+		
+			var buttonId = $('.active').attr('id');
+			
+			if(buttonId=='stop-tab'){
+				var check3 = document.getElementsByName("checkStop");
+				var listEmail3 = new Array();
+				var listNum3 = new Array();
+				
+				for(var i=0; i<check3.length; i++){
+					if(check3[i].checked == false){
+						count3++;
+						
+					}else if(check3[i].checked == true){
+						console.log(check3[i].value);
+						
+						var dataEmail3 = new Object();
+						var dataNum3 = new Object();
+						
+						dataNum3.number = i;
+						dataEmail3.email = check3[i].value;
+						listNum3.push(dataNum3);
+						listEmail3.push(dataEmail3);
+						console.log(listEmail3);
+						console.log(listNum3);
+						
+						
+						yn3++;
+						
+					}//else if
+				}//for
+				
+				var jsonNum3 = JSON.stringify(listNum3);
+				var jsonEmail3 = JSON.stringify(listEmail3);
+				
+				console.log(jsonNum3);
+				console.log(jsonEmail3);
+				
+				console.log(count3);
+				console.log(yn3);
+				
+				if(count3 != 0 && yn3==0){
+					alert('정지 연장할 회원을 선택해주세요');	   
+				}else if(count3>=0 && yn3 != 0){
+					$('#myModalPeriod').modal('show');
+					$('#checkNum').val(jsonNum3);
+					$('#checkHidden').val(jsonEmail3);
+				}
+			}//if stop-tab
+});
+
+$('#stopPeriodInsertBtn').click(function(){
+	var radioId = $('input:radio[name="inlinePeriodRadioOptions"]:checked').val();
+	console.log(radioId);
+
+	$.ajax({
+		type: 'post',
+		url: '/simri/member/stopPeriodInsert',
+		data: { 'num' : $('#checkNum').val(),
+			'email': $('#checkHidden').val(),
+			'period': $('label[for="'+radioId+'"]').text()
+		},
+		success: function(data){
+			alert('정지기간이 연장되었습니다.');
+			$('#myModalPeriod').modal('hide');
+			window.location.reload();
+		},
+		error: function(err){
+			console.log(err);
+		}
+	});
+});
 
 $('#deleteBtn').click(function(){
+	let count=0;
+	let yn=0;
+	let count2=0;
+	let yn2=0;
+	let count3=0;
+	let yn3=0;
+	
+	var buttonId = $('.active').attr('id');
+	alert(buttonId);
+	
+	if(buttonId=='general-tab'){
+	
 	var check1 = document.getElementsByName("check");
-	var count=0;
-	var yn=0;
 	var listEmail = new Array();
 	
 	for(var i=0; i<check1.length; i++){
@@ -499,10 +595,124 @@ $('#deleteBtn').click(function(){
 		
 			
 		
-		
+	}
 
 		
-	}
+	}//if general-tab
+	
+	
+//---------------------------------------------------------
+	
+	if(buttonId=='warning-tab'){
+		var check2 = document.getElementsByName("checkWarning");
+		var listEmail2 = new Array();
+		
+		for(var i=0; i<check2.length; i++){
+			if(check2[i].checked == false){
+				count2++;
+				
+			}else if(check2[i].checked == true){
+				console.log(check2[i].value);
+				
+				var dataEmail2 = new Object();
+				
+				dataEmail2.email = check2[i].value;
+				listEmail2.push(dataEmail2);
+				console.log(listEmail2);
+				
+				
+				yn2++;
+				
+			}//else if
+		}//for
+		
+		var jsonEmail2 = JSON.stringify(listEmail2);
+		console.log(jsonEmail2);
+		console.log(count2);
+		console.log(yn2);
+		if(count2==0 && yn2==0){
+			alert('강제 탈퇴할 회원을 선택해주세요');
+		}else if(count2 != 0 && yn2==0){
+			alert('강제 탈퇴할 회원을 선택해주세요');	   
+		}else {
+			if(confirm("정말 강퇴하시겠습니까?")){
+				$.ajax({
+					type: 'post',
+					url: '/simri/member/memberDelete',
+					data: 'email='+jsonEmail2,
+					success: function(data){
+						alert('강퇴했습니다.');
+						window.location.reload();
+					},
+					error: function(err){
+						console.log(err);
+					}
+					
+				});
+			}
+		}
+		
+		
+	}//if warning-tab
+	
+//----------------------------------------------------------
+	if(buttonId=='stop-tab'){
+		var check3 = document.getElementsByName("checkStop");
+		var listEmail3 = new Array();
+		
+		for(var i=0; i<check3.length; i++){
+			if(check3[i].checked == false){
+				count3++;
+				
+			}else if(check3[i].checked == true){
+				console.log(check3[i].value);
+				
+				var dataEmail3 = new Object();
+				
+				dataEmail3.email = check3[i].value;
+				listEmail3.push(dataEmail3);
+				console.log(listEmail3);
+				
+				
+				yn3++;
+				
+			}//else if
+		}//for
+		
+		var jsonEmail3 = JSON.stringify(listEmail3);
+		console.log(jsonEmail3);
+		console.log(count3);
+		console.log(yn3);
+		if(count3==0 && yn3==0){
+			alert('강제 탈퇴할 회원을 선택해주세요');
+		}else if(count3 != 0 && yn3==0){
+			alert('강제 탈퇴할 회원을 선택해주세요');	   
+		}else {
+			if(confirm("정말 강퇴하시겠습니까?")){
+				$.ajax({
+					type: 'post',
+					url: '/simri/member/memberDelete',
+					data: 'email='+jsonEmail3,
+					success: function(data){
+						alert('강퇴했습니다.');
+						window.location.reload();
+					},
+					error: function(err){
+						console.log(err);
+					}
+					
+				});
+			}
+		}
+		
+		
+	}//if stop-tab
+	
+	
+	
+	
+	
+	
 });
 
 $('#searchBtn').click(function(event, str){

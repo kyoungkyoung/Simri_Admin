@@ -22,6 +22,8 @@ public interface MemberService {
 
 	public void stopInsert(Map<String, String> map);
 
+	public void stopPeriodInsert(Map<String, String> map);
+
 	public void memberDelete(String email);
 
 	public List<SimriMemberDTO> getMemberSearch(String category, String searchText, String pg);
@@ -37,5 +39,6 @@ public interface MemberService {
 	public MemberPaging memberWarningSearchPaging(Map<String, String> map);
 
 	public MemberStopPaging stopMemberPaging(int pg);
+
 
 }

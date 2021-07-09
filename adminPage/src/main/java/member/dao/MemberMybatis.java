@@ -168,6 +168,44 @@ public class MemberMybatis implements MemberDAO {
 	}
 
 	@Override
+	public void stopPeriodInsert(Map<String, String> map) {
+		
+		System.out.println(map.get("num"));
+		System.out.println(map.get("email"));
+		System.out.println(map.get("period"));
+		
+		String newEmail1 = map.get("email").replace("{\"email\":\"", "");
+		System.out.println(newEmail1);
+		String newEmail2 = newEmail1.replace("\"}","");
+		System.out.println(newEmail2);
+		String newEmail3 = newEmail2.replace("[","");
+		System.out.println(newEmail3);
+		String newEmail4 = newEmail3.replace("]","");
+		System.out.println(newEmail4);
+		
+		String[] arrayEmail = newEmail4.split(",");
+		
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd");
+		String sysdate = sdf.format(date);
+		
+		System.out.println("sysdate 찍히나"+sysdate);
+		
+		for(int i=0; i<arrayEmail.length; i++) {
+			System.out.println(i+"="+arrayEmail[i]);
+			
+			System.out.println(sysdate);
+			
+			Map<String, String> newMap = new HashMap<String, String>();
+			newMap.put("singologtime", sysdate);
+			newMap.put("stopPeriod", (String) map.get("period"));
+			newMap.put("email", arrayEmail[i]);
+			sqlSession.update("memberSQL.stopPeriodInsert", newMap);
+		}
+
+	}
+	
+	@Override
 	public void memberDelete(String email) {
 		String newEmail1 = email.replace("{\"email\":\"", "");
 		System.out.println(newEmail1);
