@@ -34,7 +34,7 @@
 			<th scope="col" width="13%">카테고리</th>
 			<th scope="col" width="33%">제목</th>
 			<th scope="col" width="25%">신고</th>
-			<th scope="col" width="20%">날</th>
+			<th scope="col" width="20%">신고날짜</th>
 		</tr>
 	</thead>
 
@@ -86,7 +86,6 @@ $(function(){
 		},
 		dataType: 'json',
 		success: function(data){
-			alert(JSON.stringify(data))
 			
 			$('#adTable tr:gt(0)').remove();
 			
@@ -145,7 +144,6 @@ $(function(){
 			},
 			dataType: 'json',
 			success: function(data){
-				alert(JSON.stringify(data))
 				
 				$('#adTable tr:gt(0)').remove();
 				
@@ -219,7 +217,6 @@ function checkSelectAll(checkbox)  {
 
 //-----삭제----
 $('#singoDeleteBtn').click(function(){
-	alert("클릭됨");
 	var check1 = document.getElementsByName("check");
 	var count=0;
 	var yn=0;
@@ -267,8 +264,6 @@ $('#singoDeleteBtn').click(function(){
 
 function communityPaging(pg, num){
 	var comCategory1;
-	
-	alert(pg +"-----"+ num);
 	
 	if(num == 1) {
 		comCategory1="전체게시글팔레트"

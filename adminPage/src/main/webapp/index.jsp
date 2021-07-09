@@ -57,8 +57,7 @@
 
    <main class="form-signin">
       <form id="adminLogin">
-         <img class="rounded-circle ms-3 me-4" src="./img/admin.png" style="width: 150px; height: 150px;"
-            alt="admin image" >
+         <img class="rounded-circle ms-3 me-4" src="/simri/img/admin.png" style="width: 150px; height: 150px;" alt="admin image" >
          <h1 class="h3 mb-3 fw-normal">관리자 로그인</h1>
 
          <div class="form-floating">
@@ -77,7 +76,6 @@
 <script>
 //로그인
 $('#signBtn').click(function(){
-   alert('클릭됨');
    
    
    if($('#id').val() == ''){

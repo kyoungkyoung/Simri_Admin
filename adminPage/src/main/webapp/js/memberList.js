@@ -124,7 +124,6 @@ $('#warning-tab').click(function(){
 		data:'pg='+$('#pg').val(),
 		dataType:'json',
 		success: function(data){
-			alert(JSON.stringify(data));
 			$('#memberWarningListTable tr:gt(0)').remove();
 			
 			$.each(data.list, function(index, items){
@@ -193,7 +192,6 @@ $('#stop-tab').click(function(){
 		data:'pg='+$('#pg').val(),
 		dataType:'json',
 		success: function(data){
-			alert(JSON.stringify(data));
 			$('#memberStopListTable tr:gt(0)').remove();
 			$.each(data.list, function(index, items){
 				
@@ -716,9 +714,7 @@ $('#deleteBtn').click(function(){
 });
 
 $('#searchBtn').click(function(event, str){
-	alert(str);
 	
-	alert($('#pg').val());
 	//$('#general-tab').trigger('click')
 	
 	if($('#searchText').val() == '')
