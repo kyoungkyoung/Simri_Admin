@@ -6,9 +6,10 @@
       회원관리
       <button type="button" class="btn btn-outline-danger float-right" id="deleteBtn">강제 탈퇴</button>
       <button type="button" class="btn btn-outline-danger float-right mr-2" data-bs-target="#exampleModal" id="stopBtn">활동 정지</button>
+   	  <button type="button" class="btn btn-outline-danger float-right mr-2" data-bs-target="#exampleModalPeriod" id="stopPeriodBtn">정지 연장</button>
    </h3>
 </div>
-<!-- Modal -->
+<!-- 활동 정지 Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -53,6 +54,47 @@
     </div>
   </div>
 </div>
+
+
+<!-- 정지 연장 Modal -->
+<div class="modal fade" id="myModalPeriod" tabindex="-1" aria-labelledby="exampleModalPeriodLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalPeriodLabel">계정 정지 연장</h5>
+      </div>
+      
+      <div class="modal-body">
+	           정지 기간 (일) : 
+	        <div class="form-check form-check-inline mt-3 ml-1">
+  				<input class="form-check-input" type="radio" name="inlinePeriodRadioOptions" id="inlinePeriodRadio1" value="periodOption1">
+  				<label class="form-check-label" for="periodOption1">1</label>
+			</div>
+			<div class="form-check form-check-inline">
+  				<input class="form-check-input" type="radio" name="inlinePeriodRadioOptions" id="inlinePeriodRadio2" value="periodOption2">
+  				<label class="form-check-label" for="periodOption2">3</label>
+			</div>
+			<div class="form-check form-check-inline">
+  				<input class="form-check-input" type="radio" name="inlinePeriodRadioOptions" id="inlinePeriodRadio3" value="periodOption3">
+  				<label class="form-check-label" for="periodOption3">7</label>
+			</div>
+
+			<div>
+				<input type="hidden" id="checkNum" value="">
+				<input type="hidden" id="checkHidden" value="">
+			</div>
+            
+            
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="stopPeriodInsertBtn">등록</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <div class="p-3 ">
    <div class="d-flex">

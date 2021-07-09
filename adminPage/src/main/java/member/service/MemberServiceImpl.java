@@ -124,6 +124,12 @@ public class MemberServiceImpl implements MemberService {
 		memberDAO.stopInsert(map);
 		
 	}
+	
+	@Override
+	public void stopPeriodInsert(Map<String, String> map) {
+		memberDAO.stopPeriodInsert(map);
+		
+	}
 
 	@Override
 	public void memberDelete(String email) {

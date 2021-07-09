@@ -19,6 +19,8 @@ public interface MemberDAO {
 
 	public void stopInsert(Map<String, String> map);
 
+	public void stopPeriodInsert(Map<String, String> map);
+
 	public void memberDelete(String email);
 
 	public List<SimriMemberDTO> getMemberSearch(Map<String, Object> map);
@@ -34,5 +36,6 @@ public interface MemberDAO {
 	public int warningSearchTotalA(Map<String, String> map);
 
 	public int getStopTotalA();
+
 
 }

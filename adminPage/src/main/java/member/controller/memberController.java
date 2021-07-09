@@ -149,6 +149,21 @@ public class memberController {
 		memberService.stopInsert(map);
 	}
 	
+	@RequestMapping(value = "/stopPeriodInsert", method=RequestMethod.POST)
+	@ResponseBody
+	public void stopPeriodInsert(@RequestParam String num, @RequestParam String email,
+						          @RequestParam String period) {
+		System.out.println("기간기간기간"+period);
+		System.out.println("num = "+num+" email = "+email+" periond = "+period);
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("num",num);
+		map.put("email",email);
+		map.put("period",period);
+		
+		memberService.stopPeriodInsert(map);
+	}
+	
 	@RequestMapping(value="/memberDelete", method=RequestMethod.POST)
 	@ResponseBody
 	public void memberDelete(@RequestParam String email) {
