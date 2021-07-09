@@ -27,7 +27,6 @@ $(function(){
 		},
 		dataType: 'json',
 		success: function(data){
-			alert(JSON.stringify(data));
 			
 			$('#hitInfoTable tr:gt(0)').remove();
 
@@ -95,7 +94,6 @@ $('#day').click(function(event){
 		},
 		dataType: 'json',
 		success: function(data){
-			alert(JSON.stringify(data));
 			
 			$('#hitInfoTable tr:gt(0)').remove();
 			
@@ -166,7 +164,6 @@ $('#week').click(function(event){
 		},
 		dataType: 'json',
 		success: function(data){
-			alert(JSON.stringify(data));
 			
 			$('#hitInfoTable tr:gt(0)').remove();
 			
@@ -235,7 +232,6 @@ $('#month').click(function(event){
 		},
 		dataType: 'json',
 		success: function(data){
-			alert(JSON.stringify(data));
 			
 			$('#hitInfoTable tr:gt(0)').remove();
 			

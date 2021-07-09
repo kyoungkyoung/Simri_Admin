@@ -1,6 +1,5 @@
 
 $('#pointBtn').click(function(){
-	alert('클릭됨');
 	$.ajax({
 		type: 'post',
 		url: '/simri/member/setPoint',

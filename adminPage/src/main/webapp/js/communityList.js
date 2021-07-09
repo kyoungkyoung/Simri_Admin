@@ -190,7 +190,7 @@ function checkSelectAll(checkbox)  {
 	}
 
 $('#comDeleteBtn').click(function(){
-	alert("클릭됨");
+
 	var check1 = document.getElementsByName("check");
 	var count=0;
 	var yn=0;
@@ -270,7 +270,6 @@ $('#noticeBtn').click(function(){
 });
 
 $('#comSearchBtn').click(function(event){
-	alert("되라되라, "+$('#comSearchText').val());
 	
 	$.ajax({
 		type: 'post',
@@ -280,7 +279,6 @@ $('#comSearchBtn').click(function(event){
 		},
 		dataType: "json",
 		success: function(data){
-			alert(JSON.stringify(data));
 			$('#communityList').empty();
 			
 			$.each(data.list, function(index, items){

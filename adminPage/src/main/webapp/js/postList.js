@@ -17,7 +17,6 @@ $(function(){
 		},
 		dataType: 'json',
 		success: function(data){
-			alert(JSON.stringify(data));
 			$('#simriPostList').empty();
 			
 			$.each(data.list, function(index, items){
@@ -89,7 +88,7 @@ $(document).ready(function(){
 			},
 			dataType: 'json',
 			success: function(data){
-				alert(JSON.stringify(data));
+
 				$('#simriPostList').empty();
 				
 				$.each(data.list, function(index, items){
@@ -162,7 +161,7 @@ $('#postSearchBtn').click(function(event){
 		},
 		dataType: 'json',
 		success: function(data){
-			alert(JSON.stringify(data));
+
 			$('#simriPostList').empty();
 			
 			$.each(data.list, function(index, items){
@@ -244,7 +243,6 @@ function checkSelectAll(checkbox)  {
 	}
 
 $('#comDeleteBtn').click(function(){
-	alert("클릭됨");
 	var check1 = document.getElementsByName("check");
 	var count=0;
 	var yn=0;
@@ -315,7 +313,6 @@ function postPaging(pg){
 }
 //광고등록
 $('#adBtn').click(function(){
-	alert("클릭됨");
 	var check1 = document.getElementsByName("check");
 	var count=0;
 	var yn=0;

@@ -5,7 +5,6 @@ $(function(){
 		data: 'pg='+$('#pg').val(),
 		dataType: 'json',
 		success: function(data){
-			alert(JSON.stringify(data))
 			
 			$('#adTable tr:gt(0)').remove();
 			
@@ -74,7 +73,6 @@ function checkSelectAll(checkbox)  {
 
 //-----삭제----
 $('#adDeleteBtn').click(function(){
-	alert("클릭됨");
 	var check1 = document.getElementsByName("check");
 	var count=0;
 	var yn=0;
