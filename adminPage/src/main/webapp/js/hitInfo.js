@@ -22,7 +22,7 @@ $(function(){
 		data: {
 			'comCategory': $('#comCategory').val(),
 			'condition': $('#condition').val(),
-			'date': 'day',
+			'date' :'month',
 			'pg': $('#pg').val()
 		},
 		dataType: 'json',
@@ -30,12 +30,12 @@ $(function(){
 			alert(JSON.stringify(data));
 			
 			$('#hitInfoTable tr:gt(0)').remove();
-
+			
 			$.each(data.list, function(index, items){
 				
 				$('<tr/>',{
-					//style: 'cursor: pointer;'
-						
+					//style: 'cursor: pointer;',
+					
 					}).append($('<th/>',{
 						scope: 'row'
 							
@@ -57,7 +57,8 @@ $(function(){
 						//href: '/simri/post/postView?seq='+items.seq,
 						href: "javascript:void(0)",
 						onclick: 'goView('+items.seq+'); return false;',
-						text: items.subject
+						text: items.subject,
+						id: 'hitInfo'
 						
 				}))).append($('<td/>',{
 					text: items.hit
@@ -69,7 +70,6 @@ $(function(){
 					text: items.comLogtime
 					
 				})).appendTo('#hitInfoTable');
-				
 			});
 			
 			$('#hitInfoPagingDiv').html(data.chartPaging.pagingHTML);

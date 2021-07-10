@@ -21,7 +21,7 @@
 		</div>
 			
 		<div class="btn-group">
-			<select class="btn btn-outline-danger dropdown-toggle mr-1" id="condition" aria-expanded="false" >
+			<select class="btn btn-outline-danger dropdown-toggle mr-1" id="condition" aria-expanded="false">
 				<option value="seq">최신순</option>		
 				<option value="hit">조회수</option>
 				<option value="comlike">좋아요</option>
