@@ -11,6 +11,8 @@ import advertise.bean.AdvertiseDTO;
 import community.bean.CommunityDTO;
 import community.bean.CommunityPaging;
 import community.bean.CommunitySearchPaging;
+import community.bean.ReplyDTO;
+import community.bean.ReplyPaging;
 import community.dao.CommunityDAO;
 
 @Service
@@ -21,6 +23,8 @@ public class CommunityServiceImpl implements CommunityService {
 	private CommunityPaging communityPaging;
 	@Autowired
 	private CommunitySearchPaging communitySearchPaging;
+	@Autowired
+	private ReplyPaging replyPaging;
 	
 	
 	@Override
@@ -53,6 +57,37 @@ public class CommunityServiceImpl implements CommunityService {
 	@Override
 	public void communityDelete(String seq) {
 		communityDAO.communityDelete(seq);
+	}
+	
+	@Override
+	public List<ReplyDTO> singoReplyList(Map<String, String> map) {
+		int endNum = Integer.parseInt(map.get("pg"))*5;
+		int startNum = endNum-4;
+		
+		Map<String, Object> newMap = new HashMap<String, Object>();
+		newMap.put("startNum", startNum);
+		newMap.put("endNum", endNum);
+		
+		return communityDAO.singoReplyList(newMap);
+	}
+
+	@Override
+	public ReplyPaging singoReplyPaging(Map<String, String> map) {
+		int totalA = communityDAO.getReplyTotalA(map);
+		
+		replyPaging.setCurrentPage(Integer.parseInt(map.get("pg")));
+		replyPaging.setPageBlock(3);
+		replyPaging.setPageSize(5);
+		replyPaging.setTotalA(totalA);
+		replyPaging.makePagingHTML();
+		System.out.println(replyPaging);
+		return replyPaging;
+	}
+	
+	@Override
+	public void replyDelete(String seq) {
+		communityDAO.replyDelete(seq);
+		
 	}
 
 	@Override
@@ -126,6 +161,10 @@ public class CommunityServiceImpl implements CommunityService {
 	public void viewModify(CommunityDTO communityDTO) {
 		communityDAO.viewModify(communityDTO);
 		} //공지사항 수정등록
+
+
+
+
 
 
 

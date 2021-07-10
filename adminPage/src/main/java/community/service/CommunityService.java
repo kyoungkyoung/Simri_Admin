@@ -7,6 +7,8 @@ import advertise.bean.AdvertiseDTO;
 import community.bean.CommunityDTO;
 import community.bean.CommunityPaging;
 import community.bean.CommunitySearchPaging;
+import community.bean.ReplyDTO;
+import community.bean.ReplyPaging;
 
 public interface CommunityService {
 
@@ -29,6 +31,12 @@ public interface CommunityService {
 	public List<CommunityDTO> singoList(Map<String, String> map);
 
 	public CommunityPaging singoCommunityPaging(Map<String, String> map);
+
+	public List<ReplyDTO> singoReplyList(Map<String, String> map);
+
+	public ReplyPaging singoReplyPaging(Map<String, String> map);
+
+	public void replyDelete(String seq);
 
 
 }
