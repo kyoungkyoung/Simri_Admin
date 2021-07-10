@@ -25,6 +25,19 @@
 		 and rn <![CDATA[ <= ]]>#{endNum}
 	</select>
 	
+	<select id="singoReplyList" parameterType="java.util.Map" resultType="reply">
+		
+		select * from (select rownum rn, tt.*from 
+		(select * from reply where replyseq >0 order by replylogtime desc, seq desc)tt 
+		)where rn<![CDATA[ >= ]]>#{startNum}
+		 and rn <![CDATA[ <= ]]>#{endNum}
+		
+	</select>
+	
+	<select id="getReplyTotalA" parameterType="java.util.Map" resultType="int">
+		select count(*) from reply
+	</select>
+	
 	<select id="singoComPalette" parameterType="java.util.Map" resultType="community">
 		select * from (select rownum rn, tt.*from 
 		(select * from community where category like '%팔레트%' and comsingo > 0 order by comlogtime desc, seq desc)tt 
@@ -32,9 +45,6 @@
 		 and rn <![CDATA[ <= ]]>#{endNum}
 	</select>
 
-	
-	
-	
 	<delete id="communityDelete" parameterType="int">
 		delete community where seq=#{seq}
 	</delete>
@@ -97,6 +107,10 @@
 	
 	<update id="viewModify" parameterType="community">
 		update community set subject = #{subject}, content = #{content}, comlogtime = sysdate, image = #{image}, testurl =#{testURL}  where seq=#{seq}
+	</update>
+	
+	<update id="replyDelete" parameterType="int">
+		update reply set replycomment='[신고된 댓글입니다.]'  where replyseq=#{seq}
 	</update>
 	
 	

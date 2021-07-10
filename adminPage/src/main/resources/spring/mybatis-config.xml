@@ -7,6 +7,7 @@
 		<typeAlias type="admin.bean.AdminDTO" alias="admin"/>
 		<typeAlias type="advertise.bean.AdvertiseDTO" alias="advertise"/>
 		<typeAlias type="community.bean.CommunityDTO" alias="community"/>
+		<typeAlias type="community.bean.ReplyDTO" alias="reply"/>
 		<typeAlias type="chart.bean.EtcDTO" alias="etc"/>
 		<typeAlias type="chart.bean.MemChartDTO" alias="memChart"/>
 		<typeAlias type="member.bean.SimriMemberDTO" alias="member"/>

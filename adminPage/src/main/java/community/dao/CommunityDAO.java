@@ -5,6 +5,7 @@ import java.util.Map;
 
 import advertise.bean.AdvertiseDTO;
 import community.bean.CommunityDTO;
+import community.bean.ReplyDTO;
 
 public interface CommunityDAO {
 
@@ -27,6 +28,12 @@ public interface CommunityDAO {
 	public List<CommunityDTO> singoList(Map<String, Object> newMap);
 
 	public int getSingoTotalA(Map<String, String> map);
+
+	public List<ReplyDTO> singoReplyList(Map<String, Object> newMap);
+
+	public int getReplyTotalA(Map<String, String> map);
+
+	public void replyDelete(String seq);
 
 
 }

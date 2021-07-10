@@ -25,6 +25,8 @@ import advertise.bean.AdvertisePaging;
 import community.bean.CommunityDTO;
 import community.bean.CommunityPaging;
 import community.bean.CommunitySearchPaging;
+import community.bean.ReplyDTO;
+import community.bean.ReplyPaging;
 import community.service.CommunityService;
 
 @Controller
@@ -44,7 +46,49 @@ public class CommunityController {
 		model.addAttribute("display", "/community/community.jsp");
 		return "/section/login";
 	}// postModify()
-
+	
+//-----------------------------------------------------------------------------신고 댓글
+	@RequestMapping(value = "/singoReply", method = RequestMethod.GET)
+	public String singoReply(@RequestParam(required=false, defaultValue="1") String pg, Model model) { 
+		
+		model.addAttribute("pg",pg);
+		model.addAttribute("display", "/community/singoReply.jsp");
+		return "/section/login";
+	}// 신고댓글
+	
+	@RequestMapping(value="/singoReplyList", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView singoReplyList(@RequestParam(required=false, defaultValue="1") String pg) {
+		
+		System.out.println("커ㅏㄴ트돌"+pg);
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("pg", pg);
+		
+		List<ReplyDTO> list = communityService.singoReplyList(map);
+		System.out.println("신고 ->" + list);
+		//페이징 처리
+		ReplyPaging replyPaging = communityService.singoReplyPaging(map);
+		
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("pg", pg);
+		mav.addObject("list", list);
+		mav.addObject("replyPaging", replyPaging);
+		mav.setViewName("jsonView");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/replyDelete")
+	@ResponseBody
+	public void replyDelete(@RequestParam String seq) {
+		 communityService.replyDelete(seq);
+	}
+	
+//---------------------------------------------------------------------------------end
+	
 //-----------------------------------------------------------------------------신고목록
 	@RequestMapping(value = "/singoCommunity", method = RequestMethod.GET)
 	public String singoCommunity(@RequestParam(required=false, defaultValue="1") String pg,
@@ -61,14 +105,12 @@ public class CommunityController {
 	public ModelAndView singoList(@RequestParam String comCategory,
 			 					  @RequestParam(required=false, defaultValue="1") String pg) {
 		
-		System.out.println("커ㅏㄴ트돌"+comCategory +pg);
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("comCategory", comCategory);
 		map.put("pg", pg);
 		
 		List<CommunityDTO> list = communityService.singoList(map);
-		System.out.println("신고 ->" + list);
 		//페이징 처리
 		CommunityPaging communityPaging = communityService.singoCommunityPaging(map);
 		

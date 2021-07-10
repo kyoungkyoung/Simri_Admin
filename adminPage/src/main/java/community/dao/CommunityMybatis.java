@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import advertise.bean.AdvertiseDTO;
 import community.bean.CommunityDTO;
+import community.bean.ReplyDTO;
 
 @Repository
 @Transactional
@@ -39,6 +40,34 @@ public class CommunityMybatis implements CommunityDAO {
 			List<CommunityDTO> list = sqlSession.selectList("communitySQL.singoList",newMap);
 			return list;
 		}
+	}
+	
+	@Override
+	public List<ReplyDTO> singoReplyList(Map<String, Object> newMap) {
+		List<ReplyDTO> list = sqlSession.selectList("communitySQL.singoReplyList", newMap);
+		System.out.println("마바 댓글  "+list);
+		return list;
+	}
+	
+	@Override
+	public void replyDelete(String seq) {
+		String newSeq1 = seq.replace("{\"seq\":\"", "");
+		String newSeq2 = newSeq1.replace("\"}","");
+		String newSeq3 = newSeq2.replace("[","");
+		String newSeq4 = newSeq3.replace("]","");
+		
+		String[] arraySeq = newSeq4.split(",");
+		
+		for(int i=0; i<arraySeq.length; i++) {
+			sqlSession.update("communitySQL.replyDelete", Integer.parseInt(arraySeq[i]));
+		}
+		
+	}
+
+	@Override
+	public int getReplyTotalA(Map<String, String> map) {
+		int totalA = sqlSession.selectOne("communitySQL.getReplyTotalA", map);
+		return totalA;
 	}
 
 
@@ -113,6 +142,10 @@ public class CommunityMybatis implements CommunityDAO {
 		
 		sqlSession.update("communitySQL.viewModify", communityDTO);
 	}//공지사항 수정등록
+
+
+
+
 
 
 
