@@ -83,69 +83,83 @@
 		(select * from community where category='연애 심리글' order by hit desc)tt
 		)where rn between 1 and 3
 	</select>
-	
-	
-	
-	<!-- 
-	<select id="getHitInfoAll" parameterType="java.util.Map" resultType="community">
+	 
+<!--   최신순	  -->
+
+	<select id="getHitInfoAllL" parameterType="java.util.Map" resultType="community">
 		select * from
-		(select rownum rn, tt.*from
-		(select seq, category, subject, nvl(hithit, 0) as hit, nvl(likelike, 0) as comlike, comlogtime, etclogtime from
-		(select seq, etclogtime, sum(a) as hithit, sum(b) as likelike
-		        from (select seq, etclogtime, sum(hithit) as a, sum(likelike) as b 
-		                from etctest group by seq, etclogtime order by seq desc) 
-		        group by seq, etclogtime
-		)
-		right join community 
-		using (seq)
-		where category in ('심리 테스트', '연애 심리글') 	
-		and  comlogtime like TO_DATE(to_char(sysdate, 'yy/mm/dd')) 
-		order by ${condition} desc)tt
+		(select rownum rn, tt. * from
+		(select * from community
+      	where category in ('심리 테스트', '연애 심리글')
+      	and comlogtime like to_date(to_char(sysdate, 'yy/mm/dd'))
+      	order by comlogtime desc)tt
 		)where rn between #{startNum} and #{endNum}
 	</select>
 	
-	<select id="getHitInfoAllWeek" parameterType="java.util.Map" resultType="community">
+	<select id="getHitInfoAllWeekL" parameterType="java.util.Map" resultType="community">
 		select * from
-		(select rownum rn, tt.*from
-		(select seq, category, subject, nvl(hithit, 0) as hit, nvl(likelike, 0) as comlike, comlogtime, etclogtime from
-		(select seq, etclogtime, sum(a) as hithit, sum(b) as likelike
-		        from (select seq, etclogtime, sum(hithit) as a, sum(likelike) as b 
-		                from etctest group by seq, etclogtime order by seq desc) 
-		        group by seq, etclogtime
-		)
-		right join community 
-		using (seq)
-		where category in ('심리 테스트', '연애 심리글') 	
+		(select rownum rn, tt. * from
+		(select * from community
+		where category in ('심리 테스트', '연애 심리글')
 		and  to_char(comlogtime, 'yy/mm/dd') 
-          between to_char(sysdate-6, 'yy/mm/dd') 
-             and to_char(sysdate, 'yy/mm/dd')
-		order by ${condition} desc)tt
+			between to_char(sysdate-6, 'yy/mm/dd') 
+				and to_char(sysdate, 'yy/mm/dd')
+		order by comlogtime desc)tt
 		)where rn between #{startNum} and #{endNum}
 	</select>
 	
-	<select id="getHitInfoAllMonth" parameterType="java.util.Map" resultType="community">
+	<select id="getHitInfoAllMonthL" parameterType="java.util.Map" resultType="community">
 		select * from
-		(select rownum rn, tt.*from
-		(select seq, category, subject, nvl(hithit, 0) as hit, nvl(likelike, 0) as comlike, comlogtime, etclogtime from
-		(select seq, etclogtime, sum(a) as hithit, sum(b) as likelike
-		        from (select seq, etclogtime, sum(hithit) as a, sum(likelike) as b 
-		                from etctest group by seq, etclogtime order by seq desc) 
-		        group by seq, etclogtime
-		)
-		right join community 
-		using (seq)
-		where category in ('심리 테스트', '연애 심리글') 	
+		(select rownum rn, tt. * from
+		(select * from community
+		where category in ('심리 테스트', '연애 심리글')
 		and  to_char(comlogtime, 'yy/mm/dd') 
-          between to_char(sysdate-30, 'yy/mm/dd') 
-             and to_char(sysdate, 'yy/mm/dd')
-		order by ${condition} desc)tt
+			between to_char(sysdate-30, 'yy/mm/dd') 
+				and to_char(sysdate, 'yy/mm/dd')
+		order by comlogtime desc)tt
+		)where rn between #{startNum} and #{endNum}
+	</select>
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<select id="getHitInfoL" parameterType="java.util.Map" resultType="community">
+		select * from
+		(select rownum rn, tt. * from
+		(select * from community
+      	where category = #{comCategory}
+      	and comlogtime like to_date(to_char(sysdate, 'yy/mm/dd'))
+      	order by comlogtime desc)tt
 		)where rn between #{startNum} and #{endNum}
 	</select>
 	
-	 -->
+	<select id="getHitInfoWeekL" parameterType="java.util.Map" resultType="community">
+		select * from
+		(select rownum rn, tt. * from
+		(select * from community
+		where category = #{comCategory}
+		and  to_char(comlogtime, 'yy/mm/dd') 
+			between to_char(sysdate-6, 'yy/mm/dd') 
+				and to_char(sysdate, 'yy/mm/dd')
+		order by comlogtime desc)tt
+		)where rn between #{startNum} and #{endNum}
+	</select>
 	
+	<select id="getHitInfoMonthL" parameterType="java.util.Map" resultType="community">
+		select * from
+		(select rownum rn, tt. * from
+		(select * from community
+		where category = #{comCategory}
+		and  to_char(comlogtime, 'yy/mm/dd') 
+			between to_char(sysdate-30, 'yy/mm/dd') 
+				and to_char(sysdate, 'yy/mm/dd')
+		order by comlogtime desc)tt
+		)where rn between #{startNum} and #{endNum}
+	</select>
+
+<!--   최신순	  -->
+	 
+	 
+<!-- 조회수, 좋아요	 -->
 	
-<!-- etclogtime 조회수, 좋아요//////////////////////////////////////////////////////////////////////////////////////////////// -->	
+<!-- etclogtimeg으로 정렬 /// 조회수, 좋아요//////////////////////////////////////////////////////////////////////////////////////////////// -->	
 	<select id="getHitInfoAll" parameterType="java.util.Map" resultType="community">
 		select * from
         (select rownum rn, tt. * from
@@ -160,9 +174,12 @@
                         group by seq
                         order by seq
 		)
-		right join community 
+		join community 
 		using (seq)
-		where category in ('심리 테스트', '연애 심리글') 	
+		where category in ('심리 테스트', '연애 심리글') 
+		<![CDATA[
+			and ${condition} > 0
+		]]>
 		order by ${condition} desc)tt
       	 ) where rn between #{startNum} and #{endNum}
 	</select>
@@ -184,6 +201,9 @@
 		join community 
 		using (seq)
 		where category in ('심리 테스트', '연애 심리글') 	
+		<![CDATA[
+			and ${condition} > 0
+		]]>
 		order by ${condition} desc)tt
       	 ) where rn between #{startNum} and #{endNum}
 	</select>
@@ -205,158 +225,279 @@
 		join community 
 		using (seq)
 		where category in ('심리 테스트', '연애 심리글') 	
+		<![CDATA[
+			and ${condition} > 0
+		]]>
 		order by ${condition} desc)tt
       	 ) where rn between #{startNum} and #{endNum}
 	</select>
-
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////// -->
 	<select id="getHitInfo" parameterType="java.util.Map" resultType="community">
 		select * from
-		(select rownum rn, tt.*from
-		(select seq, category, subject, nvl(hithit, 0) as hit, nvl(likelike, 0) as comlike, comlogtime, etclogtime from
-		(select seq, etclogtime, sum(a) as hithit, sum(b) as likelike
-		        from (select seq, etclogtime, sum(hithit) as a, sum(likelike) as b 
-		                from etctest group by seq, etclogtime order by seq desc) 
-		        group by seq, etclogtime
+        (select rownum rn, tt. * from
+		(select seq, category, subject, nvl(hithit, 0) as hit, nvl(likelike, 0) as comlike, comlogtime from
+		(select seq, sum(a) as hithit, sum(b) as likelike from
+        (select seq, etclogtime, sum(hithit) as a, sum(likelike) as b 
+		                from etctest 
+                        group by seq, etclogtime 
+                        order by seq desc
+                        )
+                        where etclogtime=to_char(sysdate, 'yy/mm/dd')
+                        group by seq
+                        order by seq
 		)
 		join community 
 		using (seq)
-		where category =#{comCategory}
-		and etclogtime = to_char(sysdate, 'yy/mm/dd') 
+		where category=#{comCategory}	
+		<![CDATA[
+			and ${condition} > 0
+		]]>
 		order by ${condition} desc)tt
-		)where rn between #{startNum} and #{endNum}
+      	 ) where rn between #{startNum} and #{endNum}
 	</select>
 	
 	<select id="getHitInfoWeek" parameterType="java.util.Map" resultType="community">
 		select * from
-		(select rownum rn, tt.*from
-		(select seq, category, subject, nvl(hithit, 0) as hit, nvl(likelike, 0) as comlike, comlogtime, etclogtime from
-		(select seq, etclogtime, sum(a) as hithit, sum(b) as likelike
-		        from (select seq, etclogtime, sum(hithit) as a, sum(likelike) as b 
-		                from etctest group by seq, etclogtime order by seq desc) 
-		        group by seq, etclogtime
+        (select rownum rn, tt. * from
+		(select seq, category, subject, nvl(hithit, 0) as hit, nvl(likelike, 0) as comlike, comlogtime from
+		(select seq, sum(a) as hithit, sum(b) as likelike from
+        (select seq, etclogtime, sum(hithit) as a, sum(likelike) as b 
+		                from etctest 
+                        group by seq, etclogtime 
+                        order by seq desc
+                        )
+                        where etclogtime between to_char(sysdate-6, 'yy/mm/dd') and  to_char(sysdate, 'yy/mm/dd')
+                        group by seq
+                        order by seq
 		)
-		right join community 
+		join community 
 		using (seq)
-		where category=#{comCategory} 	
-		and etclogtime between to_char(sysdate-6, 'yy/mm/dd') and  to_char(sysdate, 'yy/mm/dd') 
+		where category=#{comCategory}	
+		<![CDATA[
+			and ${condition} > 0
+		]]>
 		order by ${condition} desc)tt
-		)where rn between #{startNum} and #{endNum}
+      	 ) where rn between #{startNum} and #{endNum}
 	</select>
 	
 	<select id="getHitInfoMonth" parameterType="java.util.Map" resultType="community">
 		select * from
-		(select rownum rn, tt.*from
-		(select seq, category, subject, nvl(hithit, 0) as hit, nvl(likelike, 0) as comlike, comlogtime, etclogtime from
-		(select seq, etclogtime, sum(a) as hithit, sum(b) as likelike
-		        from (select seq, etclogtime, sum(hithit) as a, sum(likelike) as b 
-		                from etctest group by seq, etclogtime order by seq desc) 
-		        group by seq, etclogtime
+        (select rownum rn, tt. * from
+		(select seq, category, subject, nvl(hithit, 0) as hit, nvl(likelike, 0) as comlike, comlogtime from
+		(select seq, sum(a) as hithit, sum(b) as likelike from
+        (select seq, etclogtime, sum(hithit) as a, sum(likelike) as b 
+		                from etctest 
+                        group by seq, etclogtime 
+                        order by seq desc
+                        )
+                        where etclogtime between to_char(sysdate-30, 'yy/mm/dd') and  to_char(sysdate, 'yy/mm/dd')
+                        group by seq
+                        order by seq
 		)
-		right join community 
+		join community 
 		using (seq)
-		where category=#{comCategory} 	
-		and etclogtime between to_char(sysdate-30, 'yy/mm/dd') and  to_char(sysdate, 'yy/mm/dd') 
+		where category=#{comCategory}	
+		<![CDATA[
+			and ${condition} > 0
+		]]>
 		order by ${condition} desc)tt
-		)where rn between #{startNum} and #{endNum}
+      	 ) where rn between #{startNum} and #{endNum}
 	</select>
-<!-- etclogtime 최신순, 좋아요//////////////////////////////////////////////////////////////////////////////////////////////// -->	
+<!-- etclogtime 조회수, 좋아요//////////////////////////////////////////////////////////////////////////////////////////////// -->	
 
+<!-- totalA 최신순 -->
 
-
+	<select id="getTotalHitInfoAllL" parameterType="java.util.Map" resultType="int">
+		select count(*) from community
+      where category in ('심리 테스트', '연애 심리글')
+      and comlogtime like to_date(to_char(sysdate, 'yy/mm/dd'))
+      order by comlogtime desc
+	</select>
 	
+	<select id="getTotalHitInfoAllWeekL" parameterType="java.util.Map" resultType="int">
+		select count(*) from community
+		where category in ('심리 테스트', '연애 심리글')
+		and  to_char(comlogtime, 'yy/mm/dd') 
+			between to_char(sysdate-6, 'yy/mm/dd') 
+				and to_char(sysdate, 'yy/mm/dd')
+		order by comlogtime desc
+	</select>
+	
+	<select id="getTotalHitInfoAllMonthL" parameterType="java.util.Map" resultType="int">
+		select count(*) from community
+		where category in ('심리 테스트', '연애 심리글')
+		and  to_char(comlogtime, 'yy/mm/dd') 
+			between to_char(sysdate-30, 'yy/mm/dd') 
+				and to_char(sysdate, 'yy/mm/dd')
+		order by comlogtime desc
+	</select>
+	
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////// -->	
+
+	<select id="getTotalHitInfoL" parameterType="java.util.Map" resultType="int">
+		select count(*) from community
+      where category=#{comCategory}
+      and comlogtime like to_date(to_char(sysdate, 'yy/mm/dd'))
+      order by comlogtime desc
+	</select>
+	
+	<select id="getTotalHitInfoWeekL" parameterType="java.util.Map" resultType="int">
+		select count(*) from community
+		where category=#{comCategory}
+		and  to_char(comlogtime, 'yy/mm/dd') 
+			between to_char(sysdate-6, 'yy/mm/dd') 
+				and to_char(sysdate, 'yy/mm/dd')
+		order by comlogtime desc
+	</select>
+	
+	<select id="getTotalHitInfoMonthL" parameterType="java.util.Map" resultType="int">
+		select count(*) from community
+		where category=#{comCategory}
+		and  to_char(comlogtime, 'yy/mm/dd') 
+			between to_char(sysdate-30, 'yy/mm/dd') 
+				and to_char(sysdate, 'yy/mm/dd')
+		order by comlogtime desc
+	</select>
+
+<!-- totalA 최신순 -->
+
+<!-- totalA etclogtime 조회수, 좋아요//////////////////////////////////////////////////////////////////////////////////////////////// -->		
 	<select id="getTotalHitInfoAll" parameterType="java.util.Map" resultType="int">
 		select count(*) from
-		(select seq, category, subject, nvl(hithit, 0) as hit, nvl(likelike, 0) as comlike, comlogtime, etclogtime from
-		(select seq, etclogtime, sum(a) as hithit, sum(b) as likelike
-		        from (select seq, etclogtime, sum(hithit) as a, sum(likelike) as b 
-		                from etctest group by seq, etclogtime order by seq desc) 
-		        group by seq, etclogtime
+		(select seq, category, subject, nvl(hithit, 0) as hit, nvl(likelike, 0) as comlike, comlogtime from
+		(select seq, sum(a) as hithit, sum(b) as likelike from
+        (select seq, etclogtime, sum(hithit) as a, sum(likelike) as b 
+		                from etctest 
+                        group by seq, etclogtime 
+                        order by seq desc
+                        )
+                        where etclogtime = to_char(sysdate, 'yy/mm/dd')
+                        group by seq
+                        order by seq
 		)
-		right join community 
+		join community 
 		using (seq)
 		where category in ('심리 테스트', '연애 심리글') 	
-		and  comlogtime like TO_DATE(to_char(sysdate, 'yy/mm/dd')) 
+		<![CDATA[
+			and ${condition} > 0
+		]]>
 		order by ${condition} desc)
 		
 	</select>
 	
 	<select id="getTotalHitInfoAllWeek" parameterType="java.util.Map" resultType="int">
 		select count(*) from
-		(select seq, category, subject, nvl(hithit, 0) as hit, nvl(likelike, 0) as comlike, comlogtime, etclogtime from
-		(select seq, etclogtime, sum(a) as hithit, sum(b) as likelike
-		        from (select seq, etclogtime, sum(hithit) as a, sum(likelike) as b 
-		                from etctest group by seq, etclogtime order by seq desc) 
-		        group by seq, etclogtime
+		(select seq, category, subject, nvl(hithit, 0) as hit, nvl(likelike, 0) as comlike, comlogtime from
+		(select seq, sum(a) as hithit, sum(b) as likelike from
+        (select seq, etclogtime, sum(hithit) as a, sum(likelike) as b 
+		                from etctest 
+                        group by seq, etclogtime 
+                        order by seq desc
+                        )
+                        where etclogtime between to_char(sysdate-6, 'yy/mm/dd') and  to_char(sysdate, 'yy/mm/dd')
+                        group by seq
+                        order by seq
 		)
-		right join community 
+		join community 
 		using (seq)
 		where category in ('심리 테스트', '연애 심리글') 	
-		and  to_char(comlogtime, 'yy/mm/dd') 
-          between to_char(sysdate-6, 'yy/mm/dd') 
-             and to_char(sysdate, 'yy/mm/dd')
+		<![CDATA[
+			and ${condition} > 0
+		]]>
 		order by ${condition} desc)
 	</select>
 	
 	<select id="getTotalHitInfoAllMonth" parameterType="java.util.Map" resultType="int">
 		select count(*) from
-		(select seq, category, subject, nvl(hithit, 0) as hit, nvl(likelike, 0) as comlike, comlogtime, etclogtime from
-		(select seq, etclogtime, sum(a) as hithit, sum(b) as likelike
-		        from (select seq, etclogtime, sum(hithit) as a, sum(likelike) as b 
-		                from etctest group by seq, etclogtime order by seq desc) 
-		        group by seq, etclogtime
+		(select seq, category, subject, nvl(hithit, 0) as hit, nvl(likelike, 0) as comlike, comlogtime from
+		(select seq, sum(a) as hithit, sum(b) as likelike from
+        (select seq, etclogtime, sum(hithit) as a, sum(likelike) as b 
+		                from etctest 
+                        group by seq, etclogtime 
+                        order by seq desc
+                        )
+                        where etclogtime between to_char(sysdate-30, 'yy/mm/dd') and  to_char(sysdate, 'yy/mm/dd')
+                        group by seq
+                        order by seq
 		)
-		right join community 
+		join community 
 		using (seq)
 		where category in ('심리 테스트', '연애 심리글') 	
-		and  to_char(comlogtime, 'yy/mm/dd') 
-          between to_char(sysdate-30, 'yy/mm/dd') 
-             and to_char(sysdate, 'yy/mm/dd')
+		<![CDATA[
+			and ${condition} > 0
+		]]>
 		order by ${condition} desc)
 	</select>
 	
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////// -->	
+
 	<select id="getTotalHitInfo" parameterType="java.util.Map" resultType="int">
 		select count(*) from
-		(select seq, category, subject, nvl(hithit, 0) as hit, nvl(likelike, 0) as comlike, comlogtime, etclogtime from
-		(select seq, etclogtime, sum(a) as hithit, sum(b) as likelike
-		        from (select seq, etclogtime, sum(hithit) as a, sum(likelike) as b 
-		                from etctest group by seq, etclogtime order by seq desc) 
-		        group by seq, etclogtime
+		(select seq, category, subject, nvl(hithit, 0) as hit, nvl(likelike, 0) as comlike, comlogtime from
+		(select seq, sum(a) as hithit, sum(b) as likelike from
+        (select seq, etclogtime, sum(hithit) as a, sum(likelike) as b 
+		                from etctest 
+                        group by seq, etclogtime 
+                        order by seq desc
+                        )
+                        where etclogtime=to_char(sysdate, 'yy/mm/dd')
+                        group by seq
+                        order by seq
 		)
-		right join community 
+		join community 
 		using (seq)
-		where category=#{comCategory} 	
-		and etclogtime = to_char(sysdate, 'yy/mm/dd') 
+		where category=#{comCategory}	
+		<![CDATA[
+			and ${condition} > 0
+		]]>
 		order by ${condition} desc)
 	</select>
 	
 	<select id="getTotalHitInfoWeek" parameterType="java.util.Map" resultType="int">
 		select count(*) from
-		(select seq, category, subject, nvl(hithit, 0) as hit, nvl(likelike, 0) as comlike, comlogtime, etclogtime from
-		(select seq, etclogtime, sum(a) as hithit, sum(b) as likelike
-		        from (select seq, etclogtime, sum(hithit) as a, sum(likelike) as b 
-		                from etctest group by seq, etclogtime order by seq desc) 
-		        group by seq, etclogtime
+		(select seq, category, subject, nvl(hithit, 0) as hit, nvl(likelike, 0) as comlike, comlogtime from
+		(select seq, sum(a) as hithit, sum(b) as likelike from
+        (select seq, etclogtime, sum(hithit) as a, sum(likelike) as b 
+		                from etctest 
+                        group by seq, etclogtime 
+                        order by seq desc
+                        )
+                        where etclogtime between to_char(sysdate-6, 'yy/mm/dd') and  to_char(sysdate, 'yy/mm/dd')
+                        group by seq
+                        order by seq
 		)
-		right join community 
+		join community 
 		using (seq)
-		where category=#{comCategory} 	
-		and etclogtime between to_char(sysdate-6, 'yy/mm/dd') and  to_char(sysdate, 'yy/mm/dd') 
+		where category=#{comCategory}	
+		<![CDATA[
+			and ${condition} > 0
+		]]>
 		order by ${condition} desc)
 	</select>
 	
 	<select id="getTotalHitInfoMonth" parameterType="java.util.Map" resultType="int">
 		select count(*) from
-		(select seq, category, subject, nvl(hithit, 0) as hit, nvl(likelike, 0) as comlike, comlogtime, etclogtime from
-		(select seq, etclogtime, sum(a) as hithit, sum(b) as likelike
-		        from (select seq, etclogtime, sum(hithit) as a, sum(likelike) as b 
-		                from etctest group by seq, etclogtime order by seq desc) 
-		        group by seq, etclogtime
+		(select seq, category, subject, nvl(hithit, 0) as hit, nvl(likelike, 0) as comlike, comlogtime from
+		(select seq, sum(a) as hithit, sum(b) as likelike from
+        (select seq, etclogtime, sum(hithit) as a, sum(likelike) as b 
+		                from etctest 
+                        group by seq, etclogtime 
+                        order by seq desc
+                        )
+                        where etclogtime between to_char(sysdate-30, 'yy/mm/dd') and  to_char(sysdate, 'yy/mm/dd')
+                        group by seq
+                        order by seq
 		)
-		right join community 
+		join community 
 		using (seq)
-		where category=#{comCategory} 	
-		and etclogtime between to_char(sysdate-30, 'yy/mm/dd') and  to_char(sysdate, 'yy/mm/dd') 
+		where category=#{comCategory}	
+		<![CDATA[
+			and ${condition} > 0
+		]]>
 		order by ${condition} desc)
 	</select>
+	
+<!-- etclogtime 조회수, 좋아요//////////////////////////////////////////////////////////////////////////////////////////////// -->		
+<!-- 조회수, 좋아요	 -->	
 	
 </mapper>
