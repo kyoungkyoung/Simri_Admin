@@ -72,51 +72,70 @@ public class ChartMybatis implements ChartDAO {
 	@Override
 	public List<CommunityDTO> getHitInfoDay(Map<String, Object> newMap) {
 		List<CommunityDTO> list = new ArrayList<CommunityDTO>();
-	
 		System.out.println(newMap.get("comCategory"));
 		System.out.println(newMap.get("condition"));
 		System.out.println(newMap.get("date"));
+
+		if(newMap.get("condition").equals("seq")) {
+			newMap.put("condition", "comlogtime");		
+			System.out.println("마이바티스 최신순 \t "+newMap.get("condition"));
+			//최신순
 			
-		if(newMap.get("comCategory").equals("comCategoryAll")) {
-			if(newMap.get("date").equals("day")) {
-				list = sqlSession.selectList("chartSQL.getHitInfoAll", newMap);
-				System.out.println(list);
-				return list;
-			}else if(newMap.get("date").equals("week")) {
-				list = sqlSession.selectList("chartSQL.getHitInfoAllWeek", newMap);
-				System.out.println(list);
-				return list;
-			}else {
-				list = sqlSession.selectList("chartSQL.getHitInfoAllMonth", newMap);
-				System.out.println(list);
-				return list;
+			return null;
+			
+			
+			
+		}//if 최신순
+		
+		else {
+			System.out.println("마이바티스 조회수, 좋아요 \t "+newMap.get("condition"));
+			
+			//조회수, 좋아요
+			if(newMap.get("comCategory").equals("comCategoryAll")) {
+				if(newMap.get("date").equals("day")) {
+					list = sqlSession.selectList("chartSQL.getHitInfoAll", newMap);
+					System.out.println(list);
+					return list;
+				}else if(newMap.get("date").equals("week")) {
+					list = sqlSession.selectList("chartSQL.getHitInfoAllWeek", newMap);
+					System.out.println(list);
+					return list;
+				}else {
+					list = sqlSession.selectList("chartSQL.getHitInfoAllMonth", newMap);
+					System.out.println(list);
+					return list;
+				}
 			}
-		}
-		else if(newMap.get("comCategory").equals("심리테스트")) {
-			newMap.put("comCategory", "심리 테스트");
-			if(newMap.get("date").equals("day")) {
-				list = sqlSession.selectList("chartSQL.getHitInfo", newMap);
-				return list;
-			}else if(newMap.get("date").equals("week")) {
-				list = sqlSession.selectList("chartSQL.getHitInfoWeek", newMap);
-				return list;
+			else if(newMap.get("comCategory").equals("심리테스트")) {
+				newMap.put("comCategory", "심리 테스트");
+				if(newMap.get("date").equals("day")) {
+					list = sqlSession.selectList("chartSQL.getHitInfo", newMap);
+					return list;
+				}else if(newMap.get("date").equals("week")) {
+					list = sqlSession.selectList("chartSQL.getHitInfoWeek", newMap);
+					return list;
+				}else {
+					list = sqlSession.selectList("chartSQL.getHitInfoMonth", newMap);
+					return list;
+				}
 			}else {
-				list = sqlSession.selectList("chartSQL.getHitInfoMonth", newMap);
-				return list;
+				newMap.put("comCategory", "연애 심리글");
+				if(newMap.get("date").equals("day")) {
+					list = sqlSession.selectList("chartSQL.getHitInfo", newMap);
+					return list;
+				}else if(newMap.get("date").equals("week")) {
+					list = sqlSession.selectList("chartSQL.getHitInfoWeek", newMap);
+					return list;
+				}else {
+					list = sqlSession.selectList("chartSQL.getHitInfoMonth", newMap);
+					return list;
+				}
 			}
-		}else {
-			newMap.put("comCategory", "연애 심리글");
-			if(newMap.get("date").equals("day")) {
-				list = sqlSession.selectList("chartSQL.getHitInfo", newMap);
-				return list;
-			}else if(newMap.get("date").equals("week")) {
-				list = sqlSession.selectList("chartSQL.getHitInfoWeek", newMap);
-				return list;
-			}else {
-				list = sqlSession.selectList("chartSQL.getHitInfoMonth", newMap);
-				return list;
-			}
-		}
+			
+		}//else 조회수, 좋아요
+		
+			
+		
 	}
 
 	@Override
