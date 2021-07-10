@@ -31,15 +31,11 @@
 		(select * from simrimember where singoreason is not null order by signlogtime desc)tt 
 		)where rn<![CDATA[ >= ]]>#{startNum}
 		 and rn <![CDATA[ <= ]]>#{endNum}
-	
-		<!-- select * from simrimember where memsingo >= 1 order by signlogtime desc -->
 	</select>
 	
 	<select id="getWarningTotalA" resultType="int">
-		select count(*) from simrimember where memsingo >= 1
+		select count(*) from simrimember where singoreason is not null
 	</select>
-	
-	
 	
 	<select id="getMemberStopList" parameterType="java.util.Map" resultType="member">
 		select * from (select rownum rn, tt.*from 
@@ -47,7 +43,6 @@
 		)where rn<![CDATA[ >= ]]>#{startNum}
 		 and rn <![CDATA[ <= ]]>#{endNum}
 		 
-		<!-- select * from simrimember where condition = '정지' order by signlogtime desc -->
 	</select>
 	
 	<select id="getStopTotalA" resultType="int">
@@ -68,9 +63,7 @@
 	</delete>
 
 	<select id="getMemberSearch" parameterType="java.util.Map" resultType="member">
-	
-	
-	select * from (select rownum rn, tt.*from 
+		select * from (select rownum rn, tt.*from 
 		(select * from simrimember where ${category} like '%'||#{searchText}||'%' order by signlogtime desc)tt 
 		)where rn<![CDATA[ >= ]]>#{startNum}
 		 and rn <![CDATA[ <= ]]>#{endNum}
@@ -82,15 +75,16 @@
 	</select>
 
 	<select id="getMemberWarningSearch" parameterType="java.util.Map" resultType="member">
-		select * from (select rownum rn, tt.*from 
-		(select * from simrimember where memsingo >= 1 and ${category} like '%'||#{searchText}||'%' order by signlogtime desc)tt 
+		select * from 
+		(select rownum rn, tt.*from 
+		(select * from simrimember where singoreason is not null and ${category} like '%'||#{searchText}||'%' order by signlogtime desc)tt 
 		)where rn<![CDATA[ >= ]]>#{startNum}
 		 and rn <![CDATA[ <= ]]>#{endNum}
 
 	</select>
 	
 	<select id="warningSearchTotalA" resultType="int"  parameterType="java.util.Map">
-		select count(*) from simrimember where memsingo >= 1 and ${category} like '%'||#{searchText}||'%'
+		select count(*) from simrimember where singoreason is not null and ${category} like '%'||#{searchText}||'%'
 	</select>
 
 	<update id="updateStop" parameterType="member">

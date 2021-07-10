@@ -69,8 +69,7 @@ public class CommunityController {
 		System.out.println("신고 ->" + list);
 		//페이징 처리
 		ReplyPaging replyPaging = communityService.singoReplyPaging(map);
-		
-		
+
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("pg", pg);

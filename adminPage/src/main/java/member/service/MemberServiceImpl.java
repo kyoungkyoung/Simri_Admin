@@ -202,6 +202,19 @@ public class MemberServiceImpl implements MemberService {
 		return memberPaging;
 	}
 
+	@Override
+	public MemberWarningPaging warningMemberPaging(Map<String, String> map) {
+		int searchTotalA = memberDAO.warningSearchTotalA(map);
+		
+		memberWarningPaging.setCurrentPage(Integer.parseInt(map.get("pg")));//현재 페이지
+		memberWarningPaging.setPageBlock(3);
+		memberWarningPaging.setPageSize(10);
+		memberWarningPaging.setTotalA(searchTotalA);
+		memberWarningPaging.makePagingHTML();
+		
+		return memberWarningPaging;
+	}
+
 
 
 

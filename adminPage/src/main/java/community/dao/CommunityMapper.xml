@@ -28,14 +28,16 @@
 	<select id="singoReplyList" parameterType="java.util.Map" resultType="reply">
 		
 		select * from (select rownum rn, tt.*from 
-		(select * from reply where replyseq >0 order by replylogtime desc, seq desc)tt 
+		(select * from reply where replysingo>0
+		order by case when replycomment in('[신고된 댓글입니다.]') then '[]' else '' end desc
+		, replylogtime desc)tt 
 		)where rn<![CDATA[ >= ]]>#{startNum}
 		 and rn <![CDATA[ <= ]]>#{endNum}
 		
 	</select>
 	
 	<select id="getReplyTotalA" parameterType="java.util.Map" resultType="int">
-		select count(*) from reply
+		select count(*) from reply where replysingo>0
 	</select>
 	
 	<select id="singoComPalette" parameterType="java.util.Map" resultType="community">

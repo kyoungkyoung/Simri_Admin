@@ -40,5 +40,7 @@ public interface MemberService {
 
 	public MemberStopPaging stopMemberPaging(int pg);
 
+	public MemberWarningPaging warningMemberPaging(Map<String, String> map);
+
 
 }

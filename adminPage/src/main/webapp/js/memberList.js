@@ -713,8 +713,6 @@ $('#deleteBtn').click(function(){
 
 $('#searchBtn').click(function(event, str){
 	
-	//$('#general-tab').trigger('click')
-	
 	if($('#searchText').val() == '')
 		alert('검색어를 입력하세요');
 	else{
@@ -826,16 +824,16 @@ $('#searchBtn').click(function(event, str){
 								text: items.memsingo
 								
 							})).append($('<td/>',{
-								text: items.condition
+								text: items.singoReason
 								
 							})).append($('<td/>',{
-								text: items.signlogtime
+								text: items.condition
 								
 							})).appendTo($('#memberWarningListTable'));
 				});//each
 				
 				//페이징 처리
-				$('#memberWarningPagingDiv').html(data.memberPaging.pagingHTML);
+				$('#memberWarningPagingDiv').html(data.memberWarningPaging.pagingHTML);
 				
 				$(document).on('click', '#memberInfo', function(){
 					window.open('/simri/member/memberView?email='+$(this).text(), 'ss', 'width=640 height=540 left=800 top=200 scrollbars=yes');
@@ -861,6 +859,10 @@ $('#searchBtn').click(function(event, str){
 //전체 회원 페이징
 function mypagePaging(pg){
 	var searchText = document.getElementById('searchText').value;
+	$('#general-tab').addClass('active');
+	$('#warning-tab').removeClass('active');
+	$('#stop-tab').removeClass('active');
+	
 	
 	if(searchText==''){
 		//$('#pg').val(pg);
@@ -878,6 +880,7 @@ function memberWarningPaging(pg){
 	var searchText = document.getElementById('searchText').value;
 	$('#warning-tab').addClass('active');
 	$('#general-tab').removeClass('active');
+	$('#stop-tab').removeClass('active');
 	
 	if(searchText==''){
 		location.href = '/simri/member/memberList?pg='+pg+"&btnId=warning";
@@ -893,6 +896,7 @@ function memberStopPaging(pg){
 	var searchText = document.getElementById('searchText').value;
 	$('#stop-tab').addClass('active');
 	$('#general-tab').removeClass('active');
+	$('#warning-tab').removeClass('active');
 	
 	if(searchText==''){
 		location.href = '/simri/member/memberList?pg='+pg+"&btnId=stop";

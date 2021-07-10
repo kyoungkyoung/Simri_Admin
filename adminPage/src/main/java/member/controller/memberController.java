@@ -36,14 +36,6 @@ public class memberController {
 		return "/section/login";
 	}// memberList()
 	
-//	@RequestMapping(value = "/getMemberStopList", method = RequestMethod.GET)
-//	public String getMemberStopList(@RequestParam(required=false, defaultValue="1") String pg, Model model) { 
-//		model.addAttribute("pg", pg);
-//		model.addAttribute("display", "/member/memberList.jsp");
-//		
-//		return "/section/login";
-//	}// memberList()
-	
 	@RequestMapping(value = "/memberView", method=RequestMethod.GET)
 	public String memberView(@RequestParam String email, Model model) { 
 		System.out.println(email);
@@ -87,9 +79,6 @@ public class memberController {
 		
 		List<SimriMemberDTO> list = memberService.getMemberWarningList(Integer.parseInt(pg));
 		
-		//model.addAttribute("display", "/member/memberList.jsp");
-		
-		
 		//페이징 처리
 		MemberWarningPaging memberWarningPaging = memberService.warningMemberPaging(Integer.parseInt(pg));
 		
@@ -101,15 +90,6 @@ public class memberController {
 
 		return mav;
 	}
-	
-//	@RequestMapping(value = "/memberWarningList2", method=RequestMethod.POST)
-//	@ResponseBody
-//	public String getMemberWarningList2(@RequestParam(required=false, defaultValue="1") String pg, Model model) {
-//		model.addAttribute("pg", pg);
-//		model.addAttribute("display", "/member/memberList.jsp");
-//		
-//		return "/section/login";
-//	}
 	
 	@RequestMapping(value = "/getMemberStopList", method=RequestMethod.POST)
 	@ResponseBody
@@ -231,14 +211,16 @@ public class memberController {
 		map.put("searchText", searchText);
 		map.put("pg", pg);
 		
-		MemberPaging memberPaging = memberService.memberWarningSearchPaging(map);
+		//MemberPaging memberPaging = memberService.memberWarningSearchPaging(map);
+		MemberWarningPaging memberWarningPaging = memberService.warningMemberPaging(map);
+		
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list",list);
 		mav.addObject("searchText", searchText);
 		mav.addObject("category", category);
 		mav.addObject("pg", map.get(pg));
-		mav.addObject("memberPaging", memberPaging);
+		mav.addObject("memberWarningPaging", memberWarningPaging);
 		mav.setViewName("jsonView");
 
 		return mav;
