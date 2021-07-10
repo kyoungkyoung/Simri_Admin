@@ -1,6 +1,5 @@
 //리스트 부르기----------------------------------------------------------------------------------------------
 $(function(){
-	//alert("나오나"+$('#btnId').val());
 	if($('#btnId').val() === 'warning'){
 		$('#warning-tab').addClass('active');
 		$('#general-tab').removeClass('active');
@@ -543,7 +542,6 @@ $('#deleteBtn').click(function(){
 	let yn3=0;
 	
 	var buttonId = $('.active').attr('id');
-	alert(buttonId);
 	
 	if(buttonId=='general-tab'){
 	
@@ -730,8 +728,6 @@ $('#searchBtn').click(function(event, str){
 			},
 			dataType: 'json',
 			success: function(data){
-				alert(JSON.stringify(data));
-				
 				$('#memberListTable tr:gt(0)').remove();
 				
 				$.each(data.list, function(index, items){
