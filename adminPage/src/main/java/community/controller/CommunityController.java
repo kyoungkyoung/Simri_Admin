@@ -220,6 +220,18 @@ public class CommunityController {
 		return "/section/login"; 
 	}// postModify() 
 	
+	@RequestMapping(value = "/noticeView", method = RequestMethod.GET)
+	public String noticeView(@RequestParam String seq, Model model) {
+		System.out.println(seq);
+		CommunityDTO communityDTO = communityService.getCommunityView(seq);
+		System.out.println("Controller = " + communityDTO);
+		
+		model.addAttribute("communityDTO", communityDTO);
+		model.addAttribute("seq", Integer.parseInt(seq));
+		model.addAttribute("display", "/community/noticeView.jsp");
+		return "/section/login"; 
+	}// postModify() 
+	
 	@RequestMapping(value = "/comSearch", method = RequestMethod.POST)
 	@ResponseBody
 	public ModelAndView comSearch(@RequestParam String comSearchText,

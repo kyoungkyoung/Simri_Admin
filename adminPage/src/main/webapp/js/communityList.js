@@ -97,6 +97,8 @@ $(document).ready(function(){
 		
 		$('#comSearchText').val('');
 		
+		var comCategoryId = $('#comCategory').val();
+		
 		$.ajax({
 			type:'post',
 			url: '/simri/community/getCommunity',
@@ -159,6 +161,72 @@ $(document).ready(function(){
 				console.log(err);
 			}
 		});
+		
+		
+		if(comCategoryId=="[공지사항]"){
+			$.ajax({
+				type:'post',
+				url: '/simri/community/getCommunity',
+				data: {
+					'comCategory': $('#comCategory').val(),
+					'pg': $('#pg').val()
+				},
+				dataType: 'json',
+				success: function(data){
+					$('#communityList').empty();
+					
+					$.each(data.list, function(index, items){
+						
+						$('<li/>',{
+							class : 'list-group-item mb-3'
+						}).append($('<div/>',{
+							  class: 'list-group-item list-group-item-action'
+								  
+						  		}).append($('<div/>',{
+						  			class: 'd-flex w-100'
+						  				
+						  			}).append($('<input/>',{
+						  				class: 'form-check-in mr-3 mt-2', 
+						  				type: 'checkbox',
+						  				name: 'check',
+										value: items.seq,
+										onclick: 'checkSelectAll(this)'
+						  			})).append($('<a/>',{
+						  				href: '/simri/community/noticeView?seq='+items.seq,
+						  				class: 'mb-1 flex-fill',
+						  				style: 'text-decoration: none; color: black;'
+							  			}).append($('<h5/>',{
+							  				html: items.category+'<br>['+items.seq+'] '+items.subject,
+							  				style: 'color: black;',
+							  				id: 'comSeq'
+						  			}))).append($('<small/>',{
+						  				class: 'text-muted',
+						  				text: items.comLogtime
+						  				
+						  		}))).append($('<small/>',{
+						  			class: 'text-muted ml-4',
+						  			text: '['+items.nickname+']'
+						  			
+						  		})).append($('<div/>',{
+						  			class: 'd-flex w-100 justify-content-end'
+						  			}).append($('<button/>',{
+						  				type: 'button', 
+						  				class: 'btn btn-outline-secondary float-right mr-1 chartBtn'+items.seq,
+						  				text: '통계'
+						  			})))).appendTo('#communityList');	
+						
+						$('.chartBtn'+items.seq).click(function(){
+							location.href="/simri/chart/postGraphDetail?seq="+items.seq;
+						});
+						
+					});//each
+					$('#communityPagingDiv').html(data.communityPaging.pagingHTML);
+				},
+				error: function(err){
+					console.log(err);
+				}
+			});
+		}
 		
 	});
 	$('#pg').val('1');

@@ -17,25 +17,25 @@
          <div class="form-group mb-3"
             style="padding-left: 20px; padding-right: 20px">
             <label for="board_subject">제목</label> 
-            <input type="text" id="subject" name="subject" class="form-control" value="${communityDTO.subject}" readonly/>
+            <input type="text" id="subject" name="subject" class="form-control" value="${communityDTO.subject}" />
          </div>
          
          <div class="form-group mb-3"
             style="padding-left: 20px; padding-right: 20px">
             <label for="board_content">내용</label>
-            <textarea id="content" name="content" class="form-control" rows="10" style="resize: none; height: 325px;" readonly>${communityDTO.content}</textarea>
+            <textarea id="content" name="content" class="form-control" rows="10" style="resize: none; height: 325px;" >${communityDTO.content}</textarea>
          </div>
          
          <div class="form-group mb-3"
             style="padding-left: 20px; padding-right: 20px">
             <label for="board_content">심리테스트 URL</label>
-         <input type="text" id="testURL" name="testURL" class="form-control" value="${communityDTO.testURL}" readonly/>
+         <input type="text" id="testURL" name="testURL" class="form-control" value="${communityDTO.testURL}" />
          </div>
          
          <div class="form-group mb-3"
             style="padding-left: 20px; padding-right: 20px">
             <label for="board_file">첨부 이미지</label>
-            <input type="file" id="img" name="img" class="form-control" accept="image/*" readonly/>
+            <input type="file" id="img" name="img" class="form-control" accept="image/*" />
          </div>
          
          <div class="form-group mb-3"
