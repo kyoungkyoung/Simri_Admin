@@ -80,7 +80,6 @@ public class CommunityServiceImpl implements CommunityService {
 		replyPaging.setPageSize(5);
 		replyPaging.setTotalA(totalA);
 		replyPaging.makePagingHTML();
-		System.out.println(replyPaging);
 		return replyPaging;
 	}
 	
@@ -99,7 +98,6 @@ public class CommunityServiceImpl implements CommunityService {
 		communityPaging.setPageSize(5);
 		communityPaging.setTotalA(totalA);
 		communityPaging.makePagingHTML(map.get("comCategory"));
-		System.out.println(communityPaging);
 		return communityPaging;
 	}
 	
@@ -112,7 +110,6 @@ public class CommunityServiceImpl implements CommunityService {
 		communityPaging.setPageSize(5);
 		communityPaging.setTotalA(totalA);
 		communityPaging.makePagingHTML(map.get("comCategory"));
-		System.out.println(communityPaging);
 		return communityPaging;
 	}
 

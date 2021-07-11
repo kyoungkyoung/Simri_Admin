@@ -47,7 +47,6 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public PostPaging2 postPaging2(String pg, String comCategory, String DHL) {
-		System.out.println("서비스 :" + DHL);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pg", Integer.parseInt(pg));
 		map.put("comCategory", comCategory);
@@ -62,7 +61,6 @@ public class PostServiceImpl implements PostService {
 		postPaging2.setPageSize(5);
 		postPaging2.setTotalA(totalA);
 		postPaging2.makePagingHTML(DHL);
-		System.out.println(postPaging2);
 		
 		return postPaging2;
 	}
@@ -89,7 +87,6 @@ public class PostServiceImpl implements PostService {
 		postPaging.setPageSize(5);
 		postPaging.setTotalA(totalA);
 		postPaging.makePagingHTML();
-		System.out.println(postPaging);
 		
 		return postPaging;
 	}

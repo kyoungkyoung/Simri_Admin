@@ -17,7 +17,6 @@
 <!-- css -->
 <link href="/simri/css/sidebar.css" rel="stylesheet">
 <link href="/simri/css/footer.css" rel="stylesheet">
-<link href="/simri/css/writing.css" rel="stylesheet">
 <body>	
 	<!-- 상단 메뉴 -->
 	<jsp:include page="/main/top.jsp" />
@@ -45,7 +44,6 @@
 	
 <jsp:include page="/main/footer.jsp" />	
 <script src="/simri/js/sidebar.js"></script>
-<script src="/simri/js/writing.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 //팝업창

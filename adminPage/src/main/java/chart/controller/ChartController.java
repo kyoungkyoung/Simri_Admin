@@ -40,8 +40,6 @@ public class ChartController {
 	@RequestMapping(value = "/getEtc", method = RequestMethod.POST)
 	@ResponseBody
 	public ModelAndView getEtc(@RequestParam String seq) {
-		System.out.println("seq="+seq);
-		
 		List<EtcDTO> list = chartService.getEtc(seq);
 		
 		ModelAndView mav = new ModelAndView();
@@ -54,8 +52,6 @@ public class ChartController {
 	@RequestMapping(value = "/getDate", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelAndView getDate(@RequestParam String seq, @RequestParam String date) {
-		System.out.println("찍히나"+seq);
-		System.out.println("찍히나"+date);
 		
 		List<EtcDTO> list = chartService.getDate(seq, date);
 		
@@ -89,10 +85,8 @@ public class ChartController {
 	@RequestMapping(value="/getMemData", method = RequestMethod.POST)
 	@ResponseBody
 	public ModelAndView getMemData(@RequestParam String date) {
-		System.out.println(date);
 		
 		List<MemChartDTO> list = chartService.getMemData(date);
-		System.out.println(list);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", list);
 		mav.setViewName("jsonView");
@@ -135,7 +129,6 @@ public class ChartController {
 		
 		ChartPaging chartPaging = chartService.chartPaging(map);
 		
-		System.out.println(list);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", list);
 		mav.addObject("chartPaging", chartPaging);

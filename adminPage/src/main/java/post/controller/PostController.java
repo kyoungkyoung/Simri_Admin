@@ -37,7 +37,6 @@ public class PostController {
 	@RequestMapping(value = "/writeManage", method = RequestMethod.GET)
 	public String writeManage(@RequestParam(required=false, defaultValue="1") String pg,
 							  @RequestParam(required=false, defaultValue="최신순") String DHL1, Model model) { 
-		System.out.println("컨트롤러 writeM : "+ DHL1);
 		model.addAttribute("pg", pg);
 		model.addAttribute("DHL1", DHL1);
 		model.addAttribute("display", "/post/writeManage.jsp");
@@ -85,8 +84,6 @@ public class PostController {
 		postDTO.setNickname("admin");
 		postDTO.setPalette("관리자");
 		
-		System.out.println(postDTO);
-		
 		postService.postWrite(postDTO);
 		
 	}
@@ -95,8 +92,6 @@ public class PostController {
 	@ResponseBody
 	public ModelAndView getSimriPostList(@RequestParam String comCategory, @RequestParam String DHL,
 										 @RequestParam(required=false, defaultValue="1") String pg) {
-		
-		System.out.println(comCategory+pg+DHL);
 		
 		List<PostDTO> list = postService.getSimriPostList(pg, comCategory, DHL);
 		
@@ -110,7 +105,6 @@ public class PostController {
 		mav.addObject("list", list);
 		mav.addObject("postPaging2", postPaging2);
 		mav.setViewName("jsonView");
-		System.out.println(mav);
 		
 		return mav;
 		
@@ -148,9 +142,7 @@ public class PostController {
 	
 	@RequestMapping(value = "/postView", method = RequestMethod.GET)
 	public String postView(@RequestParam String seq, Model model) {
-		System.out.println(seq);
 		PostDTO postDTO = postService.getPostView(seq);
-		System.out.println("Controller = " + postDTO);
 		
 		model.addAttribute("postDTO", postDTO);
 		model.addAttribute("seq", Integer.parseInt(seq));
@@ -162,7 +154,6 @@ public class PostController {
 	@ResponseBody
 	public void viewModify(@ModelAttribute PostDTO postDTO,
 			@RequestParam MultipartFile img) {
-		//System.out.println(communityDTO.getImage());
 		
 		//D:\Spring\FinalProject\git_Project\gitAdmin\adminPage\src\main\webapp\storage
 		//C:\\git_home\\gitAdmin\\adminPage\\src\\main\\webapp\\storage
@@ -235,8 +226,6 @@ public class PostController {
 		postDTO.setNickname("admin");
 		postDTO.setPalette("관리자");
 		
-		System.out.println(postDTO);
-		
 		postService.loveWrite(postDTO);
 		
 	}
@@ -245,8 +234,6 @@ public class PostController {
 	@ResponseBody
 	public ModelAndView getLovePostList(@RequestParam String comCategory, @RequestParam String DHL,
 										@RequestParam(required=false, defaultValue="1") String pg) {
-		
-		System.out.println(comCategory+pg+DHL);
 		
 		List<PostDTO> list = postService.getLovePostList(pg, comCategory, DHL);
 		
@@ -260,7 +247,6 @@ public class PostController {
 		mav.addObject("list", list);
 		mav.addObject("postPaging2", postPaging2);
 		mav.setViewName("jsonView");
-		System.out.println(mav);
 		
 		return mav;
 		
@@ -268,9 +254,7 @@ public class PostController {
 	
 	@RequestMapping(value = "/loveView", method = RequestMethod.GET)
 	public String loveView(@RequestParam String seq, Model model) {
-		System.out.println(seq);
 		PostDTO postDTO = postService.getLoveView(seq);
-		System.out.println("Controller = " + postDTO);
 		
 		model.addAttribute("postDTO", postDTO);
 		model.addAttribute("seq", Integer.parseInt(seq));

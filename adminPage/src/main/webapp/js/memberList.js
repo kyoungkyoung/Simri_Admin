@@ -342,8 +342,6 @@ $('#stopBtn').click(function(){
 					count++;
 					
 				}else if(check1[i].checked == true){
-					console.log(check1[i].value);
-					
 					var dataEmail = new Object();
 					var dataNum = new Object();
 					
@@ -351,8 +349,6 @@ $('#stopBtn').click(function(){
 					dataEmail.email = check1[i].value;
 					listNum.push(dataNum);
 					listEmail.push(dataEmail);
-					console.log(listNum);
-					console.log(listEmail);
 					
 					yn++;
 					
@@ -361,8 +357,6 @@ $('#stopBtn').click(function(){
 			
 			var jsonNum = JSON.stringify(listNum);
 			var jsonEmail = JSON.stringify(listEmail);
-			console.log(jsonNum);
-			console.log(jsonEmail);
 			if(count != 0 && yn==0){
 				alert('활동정지할 회원을 선택해주세요');			
 			}else if(count >= 0 && yn != 0){
@@ -386,7 +380,6 @@ $('#stopBtn').click(function(){
 					count2++;
 					
 				}else if(check2[i].checked == true){
-					console.log(check2[i].value);
 					
 					var dataEmail2 = new Object();
 					var dataNum2 = new Object();
@@ -395,9 +388,6 @@ $('#stopBtn').click(function(){
 					dataEmail2.email = check2[i].value;
 					listNum2.push(dataNum2);
 					listEmail2.push(dataEmail2);
-					console.log(listNum2);
-					console.log(listEmail2);
-					
 					
 					yn2++;
 					
@@ -406,9 +396,6 @@ $('#stopBtn').click(function(){
 			
 			var jsonNum2 = JSON.stringify(listNum2);
 			var jsonEmail2 = JSON.stringify(listEmail2);
-			console.log(jsonNum2);
-			console.log(jsonEmail2);
-			
 			
 //--------------------------------------------------------------	 
 			
@@ -429,15 +416,11 @@ $('#stopBtn').click(function(){
 
 $('#stopInsertBtn').click(function(){
 	var radioId = $('input:radio[name="inlineRadioOptions"]:checked').val();
-	console.log(radioId);
-
 	var aaa = $('input[name=stopReason]').val()
+	
 	if(aaa == ''){
 		alert('정지 사유를 입력해주세요 ');
-	}
-	
-	
-	else{
+	}else{
 	$.ajax({
 		type: 'post',
 		url: '/simri/member/stopInsert',
@@ -473,8 +456,6 @@ $('#stopPeriodBtn').click(function(){
 				count2++;
 				
 			}else if(check2[i].checked == true){
-				console.log(check2[i].value);
-				
 				var dataEmail2 = new Object();
 				var dataNum2 = new Object();
 				
@@ -482,9 +463,6 @@ $('#stopPeriodBtn').click(function(){
 				dataEmail2.email = check2[i].value;
 				listNum2.push(dataNum2);
 				listEmail2.push(dataEmail2);
-				console.log(listNum2);
-				console.log(listEmail2);
-				
 				
 				yn2++;
 				
@@ -493,8 +471,6 @@ $('#stopPeriodBtn').click(function(){
 		
 		var jsonNum2 = JSON.stringify(listNum2);
 		var jsonEmail2 = JSON.stringify(listEmail2);
-		console.log(jsonNum2);
-		console.log(jsonEmail2);
 		
 		if(count2 != 0 && yn2==0){
 				alert('정지 연장할 회원을 선택해주세요');			   
@@ -521,7 +497,6 @@ $('#stopPeriodBtn').click(function(){
 						count3++;
 						
 					}else if(check3[i].checked == true){
-						console.log(check3[i].value);
 						
 						var dataEmail3 = new Object();
 						var dataNum3 = new Object();
@@ -530,9 +505,6 @@ $('#stopPeriodBtn').click(function(){
 						dataEmail3.email = check3[i].value;
 						listNum3.push(dataNum3);
 						listEmail3.push(dataEmail3);
-						console.log(listEmail3);
-						console.log(listNum3);
-						
 						
 						yn3++;
 						
@@ -541,12 +513,6 @@ $('#stopPeriodBtn').click(function(){
 				
 				var jsonNum3 = JSON.stringify(listNum3);
 				var jsonEmail3 = JSON.stringify(listEmail3);
-				
-				console.log(jsonNum3);
-				console.log(jsonEmail3);
-				
-				console.log(count3);
-				console.log(yn3);
 				
 				if(count3 != 0 && yn3==0){
 					alert('정지 연장할 회원을 선택해주세요');	   
@@ -560,7 +526,6 @@ $('#stopPeriodBtn').click(function(){
 
 $('#stopPeriodInsertBtn').click(function(){
 	var radioId = $('input:radio[name="inlinePeriodRadioOptions"]:checked').val();
-	console.log(radioId);
 
 	$.ajax({
 		type: 'post',
@@ -600,22 +565,16 @@ $('#deleteBtn').click(function(){
 			count++;
 			
 		}else if(check1[i].checked == true){
-			console.log(check1[i].value);
-			
 			var dataEmail = new Object();
 
 			dataEmail.email = check1[i].value;
 			listEmail.push(dataEmail);
-			console.log(listEmail);
-			
-			
 			yn++;
 			
 		}//else if
 	}//for
 	
 	var jsonEmail = JSON.stringify(listEmail);
-	console.log(jsonEmail);
 	
 	if(count != 0 && yn==0){
 		alert('강제 탈퇴할 회원을 선택해주세요');
@@ -655,24 +614,17 @@ $('#deleteBtn').click(function(){
 				count2++;
 				
 			}else if(check2[i].checked == true){
-				console.log(check2[i].value);
 				
 				var dataEmail2 = new Object();
 				
 				dataEmail2.email = check2[i].value;
 				listEmail2.push(dataEmail2);
-				console.log(listEmail2);
-				
-				
 				yn2++;
 				
 			}//else if
 		}//for
 		
 		var jsonEmail2 = JSON.stringify(listEmail2);
-		console.log(jsonEmail2);
-		console.log(count2);
-		console.log(yn2);
 		if(count2==0 && yn2==0){
 			alert('강제 탈퇴할 회원을 선택해주세요');
 		}else if(count2 != 0 && yn2==0){
@@ -708,24 +660,17 @@ $('#deleteBtn').click(function(){
 				count3++;
 				
 			}else if(check3[i].checked == true){
-				console.log(check3[i].value);
 				
 				var dataEmail3 = new Object();
 				
 				dataEmail3.email = check3[i].value;
 				listEmail3.push(dataEmail3);
-				console.log(listEmail3);
-				
-				
 				yn3++;
 				
 			}//else if
 		}//for
 		
 		var jsonEmail3 = JSON.stringify(listEmail3);
-		console.log(jsonEmail3);
-		console.log(count3);
-		console.log(yn3);
 		if(count3==0 && yn3==0){
 			alert('강제 탈퇴할 회원을 선택해주세요');
 		}else if(count3 != 0 && yn3==0){

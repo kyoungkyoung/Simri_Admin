@@ -138,8 +138,6 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public List<SimriMemberDTO> getMemberSearch(String category, String searchText, String pg) {
-		System.out.println(category+"   "+searchText);
-		
 		//페이징 처리
 		//1페이지당 10개
 		int endNum = Integer.parseInt(pg)*10 ;
@@ -151,7 +149,6 @@ public class MemberServiceImpl implements MemberService {
 		map.put("category", category);
 		map.put("searchText", searchText);
 		map.put("pg", pg);
-		System.out.println(map);
 		
 		List<SimriMemberDTO> list = memberDAO.getMemberSearch(map);
 		return list;
@@ -183,7 +180,6 @@ public class MemberServiceImpl implements MemberService {
 		map.put("category", category);
 		map.put("searchText", searchText);
 		map.put("pg", pg);
-		System.out.println(map);
 		
 		List<SimriMemberDTO> list = memberDAO.getMemberWarningSearch(map);
 		return list;

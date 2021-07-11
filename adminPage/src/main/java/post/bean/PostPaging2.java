@@ -16,8 +16,6 @@ public class PostPaging2 {
 	   
 	   
 	   public void makePagingHTML(String DHL) {
-		   System.out.println("페이징2 = "+DHL);
-		   	
 		    int num = 0;
 		   
 		   	 if(DHL.equals("최신순")) {
@@ -27,8 +25,6 @@ public class PostPaging2 {
 			 }else if(DHL.equals("좋아요")) {
 				 num = 3;
 			 }
-		   System.out.println("페이징2 넘버 : "+num);
-		   
 	      pagingHTML = new StringBuffer();
 	      
 	      int totalP = (totalA+pageSize-1)/pageSize;

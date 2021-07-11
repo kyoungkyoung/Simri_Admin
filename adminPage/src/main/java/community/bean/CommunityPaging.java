@@ -16,7 +16,6 @@ public class CommunityPaging {
 	   
 	   
 	   public void makePagingHTML(String comCategory) {
-		   System.out.println("789456123"+comCategory);
 		   
 		   int num=0;
 		   

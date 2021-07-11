@@ -63,11 +63,9 @@ public class ChartServiceImpl implements ChartService {
 		newMap.put("condition", map.get("condition"));
 		newMap.put("date", map.get("date"));
 		
-		System.out.println("임플 맵"+newMap);
 		
 		List<CommunityDTO> list = chartDAO.getHitInfoDay(newMap);
 		
-		System.out.println("임플 리스트"+list);
 		
 		return list;
 	}

@@ -26,7 +26,6 @@ public class CommunityMybatis implements CommunityDAO {
 			return list;
 		}else {
 			List<CommunityDTO> list = sqlSession.selectList("communitySQL.getCommunity",newMap);
-			System.out.println(list);
 			return list;
 		}
 	}
@@ -45,7 +44,6 @@ public class CommunityMybatis implements CommunityDAO {
 	@Override
 	public List<ReplyDTO> singoReplyList(Map<String, Object> newMap) {
 		List<ReplyDTO> list = sqlSession.selectList("communitySQL.singoReplyList", newMap);
-		System.out.println("마바 댓글  "+list);
 		return list;
 	}
 	
@@ -111,7 +109,6 @@ public class CommunityMybatis implements CommunityDAO {
 	public void noticeWrite(CommunityDTO communityDTO) {
 		if(communityDTO.getImage().equals("null.jpg")) {
 			int num = (int)(Math.random()*(7-1))+1;
-			System.out.println(num);
 			String nullImage = "null"+ Integer.toString(num)+".jpg";
 			communityDTO.setImage(nullImage);
 		}
@@ -122,7 +119,6 @@ public class CommunityMybatis implements CommunityDAO {
 	@Override
 	public CommunityDTO getCommunityView(String seq) {
 		CommunityDTO communityDTO = sqlSession.selectOne("communitySQL.getCommunityView", Integer.parseInt(seq));
-		System.out.println(communityDTO);
 		return communityDTO;
 	}
 

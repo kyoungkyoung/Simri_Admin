@@ -60,13 +60,10 @@ public class CommunityController {
 	@ResponseBody
 	public ModelAndView singoReplyList(@RequestParam(required=false, defaultValue="1") String pg) {
 		
-		System.out.println("커ㅏㄴ트돌"+pg);
-		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("pg", pg);
 		
 		List<ReplyDTO> list = communityService.singoReplyList(map);
-		System.out.println("신고 ->" + list);
 		//페이징 처리
 		ReplyPaging replyPaging = communityService.singoReplyPaging(map);
 
@@ -147,7 +144,6 @@ public class CommunityController {
 	@ResponseBody
 	public ModelAndView getCommunity(@RequestParam String comCategory,
 									 @RequestParam(required=false, defaultValue="1") String pg) {
-		System.out.println("컨트"+comCategory);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("comCategory", comCategory);
 		map.put("pg", pg);
@@ -209,9 +205,7 @@ public class CommunityController {
 	
 	@RequestMapping(value = "/communityView", method = RequestMethod.GET)
 	public String communityView(@RequestParam String seq, Model model) {
-		System.out.println(seq);
 		CommunityDTO communityDTO = communityService.getCommunityView(seq);
-		System.out.println("Controller = " + communityDTO);
 		
 		model.addAttribute("communityDTO", communityDTO);
 		model.addAttribute("seq", Integer.parseInt(seq));
@@ -221,9 +215,7 @@ public class CommunityController {
 	
 	@RequestMapping(value = "/noticeView", method = RequestMethod.GET)
 	public String noticeView(@RequestParam String seq, Model model) {
-		System.out.println(seq);
 		CommunityDTO communityDTO = communityService.getCommunityView(seq);
-		System.out.println("Controller = " + communityDTO);
 		
 		model.addAttribute("communityDTO", communityDTO);
 		model.addAttribute("seq", Integer.parseInt(seq));
@@ -252,7 +244,6 @@ public class CommunityController {
 	@ResponseBody
 	public void viewModify(@ModelAttribute CommunityDTO communityDTO,
 			@RequestParam MultipartFile img) {
-		//System.out.println(communityDTO.getImage());
 		
 		//D:\Spring\FinalProject\git_Project\gitAdmin\adminPage\src\main\webapp\storage
 		//C:\\git_home\\gitAdmin\\adminPage\\src\\main\\webapp\\storage

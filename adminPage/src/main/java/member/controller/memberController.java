@@ -38,7 +38,6 @@ public class memberController {
 	
 	@RequestMapping(value = "/memberView", method=RequestMethod.GET)
 	public String memberView(@RequestParam String email, Model model) { 
-		System.out.println(email);
 		SimriMemberDTO simriMemberDTO = memberService.getSimriMember(email);
 		
 		model.addAttribute("SimriMemberDTO",simriMemberDTO);
@@ -75,7 +74,6 @@ public class memberController {
 	@RequestMapping(value = "/getMemberWarningList", method=RequestMethod.POST)
 	@ResponseBody
 	public ModelAndView getMemberWarningList(@RequestParam(required=false, defaultValue="1") String pg, Model model) {
-		System.out.println(pg);
 		
 		List<SimriMemberDTO> list = memberService.getMemberWarningList(Integer.parseInt(pg));
 		
@@ -94,15 +92,11 @@ public class memberController {
 	@RequestMapping(value = "/getMemberStopList", method=RequestMethod.POST)
 	@ResponseBody
 	public ModelAndView getMemberStopList(@RequestParam(required=false, defaultValue="1") String pg, Model model) {
-		System.out.println("stop: "+ pg);
 		
 		List<SimriMemberDTO> list = memberService.getMemberStopList(Integer.parseInt(pg));
 		
 		//페이징 처리
 		MemberStopPaging memberStopPaging = memberService.stopMemberPaging(Integer.parseInt(pg));
-		
-		System.out.println("stopMemberPaging"+ memberStopPaging);
-		System.out.println(list);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("pg",pg);
@@ -118,8 +112,6 @@ public class memberController {
 	public void stopInsert(@RequestParam String num, @RequestParam String email,
 						   @RequestParam String stopReason, @RequestParam String period) {
 		
-		System.out.println("num = "+num+" email = "+email+" stopReason = "+stopReason+" periond = "+period);
-		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("num",num);
 		map.put("email",email);
@@ -133,8 +125,6 @@ public class memberController {
 	@ResponseBody
 	public void stopPeriodInsert(@RequestParam String num, @RequestParam String email,
 						          @RequestParam String period) {
-		System.out.println("num = "+num+" email = "+email+" periond = "+period);
-		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("num",num);
 		map.put("email",email);
@@ -146,7 +136,6 @@ public class memberController {
 	@RequestMapping(value="/memberDelete", method=RequestMethod.POST)
 	@ResponseBody
 	public void memberDelete(@RequestParam String email) {
-		System.out.println(email);
 		memberService.memberDelete(email);
 	}
 	
@@ -155,9 +144,6 @@ public class memberController {
 	public ModelAndView getMemberSearch(@RequestParam String category,
 										@RequestParam String searchText,
 										@RequestParam String pg) {
-		System.out.println(category+"   "+searchText+"  "+pg);
-		
-		
 		
 		if(category.equals("이름")) {
 			category="name";
@@ -192,9 +178,6 @@ public class memberController {
 	public ModelAndView getMemberWarningSearch(@RequestParam String category,
 										@RequestParam String searchText,
 										@RequestParam String pg) {
-		System.out.println(category+"   "+searchText+"  "+pg);
-		
-		
 		
 		if(category.equals("이름")) {
 			category="name";
@@ -210,9 +193,7 @@ public class memberController {
 		map.put("searchText", searchText);
 		map.put("pg", pg);
 		
-		//MemberPaging memberPaging = memberService.memberWarningSearchPaging(map);
 		MemberWarningPaging memberWarningPaging = memberService.warningMemberPaging(map);
-		
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list",list);

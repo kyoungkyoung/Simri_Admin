@@ -22,23 +22,18 @@ public class ChartMybatis implements ChartDAO {
 	@Override
 	public List<EtcDTO> getEtc(String seq) {
 		List<EtcDTO> list = sqlSession.selectList("chartSQL.getEtc", seq);
-		//System.out.println(list);
 		return list;
 	}
 
 	@Override
 	public List<EtcDTO> getData(Map<String, Object> map) {
-		//System.out.println(map.get("startDate"));
-		//System.out.println(map.get("endDate"));
 		List<EtcDTO> list = sqlSession.selectList("chartSQL.getData", map);
-		System.out.println(list);
 		return list;
 	}
 
 	@Override
 	public CommunityDTO getCommunityDTO(int seq) {
 		CommunityDTO communityDTO = sqlSession.selectOne("chartSQL.getCommunityDTO", seq);
-		System.out.println(communityDTO);
 		return communityDTO;
 	}
 
@@ -46,11 +41,9 @@ public class ChartMybatis implements ChartDAO {
 	public List<MemChartDTO> getMemData(String date) {		
 		if(date.equals("day")) {
 			List<MemChartDTO> list = sqlSession.selectList("chartSQL.getMemDataDay");
-			System.out.println(list);
 			return list;
 		}else {
 			List<MemChartDTO> list = sqlSession.selectList("chartSQL.getMemDataMonth");
-			System.out.println(list);
 			return list;
 		}
 	}
@@ -58,41 +51,31 @@ public class ChartMybatis implements ChartDAO {
 	@Override
 	public List<CommunityDTO> getTestHit() {
 		List<CommunityDTO> list = sqlSession.selectList("chartSQL.getTestHit");
-		System.out.println(list);
 		return list;
 	}
 
 	@Override
 	public List<CommunityDTO> getloveHit() {
 		List<CommunityDTO> list = sqlSession.selectList("chartSQL.getloveHit");
-		System.out.println(list);
 		return list;
 	}
 
 	@Override
 	public List<CommunityDTO> getHitInfoDay(Map<String, Object> newMap) {
 		List<CommunityDTO> list = new ArrayList<CommunityDTO>();
-		System.out.println(newMap.get("comCategory"));
-		System.out.println(newMap.get("condition"));
-		System.out.println(newMap.get("date"));
-		
 ////////////////////////////////////////////////////////////////////////////////////////////////////////최신순
 		
 		if(newMap.get("condition").equals("seq")) {
-			System.out.println("마이바티스 최신순 \t "+newMap.get("condition"));
 			//최신순
 			if(newMap.get("comCategory").equals("comCategoryAll")) {
 				if(newMap.get("date").equals("day")) {
 					list = sqlSession.selectList("chartSQL.getHitInfoAllL", newMap);
-					System.out.println(list);
 					return list;
 				}else if(newMap.get("date").equals("week")) {
 					list = sqlSession.selectList("chartSQL.getHitInfoAllWeekL", newMap);
-					System.out.println(list);
 					return list;
 				}else {
 					list = sqlSession.selectList("chartSQL.getHitInfoAllMonthL", newMap);
-					System.out.println(list);
 					return list;
 				}
 			}
@@ -126,21 +109,16 @@ public class ChartMybatis implements ChartDAO {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////조회수, 좋아요		
 		
 		else {
-			System.out.println("마이바티스 조회수, 좋아요 \t "+newMap.get("condition"));
-			
 			//조회수, 좋아요
 			if(newMap.get("comCategory").equals("comCategoryAll")) {
 				if(newMap.get("date").equals("day")) {
 					list = sqlSession.selectList("chartSQL.getHitInfoAll", newMap);
-					System.out.println(list);
 					return list;
 				}else if(newMap.get("date").equals("week")) {
 					list = sqlSession.selectList("chartSQL.getHitInfoAllWeek", newMap);
-					System.out.println(list);
 					return list;
 				}else {
 					list = sqlSession.selectList("chartSQL.getHitInfoAllMonth", newMap);
-					System.out.println(list);
 					return list;
 				}
 			}

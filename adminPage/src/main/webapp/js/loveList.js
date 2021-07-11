@@ -287,7 +287,6 @@ $('#comDeleteBtn').click(function(){
 
 
 function postPaging2(pg, num){
-	//var searchText = document.getElementById('searchText').value;
 	var DHL1;
 	
 	if(num == 1) {

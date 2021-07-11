@@ -31,7 +31,6 @@ public class MemberMybatis implements MemberDAO {
 	@Override
 	public List<SimriMemberDTO> getMemberList(Map<String, Integer> map) {
 		List<SimriMemberDTO> list = sqlSession.selectList("memberSQL.getMemberList", map);
-		System.out.println(list);
 		for(SimriMemberDTO dto : list) {
 			if(dto.getStopPeriod()!=0) {
 				try {
@@ -41,16 +40,13 @@ public class MemberMybatis implements MemberDAO {
 					Date date1 = sdf.parse(dto.getSingologtime());
 					Date today = sdf.parse(date);
 					
-//					System.out.println("DB = "+date1);
-//					System.out.println("today = "+today);
-					
 					cal.setTime(date1);
 					cal.add(Calendar.DATE, dto.getStopPeriod());
 					
 					if(cal.getTime().after(today)) {
-						System.out.println("정지 안풀림");
+						//System.out.println("정지 안풀림");
 					}else {
-						System.out.println("정지 풀림");
+						//System.out.println("정지 풀림");
 						sqlSession.update("memberSQL.updateStop", dto);
 					}
 				} catch (ParseException e) {
@@ -72,7 +68,6 @@ public class MemberMybatis implements MemberDAO {
 	@Override
 	public SimriMemberDTO getSimriMember(String email) {
 		SimriMemberDTO simriMemberDTO = sqlSession.selectOne("memberSQL.getSimriMember", email);
-//		System.out.println("simriMemberDTO="+simriMemberDTO);
 		return simriMemberDTO;
 	}
 
@@ -114,9 +109,9 @@ public class MemberMybatis implements MemberDAO {
 					cal.add(Calendar.DATE, dto.getStopPeriod());
 					
 					if(cal.getTime().after(today)) {
-						System.out.println("정지 안풀림");
+						//System.out.println("정지 안풀림");
 					}else {
-						System.out.println("정지 풀림");
+						//System.out.println("정지 풀림");
 						sqlSession.update("memberSQL.updateStop", dto);
 					}
 				} catch (ParseException e) {
@@ -130,19 +125,10 @@ public class MemberMybatis implements MemberDAO {
 	@Override
 	public void stopInsert(Map<String, String> map) {
 		
-		System.out.println(map.get("num"));
-		System.out.println(map.get("email"));
-		System.out.println(map.get("stopReason"));
-		System.out.println(map.get("period"));
-		
 		String newEmail1 = map.get("email").replace("{\"email\":\"", "");
-		System.out.println(newEmail1);
 		String newEmail2 = newEmail1.replace("\"}","");
-		System.out.println(newEmail2);
 		String newEmail3 = newEmail2.replace("[","");
-		System.out.println(newEmail3);
 		String newEmail4 = newEmail3.replace("]","");
-		System.out.println(newEmail4);
 		
 		String[] arrayEmail = newEmail4.split(",");
 		
@@ -150,13 +136,7 @@ public class MemberMybatis implements MemberDAO {
 		SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd");
 		String sysdate = sdf.format(date);
 		
-		System.out.println("sysdate 찍히나"+sysdate);
-		
 		for(int i=0; i<arrayEmail.length; i++) {
-			System.out.println(i+"="+arrayEmail[i]);
-			
-			System.out.println(sysdate);
-			
 			Map<String, String> newMap = new HashMap<String, String>();
 			newMap.put("singologtime", sysdate);
 			newMap.put("stopReason", map.get("stopReason"));
@@ -170,18 +150,10 @@ public class MemberMybatis implements MemberDAO {
 	@Override
 	public void stopPeriodInsert(Map<String, String> map) {
 		
-		System.out.println(map.get("num"));
-		System.out.println(map.get("email"));
-		System.out.println("여기"+map.get("period"));
-		
 		String newEmail1 = map.get("email").replace("{\"email\":\"", "");
-		System.out.println(newEmail1);
 		String newEmail2 = newEmail1.replace("\"}","");
-		System.out.println(newEmail2);
 		String newEmail3 = newEmail2.replace("[","");
-		System.out.println(newEmail3);
 		String newEmail4 = newEmail3.replace("]","");
-		System.out.println(newEmail4);
 		
 		String[] arrayEmail = newEmail4.split(",");
 		
@@ -189,16 +161,12 @@ public class MemberMybatis implements MemberDAO {
 		SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd");
 		String sysdate = sdf.format(date);
 		
-		System.out.println("sysdate 찍히나"+sysdate);
-		
 		for(int i=0; i<arrayEmail.length; i++) {
-			System.out.println(i+"="+arrayEmail[i]);
 			
 			Map<String, String> newMap = new HashMap<String, String>();
 			newMap.put("singologtime", sysdate);
 			newMap.put("stopPeriod", map.get("period"));
 			newMap.put("email", arrayEmail[i]);
-			System.out.println("/n/n/n/n/n/n/n/n/n/nstopPeriod"+map.get("period"));
 			sqlSession.update("memberSQL.stopPeriodInsert", newMap);
 		}
 
@@ -207,13 +175,9 @@ public class MemberMybatis implements MemberDAO {
 	@Override
 	public void memberDelete(String email) {
 		String newEmail1 = email.replace("{\"email\":\"", "");
-		System.out.println(newEmail1);
 		String newEmail2 = newEmail1.replace("\"}","");
-		System.out.println(newEmail2);
 		String newEmail3 = newEmail2.replace("[","");
-		System.out.println(newEmail3);
 		String newEmail4 = newEmail3.replace("]","");
-		System.out.println(newEmail4);
 		
 		String[] arrayEmail = newEmail4.split(",");
 		
@@ -225,7 +189,6 @@ public class MemberMybatis implements MemberDAO {
 	@Override
 	public List<SimriMemberDTO> getMemberSearch(Map<String, Object> map) {
 		List<SimriMemberDTO> list = sqlSession.selectList("memberSQL.getMemberSearch", map);
-		System.out.println(list);
 		return list;
 	}
 
@@ -237,7 +200,6 @@ public class MemberMybatis implements MemberDAO {
 	@Override
 	public List<SimriMemberDTO> getMemberWarningSearch(Map<String, Object> map) {
 		List<SimriMemberDTO> list = sqlSession.selectList("memberSQL.getMemberWarningSearch", map);
-		System.out.println(list);
 		return list;
 	}
 

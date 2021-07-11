@@ -16,7 +16,6 @@ public class ChartPaging {
 	   
 	   
 	   public void makePagingHTML(String comCategory, String condition, String date) {
-		   System.out.println(comCategory+"789456123"+condition);
 		   int comCategoryNum=0;
 		   int conditionNum=0;
 		   int dateNum=0;

@@ -25,12 +25,10 @@ public class PostMybatis implements PostDAO {
 	public List<PostDTO> getSimriPostList(Map<String, Object> map) {
 		if(map.get("DHL").equals("조회수")) {
 			List<PostDTO> list = sqlSession.selectList("postSQL.DHitLList", map);
-			System.out.println(map.get("DHL"));
 			return list;
 		}else if(map.get("DHL").equals("좋아요")) {
 			
 			List<PostDTO> list = sqlSession.selectList("postSQL.DHLikeList", map);
-			System.out.println(map.get("DHL"));
 			return list;
 		}else{
 			List<PostDTO> list = sqlSession.selectList("postSQL.getSimriPostList", map);
@@ -84,20 +82,16 @@ public class PostMybatis implements PostDAO {
 	@Override
 	public PostDTO getPostView(String seq) {
 		PostDTO postDTO = sqlSession.selectOne("postSQL.getPostView", Integer.parseInt(seq));
-		System.out.println("마바"+postDTO);
 		return postDTO;
 	}
 
 	@Override
 	public void loveWrite(PostDTO postDTO) {
 		
-		System.out.println("/n/n/n/n/n/n/n/n/n/n//n/n/n/n"+postDTO.getImage());
 		if(postDTO.getImage().equals("null.jpg")) {
 			int num = (int)(Math.random()*(7-1))+1;
-			System.out.println(num);
 			String nullImage = "null"+ Integer.toString(num)+".jpg";
 			postDTO.setImage(nullImage);
-			System.out.println(nullImage);
 		}
 		
 		sqlSession.insert("postSQL.loveWrite", postDTO);
@@ -108,12 +102,10 @@ public class PostMybatis implements PostDAO {
 	public List<PostDTO> getLovePostList(Map<String, Object> map) {
 		if(map.get("DHL").equals("조회수")) {
 			List<PostDTO> list = sqlSession.selectList("postSQL.DHitLList", map);
-			System.out.println(map.get("DHL"));
 			return list;
 		}else if(map.get("DHL").equals("좋아요")) {
 			
 			List<PostDTO> list = sqlSession.selectList("postSQL.DHLikeList", map);
-			System.out.println(map.get("DHL"));
 			return list;
 		}else{
 			List<PostDTO> list = sqlSession.selectList("postSQL.getSimriPostList", map);

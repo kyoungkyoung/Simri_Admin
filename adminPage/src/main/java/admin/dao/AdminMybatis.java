@@ -17,14 +17,8 @@ public class AdminMybatis implements AdminDAO {
    
    @Override
    public AdminDTO sign(Map<String, String> map) {
-      //System.out.println(map);
-      
       AdminDTO adminDTO = sqlSession.selectOne("adminSQL.sign", map);
-      
-      //System.out.println(adminDTO);
-      
       return adminDTO;
-
    }
 
 	@Override

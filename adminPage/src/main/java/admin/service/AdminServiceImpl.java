@@ -19,8 +19,6 @@ public class AdminServiceImpl implements AdminService {
    public String sign(Map<String, String> map, HttpSession session) {
       AdminDTO adminDTO = adminDAO.sign(map);
       
-      System.out.println("service : " + adminDTO);
-      
       if(adminDTO == null) {
          return "fail";
       }else {

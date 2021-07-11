@@ -21,14 +21,11 @@ public class adminController {
 	@Autowired
 	private AdminService adminService;
 	
-	
-	
 	//팝업창
 	@RequestMapping(value = "/memberView", method = RequestMethod.GET)
 	public String memberView() { 
 		return "/section/memberView";
 	}// checkPost()
-	
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() { 
@@ -39,9 +36,7 @@ public class adminController {
 	//팝업창
 	@RequestMapping(value = "/adminModify", method = RequestMethod.GET)
 	public String adminModify(Model model, HttpSession session) { 
-		System.out.println(session.getAttribute("memId"));
 		AdminDTO adminDTO = adminService.getAdmin(session);
-		//System.out.println(adminDTO);
 		model.addAttribute("adminDTO", adminDTO);
 		return "/section/adminModify";
 	}// checkPost()
@@ -49,7 +44,6 @@ public class adminController {
 	@RequestMapping(value="/changePwd", method=RequestMethod.POST)
 	@ResponseBody
 	public void changePwd(@RequestParam String changePwd) {
-		System.out.println(changePwd);
 		adminService.changePwd(changePwd);
 	}
 //modify	
