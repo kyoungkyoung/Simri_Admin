@@ -110,7 +110,7 @@ public class CommunityMybatis implements CommunityDAO {
 	@Override
 	public void noticeWrite(CommunityDTO communityDTO) {
 		if(communityDTO.getImage().equals("null.jpg")) {
-			int num = (int)(Math.random()*(5-1))+1;
+			int num = (int)(Math.random()*(7-1))+1;
 			System.out.println(num);
 			String nullImage = "null"+ Integer.toString(num)+".jpg";
 			communityDTO.setImage(nullImage);

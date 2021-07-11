@@ -54,7 +54,7 @@
 	</update>
 	
 	<update id="stopPeriodInsert" parameterType="java.util.Map">
-		update simrimember set stopperiod=stopPeriod + #{stopPeriod}, singoreason='' where email=#{email}
+		update simrimember set stopperiod=stopPeriod+#{stopPeriod}, singoreason='' where email=#{email}
 	</update>
 	
 	

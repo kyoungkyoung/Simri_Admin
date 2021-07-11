@@ -28,7 +28,7 @@
             <br>
             
            정지 기간 (일) : <div class="form-check form-check-inline mt-3 ml-1">
-  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
   <label class="form-check-label" for="option1">1</label>
 </div>
 <div class="form-check form-check-inline">
@@ -67,7 +67,7 @@
       <div class="modal-body">
 	           정지 기간 (일) : 
 	        <div class="form-check form-check-inline mt-3 ml-1">
-  				<input class="form-check-input" type="radio" name="inlinePeriodRadioOptions" id="inlinePeriodRadio1" value="periodOption1">
+  				<input class="form-check-input" type="radio" name="inlinePeriodRadioOptions" id="inlinePeriodRadio1" value="periodOption1" checked>
   				<label class="form-check-label" for="periodOption1">1</label>
 			</div>
 			<div class="form-check form-check-inline">

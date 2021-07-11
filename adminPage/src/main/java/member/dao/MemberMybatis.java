@@ -172,7 +172,7 @@ public class MemberMybatis implements MemberDAO {
 		
 		System.out.println(map.get("num"));
 		System.out.println(map.get("email"));
-		System.out.println(map.get("period"));
+		System.out.println("여기"+map.get("period"));
 		
 		String newEmail1 = map.get("email").replace("{\"email\":\"", "");
 		System.out.println(newEmail1);
@@ -194,12 +194,11 @@ public class MemberMybatis implements MemberDAO {
 		for(int i=0; i<arrayEmail.length; i++) {
 			System.out.println(i+"="+arrayEmail[i]);
 			
-			System.out.println(sysdate);
-			
 			Map<String, String> newMap = new HashMap<String, String>();
 			newMap.put("singologtime", sysdate);
-			newMap.put("stopPeriod", (String) map.get("period"));
+			newMap.put("stopPeriod", map.get("period"));
 			newMap.put("email", arrayEmail[i]);
+			System.out.println("/n/n/n/n/n/n/n/n/n/nstopPeriod"+map.get("period"));
 			sqlSession.update("memberSQL.stopPeriodInsert", newMap);
 		}
 

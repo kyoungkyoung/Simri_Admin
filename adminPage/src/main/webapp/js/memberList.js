@@ -59,10 +59,8 @@ $('#general-tab').click(function(){
 									onclick: 'checkSelectAll(this)'
 							})))
 						).append($('<td/>',{
-							text: items.name,
-							/*id: 'memberInfo',
-							style: 'cursor: pointer'*/
-								
+							text: items.name
+							
 						})).append($('<td/>',{
 							text: items.email,
 							id: 'memberInfo',
@@ -437,6 +435,8 @@ $('#stopInsertBtn').click(function(){
 	if(aaa == ''){
 		alert('정지 사유를 입력해주세요 ');
 	}
+	
+	
 	else{
 	$.ajax({
 		type: 'post',

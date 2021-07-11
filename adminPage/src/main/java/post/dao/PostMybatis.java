@@ -90,7 +90,16 @@ public class PostMybatis implements PostDAO {
 
 	@Override
 	public void loveWrite(PostDTO postDTO) {
-		//System.out.println(postDTO);
+		
+		System.out.println("/n/n/n/n/n/n/n/n/n/n//n/n/n/n"+postDTO.getImage());
+		if(postDTO.getImage().equals("null.jpg")) {
+			int num = (int)(Math.random()*(7-1))+1;
+			System.out.println(num);
+			String nullImage = "null"+ Integer.toString(num)+".jpg";
+			postDTO.setImage(nullImage);
+			System.out.println(nullImage);
+		}
+		
 		sqlSession.insert("postSQL.loveWrite", postDTO);
 		
 	}
