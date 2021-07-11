@@ -16,7 +16,7 @@ $('#viewModify').click(function(){
 			contentType: false,
 			data: formData,
 			success: function(data){
-				alert("공지사항 수정등록 완료되었습니다.");
+				alert("수정완료");
 				location.href = '/simri/post/writeManage?pg=1';
 			},
 			error: function(err){

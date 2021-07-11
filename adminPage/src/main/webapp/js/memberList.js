@@ -433,7 +433,11 @@ $('#stopInsertBtn').click(function(){
 	var radioId = $('input:radio[name="inlineRadioOptions"]:checked').val();
 	console.log(radioId);
 
-	
+	var aaa = $('input[name=stopReason]').val()
+	if(aaa == ''){
+		alert('정지 사유를 입력해주세요 ');
+	}
+	else{
 	$.ajax({
 		type: 'post',
 		url: '/simri/member/stopInsert',
@@ -451,6 +455,7 @@ $('#stopInsertBtn').click(function(){
 			console.log(err);
 		}
 	});
+	}
 });
 
 $('#stopPeriodBtn').click(function(){
