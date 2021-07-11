@@ -97,7 +97,9 @@ $('#adDeleteBtn').click(function(){
 	
 	var jsonSeq = JSON.stringify(listSeq);
 	
-	if(count != 0 && yn == 0){
+	if(count == 0 && yn == 0){
+		alert('삭제할 글을 선택해주세요.');
+	}else if(count != 0 && yn == 0){
 		alert('삭제할 글을 선택해주세요.');
 	}else{
 		if(confirm("정말 삭제하시겠습니까?")){

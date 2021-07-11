@@ -51,7 +51,7 @@ $(function(){
 							}).append($('<a/>',{
 								text: items.subject,
 								style: 'color: black;',
-								href: '/simri/post/postView?seq='+items.seq
+								href: '/simri/chart/postGraphDetail?seq='+items.seq
 								
 						}))).append($('<td/>',{
 							text: items.hit,
@@ -84,7 +84,7 @@ $(function(){
 							}).append($('<a/>',{
 								text: items.subject,
 								style: 'color: black;',
-								href: '/simri/post/postView?seq='+items.seq
+								href: '/simri/chart/postGraphDetail?seq='+items.seq
 						}))).append($('<td/>',{
 							text: items.hit,
 							style: 'text-align: center;'

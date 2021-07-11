@@ -68,7 +68,6 @@ public class CommunityMybatis implements CommunityDAO {
 		return totalA;
 	}
 
-
 	@Override
 	public void communityDelete(String seq) {
 		String newSeq1 = seq.replace("{\"seq\":\"", "");

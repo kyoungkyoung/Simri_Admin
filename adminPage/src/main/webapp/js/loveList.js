@@ -147,69 +147,75 @@ $(document).ready(function(){
 
 //---연애 서치
 $('#postSearchBtn').click(function(event){
-	$.ajax({
-		type:'post',
-		url: '/simri/post/postSearch',
-		data: {
-			'comCategory': $('#comCategory').val(),
-			'pg': $('#pg').val(),
-			'postSearchText': $('#postSearchText').val()
-		},
-		dataType: 'json',
-		success: function(data){
-			$('#lovePostList').empty();
-			
-			$.each(data.list, function(index, items){
+	
+	if($('#postSearchText').val()==''){
+		alert('검색어를 입력하세요');
+	}else{
+	
+		$.ajax({
+			type:'post',
+			url: '/simri/post/postSearch',
+			data: {
+				'comCategory': $('#comCategory').val(),
+				'pg': $('#pg').val(),
+				'postSearchText': $('#postSearchText').val()
+			},
+			dataType: 'json',
+			success: function(data){
+				$('#lovePostList').empty();
 				
-				$('<li/>',{
-					class : 'list-group-item mb-3'
-				}).append($('<div/>',{
-					  class: 'list-group-item list-group-item-action'
-						  
-				  		}).append($('<div/>',{
-				  			class: 'd-flex w-100'
-				  				
-				  			}).append($('<input/>',{
-				  				class: 'form-check-in mr-3 mt-2', 
-				  				type: 'checkbox',
-			  					name: 'check',
-								value: items.seq,
-								onclick: 'checkSelectAll(this)'
-				  			})).append($('<a/>',{
-				  				href: '/simri/post/loveView?seq='+items.seq,
-				  				class: 'mb-1 flex-fill',
-				  				style: 'text-decoration: none; color: black;'
-					  			}).append($('<h5/>',{
-					  				text: '['+items.seq+'] '+items.subject,
-					  				style: 'color: black;',
-					  				id: 'comSeq'
-				  			}))).append($('<small/>',{
-				  				class: 'text-muted',
-				  				text: items.comLogtime
-				  				
-				  		}))).append($('<small/>',{
-				  			class: 'text-muted ml-4',
-				  			text: '['+items.point+']'
-				  			
-				  		})).append($('<div/>',{
-				  			class: 'd-flex w-100 justify-content-end'
-				  			}).append($('<button/>',{
-				  				type: 'button', 
-				  				class: 'btn btn-outline-secondary float-right mr-1 chartBtn'+items.seq,
-				  				text: '통계'
-				  			})))).appendTo('#lovePostList');	
-				$('.chartBtn'+items.seq).click(function(){
-					location.href="/simri/chart/postGraphDetail?seq="+items.seq;
+				$.each(data.list, function(index, items){
+					
+					$('<li/>',{
+						class : 'list-group-item mb-3'
+					}).append($('<div/>',{
+						  class: 'list-group-item list-group-item-action'
+							  
+					  		}).append($('<div/>',{
+					  			class: 'd-flex w-100'
+					  				
+					  			}).append($('<input/>',{
+					  				class: 'form-check-in mr-3 mt-2', 
+					  				type: 'checkbox',
+				  					name: 'check',
+									value: items.seq,
+									onclick: 'checkSelectAll(this)'
+					  			})).append($('<a/>',{
+					  				href: '/simri/post/loveView?seq='+items.seq,
+					  				class: 'mb-1 flex-fill',
+					  				style: 'color: black;'
+						  			}).append($('<h5/>',{
+						  				text: '['+items.seq+'] '+items.subject,
+						  				style: 'color: black;',
+						  				id: 'comSeq'
+					  			}))).append($('<small/>',{
+					  				class: 'text-muted',
+					  				text: items.comLogtime
+					  				
+					  		}))).append($('<small/>',{
+					  			class: 'text-muted ml-4',
+					  			text: '['+items.point+']'
+					  			
+					  		})).append($('<div/>',{
+					  			class: 'd-flex w-100 justify-content-end'
+					  			}).append($('<button/>',{
+					  				type: 'button', 
+					  				class: 'btn btn-outline-secondary float-right mr-1 chartBtn'+items.seq,
+					  				text: '통계'
+					  			})))).appendTo('#lovePostList');	
+					$('.chartBtn'+items.seq).click(function(){
+						location.href="/simri/chart/postGraphDetail?seq="+items.seq;
+					});
+					
 				});
-				
-			});
-			$('#postPagingDiv').html(data.postPaging.pagingHTML);
-		},
-		error: function(err){
-			console.log(err);
-		}
-	});
-	$('#pg').val('1');
+				$('#postPagingDiv').html(data.postPaging.pagingHTML);
+			},
+			error: function(err){
+				console.log(err);
+			}
+		});
+		$('#pg').val('1');
+	}
 });
 
 //----체크박스---
