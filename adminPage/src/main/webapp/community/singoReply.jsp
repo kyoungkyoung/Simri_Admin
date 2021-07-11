@@ -17,13 +17,13 @@
 <table class="table table-hover" id="adTable">
 	<thead>
 		<tr>
-			<th scope="col" width="9%">
+			<th scope="col" width="5%">
 				<div class="form-check">
 					<input class="form-check-input" type="checkbox" value="" id="all" onclick="checkAll(this)"> 
-						<label class="form-check-label" for="flexCheckDefault">번호</label>
+						<label class="form-check-label" for="flexCheckDefault"></label>
 				</div>
 			</th>
-			<th scope="col" width="20%">이메일</th>
+			<th scope="col" width="15%">이메일</th>
 			<th scope="col" width="45%">내용</th>
 			<th scope="col" width="10%">신고</th>
 			<th scope="col" width="25%">신고날짜</th>
@@ -70,7 +70,7 @@ $(function(){
 							
 						})).append($('<label/>',{
 							class: 'form-check-label',
-							text: items.replyseq
+							//text: items.replyseq
 				})))).append($('<td/>',{
 					text: items.email
 				})).append($('<td/>',{

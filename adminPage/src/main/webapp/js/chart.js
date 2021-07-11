@@ -1,6 +1,9 @@
-$('#dateBtn').click(function(){
-	alert('클릭됨');
-	
+//마지막에 할 것 - 제일 처음에 창이 뜨면 trigger이용해서 현재 날짜에 해당하는 통계 data 뿌려주기
+$(function(){
+	$('#dateBtn').trigger('click');
+});
+
+$('#dateBtn').click(function(event){
 	var chartLabels = [];
 	var hitData = [];
 	var likeData = [];
@@ -37,17 +40,6 @@ $('input[name="datefilter"]').daterangepicker({
          format: 'YY/MM/DD'
        }
 }); 
-
-
-//마지막에 할 것 - 제일 처음에 창이 뜨면 trigger이용해서 현재 날짜에 해당하는 통계 data 뿌려주기
-	
-$(function(){
-	$('#myChart').addClass('chart');
-	
-	
-	
-});
-
 
 	function createChart(chartLabels, hitData, likeData, shareData) {
 		

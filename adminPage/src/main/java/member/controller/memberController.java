@@ -133,7 +133,6 @@ public class memberController {
 	@ResponseBody
 	public void stopPeriodInsert(@RequestParam String num, @RequestParam String email,
 						          @RequestParam String period) {
-		System.out.println("기간기간기간"+period);
 		System.out.println("num = "+num+" email = "+email+" periond = "+period);
 		
 		Map<String, String> map = new HashMap<String, String>();

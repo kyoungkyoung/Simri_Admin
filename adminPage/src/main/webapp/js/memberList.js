@@ -454,14 +454,58 @@ $('#stopInsertBtn').click(function(){
 });
 
 $('#stopPeriodBtn').click(function(){
+	let count2=0;
+	let yn2=0;
+	var buttonId = $('.active').attr('id');
+	if(buttonId=='warning-tab'){
+		
+		var check2 = document.getElementsByName("checkWarning");
+		var listEmail2 = new Array();
+		var listNum2 = new Array();
+		
+		for(var i=0; i<check2.length; i++){
+			if(check2[i].checked == false){
+				count2++;
+				
+			}else if(check2[i].checked == true){
+				console.log(check2[i].value);
+				
+				var dataEmail2 = new Object();
+				var dataNum2 = new Object();
+				
+				dataNum2.number = i;
+				dataEmail2.email = check2[i].value;
+				listNum2.push(dataNum2);
+				listEmail2.push(dataEmail2);
+				console.log(listNum2);
+				console.log(listEmail2);
+				
+				
+				yn2++;
+				
+			}//else if
+		}//for
+		
+		var jsonNum2 = JSON.stringify(listNum2);
+		var jsonEmail2 = JSON.stringify(listEmail2);
+		console.log(jsonNum2);
+		console.log(jsonEmail2);
+		
+		if(count2 != 0 && yn2==0){
+				alert('정지 연장할 회원을 선택해주세요');			   
+		}else if (count2>=0 && yn2!=0){
+			$('#myModalPeriod').modal('show');
+			$('#checkNum').val(jsonNum2);
+			$('#checkHidden').val(jsonEmail2);
+		}
+		
+		
+	}
 
 	//check3----------------------------------------------------------------
 	let count3=0;
 	let yn3=0;
 		
-		
-			var buttonId = $('.active').attr('id');
-			
 			if(buttonId=='stop-tab'){
 				var check3 = document.getElementsByName("checkStop");
 				var listEmail3 = new Array();
