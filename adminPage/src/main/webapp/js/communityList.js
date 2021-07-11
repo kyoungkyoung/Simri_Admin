@@ -305,7 +305,6 @@ $('#comDeleteBtn').click(function(){
 });
 
 //공지사항 등록Btn
-
 $('#noticeBtn').click(function(){
 	if($('#subject').val() == '[공지사항]') {
 		alert("제목 입력");

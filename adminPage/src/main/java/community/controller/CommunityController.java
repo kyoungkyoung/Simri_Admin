@@ -178,7 +178,6 @@ public class CommunityController {
 	@ResponseBody
 	public void noticeWrite(@ModelAttribute CommunityDTO communityDTO,
 			@RequestParam MultipartFile img) {
-		//System.out.println(communityDTO.getImage());
 		
 		//D:\Spring\FinalProject\git_Project\gitAdmin\adminPage\src\main\webapp\storage
 		//C:\\git_home\\gitAdmin\\adminPage\\src\\main\\webapp\\storage
