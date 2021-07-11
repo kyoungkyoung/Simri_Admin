@@ -192,7 +192,6 @@
       <ul class="pagination justify-content-center my-4" id="memberWarningPagingDiv">
       </ul>
 </nav>
-<%-- <input type="hidden" id="pg" value="${pg}"> --%>
 <input type="hidden" id="btnId" value="${btnId}">
 
 </div> 

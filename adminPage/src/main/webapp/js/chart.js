@@ -1,7 +1,5 @@
 $('#dateBtn').click(function(){
 	alert('클릭됨');
-	//$('#myChart').addClass('chart');
-	
 	
 	var chartLabels = [];
 	var hitData = [];
@@ -16,11 +14,8 @@ $('#dateBtn').click(function(){
 			},
 		dataType:'json',
 		success: function(data){
-			//alert(JSON.stringify(data));
 			
 			$.each(data.list, function(index, items){
-				
-				//alert("여기오나");
 				
 				chartLabels.push(items.etcLogtime);
 				hitData.push(items.hitHit);
@@ -44,14 +39,14 @@ $('input[name="datefilter"]').daterangepicker({
 }); 
 
 
-///마지막에 할 것 - 제일 처음에 창이 뜨면 trigger이용해서 현재 날짜에 해당하는 통계 data 뿌려주기
-//	
-//$(function(){
-//	$('#myChart').addClass('chart');
-//	
-//	
-//	
-//});
+//마지막에 할 것 - 제일 처음에 창이 뜨면 trigger이용해서 현재 날짜에 해당하는 통계 data 뿌려주기
+	
+$(function(){
+	$('#myChart').addClass('chart');
+	
+	
+	
+});
 
 
 	function createChart(chartLabels, hitData, likeData, shareData) {

@@ -323,13 +323,11 @@ function checkSelectAllStop(checkbox)  {
 //활동 정지 버튼-------------------------------------------------------------------------------------------
 
 $('#stopBtn').click(function(){
-
 //check1----------------------------------------------------------------
 	let count=0;
 	let yn=0;
 	let count2=0;
 	let yn2=0;
-	
 	
 		var buttonId = $('.active').attr('id');
 		
@@ -711,11 +709,22 @@ $('#deleteBtn').click(function(){
 	
 });
 
+
 $('#searchBtn').click(function(event, str){
+	
+	$('#general-tab').addClass('active');
+	$('#stop-tab').removeClass('active');
+	$('#warning-tab').removeClass('active');
+	
+	$('#general').addClass('active show');
+	$('#stop').removeClass('active show');
+	$('#warning').removeClass('active show');
+	
 	
 	if($('#searchText').val() == '')
 		alert('검색어를 입력하세요');
 	else{
+		$('#memberListTable tr:gt(0)').remove();
 		$.ajax({
 			type: 'get',
 			url: '/simri/member/getMemberSearch',
@@ -729,7 +738,6 @@ $('#searchBtn').click(function(event, str){
 				$('#memberListTable tr:gt(0)').remove();
 				
 				$.each(data.list, function(index, items){
-					
 					$('<tr/>').append($('<th/>',{
 								scope: 'row'
 								}).append($('<div/>',{
@@ -782,73 +790,6 @@ $('#searchBtn').click(function(event, str){
 				
 		});
 		
-		$.ajax({
-			type: 'get',
-			url: '/simri/member/getMemberWarningSearch',
-			data: {
-				'pg': $('#pg').val(),
-				'category': $('#category').val(),
-				'searchText': $('#searchText').val()
-			},
-			dataType: 'json',
-			success: function(data){
-				
-				$('#memberWarningListTable tr:gt(0)').remove();
-				
-				$.each(data.list, function(index, items){
-					$('<tr/>').append($('<th/>',{
-								scope: 'row'
-								}).append($('<div/>',{
-									class: 'form-check'
-									}).append($('<input/>',{
-										class: 'form-check-input',
-										type: 'checkbox',
-										name: 'checkWarning',
-										value: items.email,
-										onclick: 'checkSelectAllWarning(this)'
-								})))
-							).append($('<td/>',{
-								text: items.name,
-								
-							})).append($('<td/>',{
-								text: items.email,
-								id: 'memberInfo',
-								style: 'cursor: pointer'
-							})).append($('<td/>',{
-							text: items.palette
-								
-							})).append($('<td/>',{
-								text: items.point
-								
-							})).append($('<td/>',{
-								text: items.memsingo
-								
-							})).append($('<td/>',{
-								text: items.singoReason
-								
-							})).append($('<td/>',{
-								text: items.condition
-								
-							})).appendTo($('#memberWarningListTable'));
-				});//each
-				
-				//페이징 처리
-				$('#memberWarningPagingDiv').html(data.memberWarningPaging.pagingHTML);
-				
-				$(document).on('click', '#memberInfo', function(){
-					window.open('/simri/member/memberView?email='+$(this).text(), 'ss', 'width=640 height=540 left=800 top=200 scrollbars=yes');
-					  
-					
-				});
-			},
-			error: function(err){
-				console.log(err);
-			}
-				
-		});
-		
-		
-		
 	}
 	
 	$('#pg').val('1');
@@ -865,7 +806,6 @@ function mypagePaging(pg){
 	
 	
 	if(searchText==''){
-		//$('#pg').val(pg);
 		location.href = '/simri/member/memberList?pg='+pg;
 	}else{
 		$('#pg').val(pg);
