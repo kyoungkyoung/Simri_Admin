@@ -6,7 +6,6 @@ $(function(){
 		data: 'date='+$('#date').val(),
 		dataType: 'json',
 		success: function(data){
-			//alert(JSON.stringify(data));
 			
 			var chartLabels = [];
 			var memData = [];
@@ -36,7 +35,6 @@ $(function(){
 		url: '/simri/chart/getTestHit',
 		dataType: 'json',
 		success: function(data){	
-			//alert(JSON.stringify(data));
 			
 			$('#testHitTable tr:gt(0)').remove()
 			

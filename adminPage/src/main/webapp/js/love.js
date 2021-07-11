@@ -1,5 +1,4 @@
 $('#postWriteBtn').click(function(){
-	//alert("릴");
 	if($('#subject').val() == ''){
 		alert("제목을 입력해주세요.");
 	}else if($('#content').val() == ''){

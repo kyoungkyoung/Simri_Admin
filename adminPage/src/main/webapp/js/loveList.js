@@ -312,22 +312,14 @@ function postPaging2(pg, num){
 //페이징
 function postPaging(pg){
 	var postSearchText = document.getElementById('postSearchText').value;
-//	alert(postSearchText);
 	
-	//if(postSearchText == ''){
-		//alert("오니");
 		location.href= '/simri/post/writeLove?pg='+pg;
-	//}else{
 		$('#pg').val(pg);
 		$('#postSearchText').val(postSearchText);
 		$('#postSearchBtn').trigger('click');
 		
-//	}
-	
-
 }
 
-//광고등록
 //광고등록
 $('#adBtn').click(function(){
 	var check1 = document.getElementsByName("check");
@@ -365,7 +357,6 @@ $('#adBtn').click(function(){
 				data: 'seq='+jsonSeq,
 				dataType: 'text',
 				success: function(data){
-					//alert(data);
 					if(data == 'exist'){
 						alert("이미 등록되어 있습니다.")
 					}else{
